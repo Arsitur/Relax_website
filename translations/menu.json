@@ -1,16 +1,14 @@
 {
     "ru": {
         "meta": {
-            "title": "Relax | Меню"
+            "title": "Relax | Дом"
         },
         "home": "Дом",
         "menu": "Mеню",
         "contact": "Контакты",
         "article": "Cтатьях",
-        "auth":"Авторизоваться",
-        "reg":"Регистрация",
         "stars": "Звезды:",
-        "price": "Цена:",
+        "price": "Цена",
         "categories": "Категории",
         "search": "Искать",
         "pizza": "Пицца",
@@ -24,7 +22,7 @@
         "bere": "Пивное меню",
         "carne": "Мясные продукты",
         "dish_name":"Имя",
-        "dish_price":"Цена:",
+        "dish_price":"Цена",
         "dish_desc":"Описание",
         "dish_weight":"Масса",
         "cos":"Корзина пуста",
@@ -32,15 +30,14 @@
         "buy":"Купить",
         "recenzie":"Отзывы",
         "nothing":"Результатов не найдено.",
-        "add":"Добавлять"
+        "add":"Добавлять",
+        "masanet":"Вес гр. (сеть), "
     },
     "ro": {
         "meta": {
-            "title": "Relax | Meniu"
+            "title": "Relax | Acasă"
         },
         "home": "Acasă",
-        "auth":"Autentificare",
-        "reg":"Înregistrare",
         "menu": "Meniu",
         "contact": "Contacte",
         "article": "Articole",
@@ -67,15 +64,14 @@
         "buy":"Cumpără",
         "recenzie":"Recenzii",
         "nothing":"Nu am găsit niciun rezultat.",
-        "add":"Adaugă"
+        "add":"Adaugă",
+        "masanet":"Masa gr. (netă), "
     },
     "en": {
         "meta": {
-            "title": "Relax | Menu"
+            "title": "Relax | Home"
         },
         "home": "Home",
-        "auth":"Authenticate",
-        "reg":"Register",
         "menu": "Menu",
         "contact":"Contacts",
         "article":"Articles",
@@ -102,6 +98,7 @@
         "buy":"Buy",
         "recenzie":"Reviews",
         "nothing":"No results were found.",
-        "add":"Add"
+        "add":"Add",
+        "masanet":"Weight gr. (net), "
     }
 }

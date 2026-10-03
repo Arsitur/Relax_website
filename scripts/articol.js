@@ -3,10 +3,6 @@ import { focusItem } from "./utils.js";
 const commentTextarea = document.querySelector('.contents>.end>#add-comment>.textarea>textarea');
 const commentWordsSpan = document.querySelector('.contents>.end>#add-comment>.textarea>.max');
 
-const navbar = document.querySelector('.nav-bar');
-navbar.style.transition = 'initial';
-navbar.style.transform = 'translateY(0%)'
-
 let pastTextareaValue = 0;
 
 commentTextarea.addEventListener('input', (e) =>
@@ -68,36 +64,36 @@ heart.addEventListener('click', (e) =>
 
 const endSection = document.querySelector('.end');
 
-const progressBar = document.querySelector('.progress-bar')
+// const progressBar = document.querySelector('.progress-bar')
 
 
-function assignProgress()
-{
-    const endSectionRect = endSection.getBoundingClientRect();
-    const endSectionTop = endSectionRect.top + window.pageYOffset;
-    const endSectionBottom = endSectionRect.bottom + window.pageYOffset;
+// function assignProgress()
+// {
+//     const endSectionRect = endSection.getBoundingClientRect();
+//     const endSectionTop = endSectionRect.top + window.pageYOffset;
+//     const endSectionBottom = endSectionRect.bottom + window.pageYOffset;
 
-    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+//     let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+//     let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
 
-    let scrollPercentage;
+//     let scrollPercentage;
 
-    if (scrollTop < endSectionTop)
-    {
-        scrollPercentage = (scrollTop / (endSectionTop)) * 100;
-    } else if (scrollTop >= endSectionBottom)
-    {
-        scrollPercentage = 100;
-    } else
-    {
-        scrollPercentage = 100;
-    }
+//     if (scrollTop < endSectionTop)
+//     {
+//         scrollPercentage = (scrollTop / (endSectionTop)) * 100;
+//     } else if (scrollTop >= endSectionBottom)
+//     {
+//         scrollPercentage = 100;
+//     } else
+//     {
+//         scrollPercentage = 100;
+//     }
 
-    progressBar.style.width = `${scrollPercentage}%`;
-}
+//     progressBar.style.width = `${scrollPercentage}%`;
+// }
 
-document.addEventListener('scroll', () =>
-{
-    assignProgress()
+// document.addEventListener('scroll', () =>
+// {
+//     assignProgress()
 
-});
+// });

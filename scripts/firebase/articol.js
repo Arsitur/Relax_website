@@ -24,6 +24,16 @@ let fuser = null;
 const url = new URL(document.location);
 let DocumentID = url.searchParams.get("id");
 
+// Luam articolul si facem views++
+// Dupa il iei si pui undeva sa arate vizualizările
+
+await articlesDB.doc(DocumentID).get().then((obj) => {
+    console.log(obj.data())
+    articlesDB.doc(DocumentID).update({
+        views: obj.data().views+1
+    })
+})
+
 function generateText(object, contentEditable)
 {
     for (let i = 0; i < object.data().textTypes.length; i++)

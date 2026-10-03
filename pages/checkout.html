@@ -14,8 +14,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
     <link rel="stylesheet" href="../styles/checkout.css">
     <script defer type="module" src="../scripts/checkout.js"></script>
-    <script type="module" src="../scripts/components/CheckoutOrder.js"></script>
     <script defer type="module" src="../scripts/translate.js"></script>
+    <script type="module" src="../scripts/components/CheckoutOrder.js"></script>
+
 
     <meta name="robots" content="noindex, nofollow">
 
@@ -30,9 +31,8 @@
     <main>
         <div class="all">
             <form class="information">
-                <!--
                 <div class="method">
-                    <span class="header" data-translate = "plata">
+                    <span class="header" data-translate="plata">
                         Plată Rapidă
                     </span>
                     <div class="services">
@@ -47,31 +47,27 @@
                         <div></div>
                     </div>
                 </div>
-                -->
                 <div class="method">
                     <div class="header">
                         <span data-translate="addr">Adresă de Livrare</span>
-                        <span class="extra" data-translate="livr">* Livrăm doar în Leova | Moldova</span>
+                        <span class="extra" data-translate="livr">21</span>
                     </div>
                     <div class="inputs">
                         <div class="input">
-                            <input name = "name-order" id="adress-input" type="text" placeholder="Numele dumnevoastră (Opțional)" autocomplete="off" maxlength="70">
+                            <input id="adress-input" type="text" placeholder="Adresa" required autocomplete="off">
                         </div>
                         <div class="input">
-                            <input name = "adress-order" id="adress-input" type="text" placeholder="Adresa" required autocomplete="off" maxlength="70">
+                            <input id="apartament-input" type="text" placeholder="Apartament (optional)"
+                                autocomplete="off">
                         </div>
                         <div class="input">
-                            <input name = "apartament-order" id="apartament-input" type="text" placeholder="Apartament (optional)"
-                                autocomplete="off" maxlength="70">
-                        </div>
-                        <div class="input">
-                            <input id="phone-input" name = "number-order" type="number" required placeholder="Telefon" autocomplete="off" maxlength="70">
+                            <input id="phone-input" type="number" placeholder="Telefon (optional)" autocomplete="off">
                             <div class="info">
                                 <div class="content">
                                     <div class="popup">
-                                        <div class="content" data-translate="case">
-                                            In caz că avem nevoie să te contactăm despre comandă
-                                            <div class='pointer'></div>
+                                        <div class="content">
+                                            <span data-translate="case">In caz că avem nevoie să te contactăm despre comandă</span>
+                                            <div class="pointer"></div>
                                         </div>
                                     </div>
                                     <button type="button">
@@ -98,7 +94,7 @@
                     </div>
                 </div>
                 <div class="next">
-                    <button class="accent-off" id="backtocart">
+                    <button class="accent-off">
                         <a href="../pages/menu.html">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
                                 <path

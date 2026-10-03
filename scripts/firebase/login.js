@@ -1,167 +1,199 @@
+let submitBtn = document.querySelector(".submit-btn-form-register");
+let emailField = document.querySelector(".email-field-input-sign");
+let GoogleBTN = document.getElementById("google-signin-provider");
+let TwitterBTN = document.getElementById("twitter-login-btn");
+
+// Google SignIn
+
 const form = document.querySelector("#form")
+const submitBtnLoading = document.querySelector('#submit-bttn>.loading');
+const submitBtnText = document.querySelector('#submit-bttn>.text');
 
-const sendBttnFeedback = document.querySelector('#submit-bttn>.feedback');
-const sendBttnLoading = document.querySelector('#submit-bttn>.loading');
-const sendBttnText = document.querySelector('#submit-bttn>.text');
+const errorText = document.querySelector('header>.main-text>.error')
+const succesText = document.querySelector('header>.main-text>.succes')
+const checkmark = document.querySelector('#submit-bttn>.checkmark')
 
-function loadingAnim() {
-    sendBttnText.innerText = ''
-    sendBttnLoading.style.opacity = "1"
-}
-
-function responseAnim(err = false, msg) {
-    if (err) {
-        sendBttnFeedback.style.background = '#EF5B5B'
-        sendBttnFeedback.textContent = msg
-    } else {
-        sendBttnFeedback.style.background = '#799f82'
-        sendBttnFeedback.textContent = msg
-    }
-    sendBttnLoading.style.opacity = "0"
-
-    setTimeout(() => {
-        sendBttnText.innerText = 'Trimite'
-    }, 250)
-
-    sendBttnFeedback.style.transform = "translateX(0%)"
-    sendBttnFeedback.style.opacity = "1"
-
+function startLoad()
+{
+    submitBtnLoading.style.opacity = "1";
+    submitBtnText.style.display = "none";
+    submitBtn.style.pointerEvents = "none";
 
 }
-
-function endAnim() {
-
-    sendBttnFeedback.style.transform = "translateX(100%)"
-    setTimeout(() => {
-        sendBttnFeedback.style.opacity = "0"
-        sendBttnFeedback.style.transform = "translateX(-100%)"
-    }, 250);
-
+function finishLoad()
+{
+    succesText.classList.add('show')
+    checkmark.classList.add('show')
+    submitBtnLoading.style.opacity = "0";
 }
 
-form.addEventListener('submit', (e) => {
+function errorLoad()
+{
+    submitBtnText.style.display = "block";
+    checkmark.classList.remove('show')
+    succesText.classList.remove('show')
+    errorText.classList.add('show')
+}
+
+form.addEventListener('submit', (e) =>
+{
+    submitBtnLoading.style.opacity = "1";
+    submitBtnText.style.display = "none";
+
     e.preventDefault();
-    if (EmailInput.value != "" && PasswordInput.value != "") {
-        loadingAnim()
-        firebase.auth().signInWithEmailAndPassword(EmailInput.value, PasswordInput.value)
-            .then((userCredential) => {
-                responseAnim(false, "Succes")
-                setTimeout(() => {
-                    endAnim();
-                    window.location.href = '/';
-                }, 2000)
+    email = emailField.value;
+    if (email.value != "")
+    {
+        startLoad()
+        var actionCodeSettings = {
+            url: window.location.origin + '/pages/menu.html',
+            handleCodeInApp: true,
+        };
 
+        firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+            .then(() =>
+            {
+                window.localStorage.setItem('emailForSignIn', email);
+                finishLoad()
             })
-            .catch((error) => {
-                responseAnim(true, "Credențiale Nevalide")
-
-                setTimeout(() => {
-                    endAnim()
-                }, 2000)
-
+            .catch((error) =>
+            {
+                console.log(error)
+                errorLoad()
             });
     }
 })
 
-let GoogleBtn = document.getElementById("google-login-btn");
-let TwitterBtn = document.getElementById("twitter-login-btn");
-let EmailInput = document.querySelector(".email-login-page-input");
-let PasswordInput = document.querySelector(".password-login-page-input");
-let SubmitForm = document.querySelector(".submit-btn-form-pass");
-
-
-// Google SignIn
-
-GoogleBtn.addEventListener("click", () => {
-    loadingAnim()
+GoogleBTN.addEventListener("click", () =>
+{
+    startLoad()
     firebase.auth()
         .signInWithPopup(GoogleProvider)
-        .then((result) => {
-            let user = result.user;
+        .then((result) =>
+        {
+            var user = result.user;
             let is_user = false;
-            usersDB.where("ID", "==", user.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((obj) => {
+            usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
+            {
+                querySnapshot.forEach((obj) =>
+                {
+                    console.log(obj)
                     is_user = true;
-                    if (is_user){
-                        window.location.href = '/';
-                    }
                 })
-            }).then(() => {
-                if (!is_user) {
-                    let date = new Date();
-                    usersDB.add({
-                        name: userInitialName,
-                        ID: user.uid,
-                        admin: false,
-                        created: date.getTime(),
-                        photoURL: startImage,
-                    }).then(() => {
-                        responseAnim(false, "Succes")
-                        setTimeout(() => {
-                            endAnim()
-                            window.location.href = '/';
-                        }, 2000)
-
+            }).then(() =>
+            {
+                usersDB.where("ID", "==", user.email).get().then((querySnapshot) =>
+                {
+                    querySnapshot.forEach((obj) =>
+                    {
+                        console.log(obj)
+                        is_user = true;
                     })
-                }
-            });
-        }).catch((error) => {
+                }).then(() =>
+                {
+                    console.log(user)
+                    if (!is_user)
+                    {
 
-            responseAnim(true, "Eroare")
+                        let date = new Date();
+                        usersDB.add({
+                            name: user.displayName,
+                            ID: user.uid,
+                            admin: false,
+                            created: date.getTime(),
+                            photoURL: startImage,
+                            email: user.email
+                        }).then(() =>
+                        {
+                            cartsDB.add({
+                                ID: user.uid,
+                                products: [],
+                            }).then(() =>
+                            {
 
-            setTimeout(() => {
-                endAnim()
-            }, 2000)
 
+                                // End animation
+                                window.location.href = '/';
+
+                            });
+                        });
+                    }
+                });
+            })
+        }).catch((error) =>
+        {
+            // Error anim
+            console.error(error);
+            succesText.classList.remove('show')
+            errorText.classList.add('show')
         });
 });
-
 
 // Twitter SignIn
 
-TwitterBtn.addEventListener("click", () => {
-    loadingAnim();
+TwitterBTN.addEventListener("click", () =>
+{
+    startLoad()
     firebase
         .auth()
         .signInWithPopup(TwitterProvider)
-        .then((result) => {
-
+        .then((result) =>
+        {
             var user = result.user;
             let is_user = false;
-            usersDB.where("ID", "==", user.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((obj) => {
+            usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
+            {
+                querySnapshot.forEach((obj) =>
+                {
+                    console.log(obj)
                     is_user = true;
-                    if (is_user){
-                        window.location.href = '/';
-                    }
                 })
-            }).then(() => {
-                if (!is_user) {
-                    let date = new Date();
-                    usersDB.add({
-                        name: userInitialName,
-                        ID: user.uid,
-                        admin: false,
-                        created: date.getTime(),
-                        photoURL: startImage,
-                    }).then(() => {
-                        responseAnim(false, "Succes")
-                        setTimeout(() => {
-                            endAnim()
-                            window.location.href = '/';
-                        }, 2000)
-
+            }).then(() =>
+            {
+                usersDB.where("ID", "==", user.email).get().then((querySnapshot) =>
+                {
+                    querySnapshot.forEach((obj) =>
+                    {
+                        console.log(obj)
+                        is_user = true;
                     })
-                }
-            });
-        })
-        .catch((error) => {
-            responseAnim(true, "Eroare")
+                }).then(() =>
+                {
+                    console.log(user)
+                    if (!is_user)
+                    {
 
-            setTimeout(() => {
-                endAnim()
-            }, 2000)
+                        let date = new Date();
+                        usersDB.add({
+                            name: user.displayName,
+                            ID: user.uid,
+                            admin: false,
+                            created: date.getTime(),
+                            photoURL: startImage,
+                            email: user.email
+                        }).then(() =>
+                        {
+                            cartsDB.add({
+                                ID: user.uid,
+                                products: [],
+                            }).then(() =>
+                            {
+
+                                // End anim
+
+
+                                window.location.href = '/';
+                            });
+                        });
+                    }
+                });
+            })
+        }).catch((error) =>
+        {
+            // Error anim
+            console.error(error);
+            succesText.classList.remove('show')
+            errorText.classList.add('show')
 
         });
 });
-

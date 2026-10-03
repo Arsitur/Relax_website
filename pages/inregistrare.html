@@ -12,7 +12,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
     <link rel="stylesheet" href="../styles/inregistrare.css">
-    <script defer type="module" src="../scripts/inregistrare.js"></script>
 
     <script defer src="../scripts/firebase/main.js"></script>
     <script defer src="../scripts/firebase/register.js"></script>
@@ -37,89 +36,77 @@
 
         <header>
             <img src="../assets/Account/pizza.webp" alt="Imagine cu o felie de pizza">
-            <h1>Creează un cont</h1>
+            <div class="main-text">
+                <p class="succes">Email-ul s-a trimis cu succes!</p>
+                <p class="error">A aparut o eroare.</p>
+                <h1>Creează un cont</h1>
+            </div>
+
             <p>Creează prin network-uri sociale</p>
-            <div class="social-media">
 
-                <button id="google-signin-provider">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <g clip-path="url(#clip0_58_2652)">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M6.88468 15.9998C6.88468 14.9836 7.05345 14.0094 7.35468 13.0956L2.08213 9.06934C1.05454 11.1557 0.475586 13.5067 0.475586 15.9998C0.475586 18.4908 1.05383 20.8404 2.07999 22.9253L7.34969 18.8912C7.05131 17.9817 6.88468 17.011 6.88468 15.9998Z"
-                                fill="#FBBC05" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.1422 6.75547C18.3497 6.75547 20.3437 7.53769 21.9103 8.81769L26.4679 4.26658C23.6906 1.8488 20.13 0.355469 16.1422 0.355469C9.95097 0.355469 4.63 3.89609 2.08203 9.06942L7.35458 13.0957C8.56946 9.40791 12.0325 6.75547 16.1422 6.75547Z"
-                                fill="#EB4335" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M16.1422 25.2446C12.0325 25.2446 8.56946 22.5921 7.35458 18.9043L2.08203 22.9299C4.63 28.1039 9.95097 31.6446 16.1422 31.6446C19.9634 31.6446 23.6116 30.2878 26.3497 27.7455L21.3449 23.8764C19.9328 24.766 18.1546 25.2446 16.1422 25.2446Z"
-                                fill="#34A853" />
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M31.0966 15.9997C31.0966 15.0753 30.9542 14.0797 30.7406 13.1553H16.1421V19.1997H24.5451C24.125 21.2605 22.9813 22.8449 21.3448 23.876L26.3496 27.7451C29.2259 25.0756 31.0966 21.0991 31.0966 15.9997Z"
-                                fill="#4285F4" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_58_2652">
-                                <rect width="32" height="32" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </button>
-                <!--
-                <button id="facebook-signin-provider">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <path
-                            d="M37.5001 20C37.5001 15.3587 35.6563 10.9075 32.3745 7.62564C29.0926 4.34375 24.6414 2.50001 20.0001 2.50001C15.5934 2.49594 11.3475 4.15449 8.11032 7.14435C4.87316 10.1342 2.88314 14.2353 2.53775 18.6284C2.19237 23.0215 3.51705 27.3831 6.24719 30.8422C8.97734 34.3012 12.9119 36.6029 17.2651 37.2875V25.0575H12.8251V20H17.2676V16.145C17.2676 11.76 19.8801 9.33501 23.8776 9.33501C25.7926 9.33501 27.7951 9.67751 27.7951 9.67751V13.985H25.5876C23.4126 13.985 22.7376 15.335 22.7376 16.7175V20H27.5901L26.8151 25.0575H22.7351V37.2875C26.8513 36.6357 30.5999 34.5364 33.3066 31.3674C36.0132 28.1984 37.5002 24.1676 37.5001 20Z"
-                            fill="#1877F2" />
-                        <path
-                            d="M26.8127 25.0575L27.5877 20H22.7352V16.7175C22.7352 15.335 23.4102 13.985 25.5852 13.985H27.7927V9.67502C27.7927 9.67502 25.7902 9.33252 23.8752 9.33252C19.8752 9.33252 17.2652 11.7575 17.2652 16.1425V20H12.8252V25.0575H17.2677V37.2875C19.0799 37.5727 20.9255 37.5727 22.7377 37.2875V25.0575H26.8127Z"
-                            fill="white" />
-                    </svg>
-                </button>
-            -->
-                <button id="twitter-login-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="36" viewBox="0 0 48 36" fill="none">
-                        <path
-                            d="M9.67468 4.09326L20.7901 18.9557L9.60449 31.0394H12.1219L21.9149 20.4599L29.8273 31.0394H38.3943L26.6534 15.341L37.0649 4.09326H34.5475L25.5286 13.8368L18.2416 4.09326H9.67468ZM13.3768 5.94761H17.3124L34.6916 29.1848H30.756L13.3768 5.94761Z"
-                            fill="var(--day-dark01)" />
-                    </svg>
-                </button>
-            </div>
-            <div class="separator">
-                <div></div>
-                <span>sau</span>
-                <div></div>
-            </div>
             <form id="form">
                 <input type="email" placeholder="Email" autocomplete="off" required id="email"
                     class="email-field-input-sign">
-                <div>
-                    <input type="password" placeholder="Parola" autocomplete="off" required id="password"
-                        class="pass-field-input">
-                    <button type="button" class="see-password">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path
-                                d="M2.49902 2.5L17.499 17.5M8.20259 8.26137C7.76705 8.71133 7.49902 9.32433 7.49902 10C7.49902 11.3807 8.61834 12.5 9.999 12.5C10.6844 12.5 11.3054 12.2242 11.757 11.7775M5.41569 5.53929C3.83294 6.58362 2.62738 8.15328 2.04736 10C3.10924 13.3809 6.26783 15.8333 9.99917 15.8333C11.6566 15.8333 13.201 15.3495 14.4988 14.5153M9.16567 4.20782C9.43984 4.18061 9.71792 4.16667 9.99917 4.16667C13.7306 4.16667 16.8892 6.61909 17.951 10C17.7171 10.745 17.3813 11.4448 16.96 12.0833"
-                                stroke="var(--day-dark01)" stroke-opacity="0.5" stroke-width="1.66667"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                <div class="s-div">
+                    <div class="social-media">
+                        <button id="google-signin-provider">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                                fill="none">
+                                <g clip-path="url(#clip0_58_2652)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.88468 15.9998C6.88468 14.9836 7.05345 14.0094 7.35468 13.0956L2.08213 9.06934C1.05454 11.1557 0.475586 13.5067 0.475586 15.9998C0.475586 18.4908 1.05383 20.8404 2.07999 22.9253L7.34969 18.8912C7.05131 17.9817 6.88468 17.011 6.88468 15.9998Z"
+                                        fill="#FBBC05" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M16.1422 6.75547C18.3497 6.75547 20.3437 7.53769 21.9103 8.81769L26.4679 4.26658C23.6906 1.8488 20.13 0.355469 16.1422 0.355469C9.95097 0.355469 4.63 3.89609 2.08203 9.06942L7.35458 13.0957C8.56946 9.40791 12.0325 6.75547 16.1422 6.75547Z"
+                                        fill="#EB4335" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M16.1422 25.2446C12.0325 25.2446 8.56946 22.5921 7.35458 18.9043L2.08203 22.9299C4.63 28.1039 9.95097 31.6446 16.1422 31.6446C19.9634 31.6446 23.6116 30.2878 26.3497 27.7455L21.3449 23.8764C19.9328 24.766 18.1546 25.2446 16.1422 25.2446Z"
+                                        fill="#34A853" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M31.0966 15.9997C31.0966 15.0753 30.9542 14.0797 30.7406 13.1553H16.1421V19.1997H24.5451C24.125 21.2605 22.9813 22.8449 21.3448 23.876L26.3496 27.7451C29.2259 25.0756 31.0966 21.0991 31.0966 15.9997Z"
+                                        fill="#4285F4" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_58_2652">
+                                        <rect width="32" height="32" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                        <button id="twitter-login-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="36" viewBox="0 0 48 36"
+                                fill="none">
+                                <path
+                                    d="M9.67468 4.09326L20.7901 18.9557L9.60449 31.0394H12.1219L21.9149 20.4599L29.8273 31.0394H38.3943L26.6534 15.341L37.0649 4.09326H34.5475L25.5286 13.8368L18.2416 4.09326H9.67468ZM13.3768 5.94761H17.3124L34.6916 29.1848H30.756L13.3768 5.94761Z"
+                                    fill="var(--day-dark01)" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button type="submit" id="submit-bttn" class="submit-btn-form-register">
+                        <div class="loading">
+                            <div class="content">
+                                <svg class="spinner" width="24px" height="24px" viewBox="0 0 66 66"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="path" stroke="var(--day-dark01)" fill="none" stroke-width="6"
+                                        stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                </svg>
+                            </div>
+
+                        </div>
+                        <span class="text">Creează</span>
+                        <div class="checkmark">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.9998 7.34173C18.6093 6.9512 17.9761 6.9512 17.5856 7.34173L10.3405 14.5868C9.94994 14.9773 9.31676 14.9773 8.92624 14.5868L6.38484 12.0454C5.99431 11.6549 5.36115 11.6549 4.97062 12.0454C4.5801 12.4359 4.5801 13.0691 4.97062 13.4596L7.51751 15.9998C8.68946 17.1687 10.5867 17.1675 11.7572 15.9972L18.9998 8.75594C19.3903 8.36542 19.3903 7.73225 18.9998 7.34173Z"
+                                    fill="var(--day-white01)" />
+                            </svg>
+
+                        </div>
                     </button>
                 </div>
 
-                <button type="submit" id="submit-bttn" class="submit-btn-form-register">
-                    <div class="feedback">Succes</div>
-                    <div class="loading">
-                        <div class="content">
-                            <svg class="spinner" width="24px" height="24px" viewBox="0 0 66 66"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33"
-                                    r="30"></circle>
-                            </svg>
-                        </div>
-
-                    </div>
-                    <span class="text">Creează</span>
-                </button>
             </form>
 
         </header>

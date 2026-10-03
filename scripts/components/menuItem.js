@@ -1,7 +1,5 @@
 import { lockScroll, unlockScroll, assignStars, starsAnim, deleteTextAnim, generateMongoLikeID, formatDate, displayImage } from "../utils.js";
 
-
-
 let orders = JSON.parse(localStorage.getItem('orders'));
 
 let ordersKeysArray = []
@@ -159,10 +157,7 @@ adminExtraDelete.addEventListener('click', () =>
     {
         productsDB.doc(currentEditID).delete().then(() =>
         {
-            firebase.storage().ref().child('/' + currentEditID + ".png").delete().then(() => {
-                location.reload()
-            });
-            
+            location.reload()
         });
     }
     closeAdminPopup();
@@ -279,10 +274,12 @@ firebase.auth().onAuthStateChanged((user) =>
 {
     if (user)
     {
+        console.log(user)
         usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
         {
             querySnapshot.forEach((doc) =>
             {
+                console.log(doc.data())
                 createReviewImg.src = doc.data().photoURL;
                 createReviewName.innerText = doc.data().name;
                 accountName = doc.data().name;
@@ -442,10 +439,10 @@ const popupItemQuantity = document.querySelector('.item-popup>.text>.end>button>
 const popupButton = document.querySelector('.item-popup>.text>.end>button')
 const popupReviewsDiv = document.querySelector(".item-popup>.reviews-side>.content>.reviews")
 
+
 const reviewSide = document.querySelector('.reviews-side')
 const reviewStars = document.querySelector('.item-popup>.reviews-side>.content>.header>.first>.reviews-stats>.stars-div>.stars')
 const reviewReviewsNum = document.querySelector('.item-popup>.reviews-side>.content>.header>.first>.reviews-stats>.stars-div>.reviews-num')
-
 const newPoint = document.querySelector(".menu-bttn>.wrap>.new");
 const ordersDiv = document.querySelector(".menu-side>.wrap>.orders");
 const ordersPriceDiv = document.querySelector('.menu-side>.wrap>.checkout>.total>.main>.price');
@@ -471,7 +468,7 @@ const categories = document.querySelectorAll('.filter-section>.content>.categori
 const moreCategories = document.querySelectorAll('.more-filter>.content>.options>.categories>.category')
 
 
-let price = 700;
+let price = 500;
 let mainStarsFilled = 5;
 let categoriesIndexesArray;
 updateMainCategories();
@@ -494,17 +491,18 @@ function renderMenuItems(menuItems)
         const items = section.querySelector('.items');
 
         const reviews = item.reviews || [];
-
         if (categoriesIndexesArray.includes(item.category) && categoriesIndexesArray.length !== 10)
         {
             section.style.display = 'none'
         }
         else
         {
+            let languageSelectedStorage = localStorage.getItem('language') || "ro";
+
             section.style.display = 'initial';
-            items.innerHTML += `<menu-item name="${item.name}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
+            items.innerHTML += `<menu-item name="${item.nametran[languageSelectedStorage]}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
                             reviews='${JSON.stringify(reviews)}'
-                            description="${item.description}"
+                            description="${item.descriptiontran[languageSelectedStorage]}"
                             masa="${item.masa}" category="${item.category}" id="${item.id}"></menu-item>`;
         }
 
@@ -559,6 +557,7 @@ function filterMenuItems(menuItems, criteria)
         let stars = 5;
         if (item.reviews.length !== 0)
         {
+            console.log(item.reviews)
             const reviews = item.reviews;
             let totalStars = 0;
 
@@ -568,6 +567,7 @@ function filterMenuItems(menuItems, criteria)
             });
 
             stars = Math.round(totalStars / reviews.length);
+            console.log("NEW STARS: " + stars)
         }
 
         return criteria.every(criterion =>
@@ -578,7 +578,7 @@ function filterMenuItems(menuItems, criteria)
             {
                 return false;
             }
-            if (field === 'search' && !item.name.toLowerCase().includes(value.toLowerCase()))
+            if (field === 'search' && !item.nametran[localStorage.getItem("language") || "ro"].toLowerCase().includes(value.toLowerCase()))
             {
                 return false;
             }
@@ -600,7 +600,7 @@ function filterAndRender(menuItems)
     ];
 
     let filteredItems = filterMenuItems(menuItems, criteria);
-
+    console.log(filteredItems)
     filteredItems.sort((a, b) => a.name.localeCompare(b.name));
 
     let filteredIDs = [];
@@ -668,7 +668,7 @@ function updateMainCategories()
 
 // Exit Popup
 
-itemOverlay.addEventListener('click', () =>
+function closeItemPopup()
 {
     itemPopup.classList.remove('show');
     itemOverlay.classList.remove('show');
@@ -676,7 +676,12 @@ itemOverlay.addEventListener('click', () =>
     reviewSide.classList.remove('show')
     popupButton.classList.remove('shake')
     resetReviewSlide()
-})
+}
+
+const closeItemPopupButtons = document.querySelectorAll('.close-item-popup')
+
+itemOverlay.addEventListener('click', closeItemPopup)
+closeItemPopupButtons.forEach(button => button.addEventListener('click', closeItemPopup))
 
 // Checkout Page
 
@@ -698,17 +703,22 @@ function updateMenuSidebar()
 
     sideMenuIDs.forEach(itemId =>
     {
+        console.log(itemId)
         const item = itemQuantityMap.get(itemId);
-
-        orders[item.id] = item.numValue
-
-        ordersPrice += Number(`${item.getAttribute('price')}`) * Number(`${item.numValue}`);
-
-        if (item && item.numValue > 0)
+        console.log(item)
+        if (item)
         {
-            ordersString += `<side-menu-item name="${item.getAttribute('name')}" stars="${item.starScore}" price="${item.getAttribute('price')}" img="${item.getAttribute('img')}"
+            orders[item.id] = item.numValue
+
+            ordersPrice += Number(`${item.getAttribute('price')}`) * Number(`${item.numValue}`);
+
+            if (item.numValue > 0)
+            {
+                ordersString += `<side-menu-item name="${item.getAttribute('name')}" stars="${item.starScore}" price="${item.getAttribute('price')}" img="${item.getAttribute('img')}"
                         quantity="${item.numValue}" uid="${item.getAttribute('id')}"></side-menu-item>`;
+            }
         }
+
     });
 
     localStorage.setItem('orders', JSON.stringify(orders));
@@ -735,7 +745,7 @@ function assignReviewNum(div, num)
 {
     let sing = "";
     let plurar = "";
-    let lang = localStorage.getItem('language' || "ro");
+    let lang = localStorage.getItem('language');
     if (lang == 'ro')
     {
         sing = "recenzie";
@@ -750,7 +760,7 @@ function assignReviewNum(div, num)
         plurar = "reviews";
     }
     const pluralText = num === 1 ? sing : plurar;
-    div.innerHTML = `${num} ${pluralText}<i style = "position:relative;top:3px;color:orange;left:4px;font-size:25px;font-weight:bold;" class="fa-solid fa-plus"></i>`;
+    div.innerText = `${num} ${pluralText}`;
 }
 
 class MenuItem extends HTMLElement
@@ -956,6 +966,7 @@ class MenuItem extends HTMLElement
                 adminExtraDelete.classList.add('show')
 
                 adminPopupImage.src = `${this.getAttribute('img')}`;
+                adminPopupImage.setAttribute('alt', `${this.getAttribute('name')}`);
 
                 adminPopupName.value = `${this.getAttribute('name')}`
                 adminPopupPrice.value = `${this.getAttribute('price')}`
@@ -981,6 +992,8 @@ class MenuItem extends HTMLElement
                 lockScroll();
 
                 popupImage.src = `${this.getAttribute('img')}`;
+
+                popupImage.setAttribute('alt', `${this.getAttribute('name')}`);
 
                 popupName.innerText = `${this.getAttribute('name')}`
                 popupPrice.innerText = `${this.getAttribute('price')} MDL`
@@ -1057,17 +1070,12 @@ class MenuItem extends HTMLElement
         }
         else
         {
-            let obj = {
-                "ro":"Nu există recenzii",
-                "en":"There are no reviews",
-                "ru":"Нет отзывов"
-            }
             popupReviewsDiv.innerHTML = `
             <div class="none-div">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 77 78" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="77" height="78" viewBox="0 0 77 78" fill="none">
   <path d="M26.5005 27L50.5005 51M50.5005 27L26.5005 51M74.5005 39C74.5005 58.8824 58.3829 75 38.5005 75C18.6182 75 2.50049 58.8824 2.50049 39C2.50049 19.1178 18.6182 3 38.5005 3C58.3829 3 74.5005 19.1178 74.5005 39Z" stroke="var(--day-dark01)" stroke-opacity="0.5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-            ${obj[localStorage.getItem("language")]}
+                Nu exista recenzii
             </div>`
             popupReviewsDiv.classList.add('none');
         }

@@ -284,6 +284,7 @@ articleAddBttn.addEventListener('click', () =>
                 photoURL: "",
                 textTypes: [],
                 likes: [],
+                views:0
             }).then((object) =>
             {
                 firebase.storage().ref().child('/' + object.id + ".png").put(file).then((snapshot) =>

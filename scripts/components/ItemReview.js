@@ -1,3 +1,4 @@
+import { escapeHTML } from '../site.js';
 import { lockScroll, unlockScroll, assignStars } from "../utils.js";
 
 class ItemReview extends HTMLElement
@@ -94,19 +95,19 @@ class ItemReview extends HTMLElement
       <div class="header">
             <div class="acc">
                 <div class="img">
-                    <img src="${this.getAttribute('img')}"
-                        alt="Imaginea de profil a lui ${this.getAttribute('name')}" draggable="false">
+                    <img src="${escapeHTML(this.getAttribute('img') || '')}"
+                        alt="Imaginea de profil a lui ${escapeHTML(this.getAttribute('name') || '')}" draggable="false">
                 </div>
 
                 <div class="text">
-                    <span class="name">${this.getAttribute('name')}</span>
-                    <span class="date">${this.getAttribute('date')}</span>
+                    <span class="name">${escapeHTML(this.getAttribute('name') || '')}</span>
+                    <span class="date">${escapeHTML(this.getAttribute('date') || '')}</span>
                 </div>
             </div>
             
         </div>
         <div class="stars">${assignStars(this.getAttribute('stars'))}</div>
-        <div class="description">${this.getAttribute('description')}</div>
+        <div class="description">${escapeHTML(this.getAttribute('description') || '')}</div>
     `;
 
     }

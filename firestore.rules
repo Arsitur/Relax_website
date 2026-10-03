@@ -2,33 +2,65 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() { return request.auth != null; }
-    function knownArticle(id) { return id in ['PbDYiU8eYjAbUmBcZVBA','dXJNRPRCAkcAg4Z1jG6m','wz49JZe79Cg06gRiIQ2t','yogBi4C4sCDLARLO3kc0']; }
+    function productIds() { return ['GuCYd9c5g41M2ADSaeVg','pizza-demo-02','pizza-demo-03','pizza-demo-04','pizza-demo-05','pizza-demo-06','pizza-demo-07','pizza-demo-08','pizza-demo-09','pizza-demo-10','gustari-demo-01','gustari-demo-02','gustari-demo-03','gustari-demo-04','gustari-demo-05','gustari-demo-06','gustari-demo-07','gustari-demo-08','gustari-demo-09','gustari-demo-10','garnituri-demo-01','garnituri-demo-02','garnituri-demo-03','garnituri-demo-04','garnituri-demo-05','garnituri-demo-06','garnituri-demo-07','garnituri-demo-08','garnituri-demo-09','garnituri-demo-10','CHsj1tPXzUH3oK5ngCs4','ciorbe-demo-02','ciorbe-demo-03','ciorbe-demo-04','ciorbe-demo-05','ciorbe-demo-06','ciorbe-demo-07','ciorbe-demo-08','ciorbe-demo-09','ciorbe-demo-10','micdejun-demo-01','micdejun-demo-02','micdejun-demo-03','micdejun-demo-04','micdejun-demo-05','micdejun-demo-06','micdejun-demo-07','micdejun-demo-08','micdejun-demo-09','micdejun-demo-10','sushi-demo-01','sushi-demo-02','sushi-demo-03','sushi-demo-04','sushi-demo-05','sushi-demo-06','sushi-demo-07','sushi-demo-08','sushi-demo-09','sushi-demo-10','peste-demo-01','peste-demo-02','peste-demo-03','peste-demo-04','peste-demo-05','peste-demo-06','peste-demo-07','peste-demo-08','peste-demo-09','peste-demo-10','salate-demo-01','salate-demo-02','salate-demo-03','salate-demo-04','salate-demo-05','salate-demo-06','salate-demo-07','salate-demo-08','salate-demo-09','salate-demo-10','bere-demo-01','bere-demo-02','bere-demo-03','bere-demo-04','bere-demo-05','bere-demo-06','bere-demo-07','bere-demo-08','bere-demo-09','bere-demo-10','carne-demo-01','carne-demo-02','carne-demo-03','carne-demo-04','carne-demo-05','carne-demo-06','carne-demo-07','carne-demo-08','carne-demo-09','carne-demo-10']; }
+    function articleIds() { return ['epic-party-2024','disco-roll-2024','party-2024','dXJNRPRCAkcAg4Z1jG6m','PbDYiU8eYjAbUmBcZVBA','wz49JZe79Cg06gRiIQ2t','mic-dejun-2024','yogBi4C4sCDLARLO3kc0']; }
+    function knownArticle(id) { return id in articleIds(); }
+    function knownProduct(id) { return id in productIds(); }
+    function owner(uid) { return signedIn() && request.auth.uid == uid; }
+    function indexed(field, id) {
+      return getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.get(field, []).hasAny([id]);
+    }
+    function indexValid(field, ids, root, sub) {
+      let old = resource.data.get(field, []);
+      let next = request.resource.data.get(field, []);
+      let added = next.removeAll(old);
+      let removed = old.removeAll(next);
+      return next is list && next.size() <= ids.size() && next.hasOnly(ids)
+        && next.size() == next.toSet().size()
+        && added.size() <= 1 && removed.size() <= 1
+        && (added.size() == 0 || existsAfter(/databases/$(database)/documents/$(root)/$(added[0])/$(sub)/$(request.auth.uid)))
+        && (removed.size() == 0 || !existsAfter(/databases/$(database)/documents/$(root)/$(removed[0])/$(sub)/$(request.auth.uid)));
+    }
     match /users/{uid} {
-      allow read: if signedIn() && request.auth.uid == uid;
-      allow create: if signedIn() && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['name','email','createdAt'])
+      allow read: if owner(uid);
+      allow create: if owner(uid)
+        && request.resource.data.keys().hasOnly(['name','email','createdAt','productReviews','articleReviews','articleLikes'])
         && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80
         && request.resource.data.email == request.auth.token.email
-        && request.resource.data.createdAt == request.time;
-      allow update: if signedIn() && request.auth.uid == uid
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name'])
-        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80;
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.get('productReviews', []) == []
+        && request.resource.data.get('articleReviews', []) == []
+        && request.resource.data.get('articleLikes', []) == [];
+      allow update: if owner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','productReviews','articleReviews','articleLikes'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80
+        && indexValid('productReviews', productIds(), 'productInteractions', 'reviews')
+        && indexValid('articleReviews', articleIds(), 'interactions', 'comments')
+        && indexValid('articleLikes', articleIds(), 'interactions', 'likes');
     }
     match /interactions/{articleId}/likes/{uid} {
       allow read: if knownArticle(articleId);
-      allow create: if knownArticle(articleId) && signedIn() && request.auth.uid == uid
+      allow create: if knownArticle(articleId) && owner(uid) && indexed('articleLikes', articleId)
         && request.resource.data.keys().hasOnly(['createdAt']) && request.resource.data.createdAt == request.time;
-      allow delete: if knownArticle(articleId) && signedIn() && request.auth.uid == uid;
+      allow delete: if knownArticle(articleId) && owner(uid) && !indexed('articleLikes', articleId);
     }
-    match /interactions/{articleId}/comments/{commentId} {
+    function validReview(uid, product) {
+      let data = request.resource.data;
+      return owner(uid) && data.authorId == uid
+        && data.displayName == get(/databases/$(database)/documents/users/$(uid)).data.name
+        && data.text is string && data.text.size() > 0 && data.text.size() <= 500
+        && data.createdAt == request.time
+        && (product ? data.keys().hasOnly(['authorId','displayName','text','stars','createdAt']) && data.stars is int && data.stars >= 1 && data.stars <= 5
+                    : data.keys().hasOnly(['authorId','displayName','text','createdAt']));
+    }
+    match /interactions/{articleId}/comments/{uid} {
       allow read: if knownArticle(articleId);
-      allow create: if knownArticle(articleId) && signedIn()
-        && request.resource.data.keys().hasOnly(['authorId','displayName','text','createdAt'])
-        && request.resource.data.authorId == request.auth.uid
-        && request.resource.data.displayName == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.name
-        && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 500
-        && request.resource.data.createdAt == request.time;
+      allow create, update: if knownArticle(articleId) && validReview(uid, false) && indexed('articleReviews', articleId);
     }
-    // No admin, remote menu/article content, carts or Storage.
+    match /productInteractions/{productId}/reviews/{uid} {
+      allow read: if knownProduct(productId);
+      allow create, update: if knownProduct(productId) && validReview(uid, true) && indexed('productReviews', productId);
+    }
+    // Profiles are private; local content and admin writes have no remote endpoint.
   }
 }

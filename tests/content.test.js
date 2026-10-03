@@ -22,12 +22,14 @@ test('each of the ten categories has ten unique local products and valid local a
 });
 test('articles keep blocks locally, images in their own folder, and ids agree with Firestore rules', () => {
     const rules = readFileSync(new URL('../firestore.rules', import.meta.url), 'utf8');
-    assert.equal(articles.length, 4);
+    assert.equal(articles.length, 8);
+    assert.equal(new Set(articles.map(item => item.id)).size, 8);
     for (const article of articles) {
         assert(rules.includes(`'${article.id}'`));
         assert(article.image.startsWith(`assets/Articles/${article.id}/`));
         assert(existsSync(new URL('../' + article.image, import.meta.url)));
-        assert(Array.isArray(article.blocks));
+        assert(article.blocks.length >= 6);
+        assert(article.datePosted >= Date.UTC(2024,5,1) && article.datePosted < Date.UTC(2024,6,1));
         for (const block of article.blocks) assert(['heading','paragraph'].includes(block.type) && typeof block.text === 'string');
     }
 });

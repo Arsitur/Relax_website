@@ -94,11 +94,11 @@ Codul din repo nu activează providerii și nu publică automat regulile în pro
 
 Datele Firebase sunt limitate la:
 
-- `users/<uid>`: nume afișat, email și data creării. Profilul este citibil/editabil doar de titular; comentariile publice păstrează o copie a numelui afișat.
-- `interactions/<articleId>/comments/<id>`: comentarii publice de maximum 500 caractere, scrise de un utilizator conectat.
+- `users/<uid>`: nume afișat, email, data creării și liste private de ID-uri pentru activitate. Profilul este citibil/editabil doar de titular; recenziile publice păstrează o copie a numelui afișat.
+- `interactions/<articleId>/comments/<uid>`: comentarii publice de maximum 500 caractere, unul per utilizator și articol.
 - `interactions/<articleId>/likes/<uid>`: cel mult un like per utilizator/articol; doar titularul îl poate șterge.
 
-Nu se folosește Firebase Storage. Profilurile folosesc un avatar local. La adăugarea unui articol nou, adaugă ID-ul și în lista `knownArticle` din `firestore.rules`, apoi republică regulile.
+Nu se folosește Firebase Storage. Profilurile folosesc un avatar local. La adăugarea unui articol nou, adaugă ID-ul și în lista `articleIds` din `firestore.rules`, apoi republică regulile.
 
 ### Verificări
 
@@ -110,3 +110,15 @@ npm run test:rules
 `npm test` verifică datele, coșul și comportamentul auth fără mesaje reale sau conturi live. Testele regulilor sunt sărite dacă emulatorul nu este pornit. `npm run test:rules` pornește un emulator Firestore local, rulează verificările de autorizare și îl oprește; CLI-ul este descărcat la cerere și necesită Java 21+. Proiectul `demo-relax` nu accesează datele live.
 
 Pentru a testa interacțiunile într-un mediu local complet, pornește `npx --package firebase-tools firebase emulators:start --only auth,firestore --project demo-relax`, apoi pornește Vite cu `VITE_USE_EMULATORS=true`. Pe PowerShell: `$env:VITE_USE_EMULATORS="true"; npm run dev`. Setarea este luată în considerare numai în dezvoltare; build-ul pentru producție folosește proiectul real.
+
+### Meniu, articole și activitate (demo)
+
+- `data/menu.json`: 100 de produse, câte 10 per categorie, ID-uri stabile, ingrediente, porții în g/ml și prețuri orientative în MDL. Nu este o listă oficială sau istorică de prețuri Relax.
+- `data/articles.json`: opt articole demonstrative în română, datate 8–14 iunie 2024, fiecare cu paragrafe și imagine în propriul folder. Cele patru teme de pe home trimit la articolele lor.
+- Fotografiile sunt ilustrative. Imaginile noi sunt locale, optimizate WebP; sursele și licența Pexels se află în `data/photo-sources.json`.
+- `productInteractions/<productId>/reviews/<uid>`: o recenzie per utilizator/produs, text de maximum 500 de caractere și notă între 1 și 5; poate fi actualizată.
+- `interactions/<articleId>/comments/<uid>`: un comentariu per utilizator/articol, actualizabil. `likes/<uid>` păstrează un singur like.
+- Profilul privat conține array-urile `productReviews`, `articleReviews`, `articleLikes` cu ID-urile locale. Acestea se salvează în același batch cu interacțiunea publică și apar în pagina Contul tău. Profilurile existente primesc listele la prima interacțiune.
+- Recenziile produselor se citesc o dată la deschiderea meniului (maximum 100 per produs); numai produsul deschis rămâne abonat în timp real. Ratingurile sunt calculate din recenzii, nu inventate.
+
+**După pull, publică noul `firestore.rules` în Firebase Console → Firestore Database → Rules → Publish.** Regulile anterioare nu permit recenziile de produs și noile liste. Dacă adaugi ulterior ID-uri în JSON, actualizează și listele din reguli.

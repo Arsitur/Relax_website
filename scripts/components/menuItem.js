@@ -1,3 +1,4 @@
+import { connectProductReviews } from '../firebase/productReviews.js';
 import { lockScroll, unlockScroll, assignStars, starsAnim } from "../utils.js";
 import productData from "../../data/menu.json";
 import { siteUrl, escapeHTML } from "../site.js";
@@ -22,10 +23,12 @@ let sideMenuIDs = [...ordersKeysArray];
 
 
 
-// Products are local JSON; the menu never reads or writes Firebase.
+// Product content is local; user reviews are separate Firestore interactions.
 const menuItems = productData.map(item => ({ ...item, photoURL: siteUrl(item.photoURL) }));
 Promise.resolve().then(() => {
     renderMenuItems(menuItems)
+    const linkedId = new URLSearchParams(location.search).get("product");
+    if (linkedId) document.getElementById(linkedId)?.click();
 
     itemQuantityMap.forEach(item =>
     {
@@ -74,7 +77,9 @@ Promise.resolve().then(() => {
         {
             star.addEventListener('click', (e) =>
             {
-                mainStarsFilled = starsAnim(moreStars, e.target, '.more-filter>.content>.options>.stars>.stars-container-svg>svg>.fill')
+                const selected = Array.from(moreStars).indexOf(e.currentTarget) + 1;
+                mainStarsFilled = mainStarsFilled === selected ? 0 : selected;
+                moreStars.forEach((node, index) => node.children[1].classList.toggle('not', index >= mainStarsFilled));
                 filterAndRender(menuItems);
             })
         })
@@ -110,7 +115,9 @@ Promise.resolve().then(() => {
         {
             star.addEventListener('click', (e) =>
             {
-                mainStarsFilled = starsAnim(stars, e.target, '.filter-section>.content>.stars>div>svg>.fill')
+                const selected = Array.from(stars).indexOf(e.currentTarget) + 1;
+                mainStarsFilled = mainStarsFilled === selected ? 0 : selected;
+                stars.forEach((node, index) => node.children[1].classList.toggle('not', index >= mainStarsFilled));
                 filterAndRender(menuItems)
             })
         })
@@ -172,7 +179,8 @@ const moreCategories = document.querySelectorAll('.more-filter>.content>.options
 let price = Math.ceil(Math.max(...menuItems.map(item => Number(item.price))) / 50) * 50;
 [slider, moreSlider].forEach(input => { input.max = price; input.value = price; });
 [sliderValue, moreSliderValue].forEach(label => { label.textContent = price; });
-let mainStarsFilled = 5;
+let mainStarsFilled = 0;
+document.querySelectorAll(".filter-section .stars .fill, .more-filter .stars .fill").forEach(node => node.classList.add("not"));
 let categoriesIndexesArray = [];
 updateMainCategories();
 
@@ -203,7 +211,7 @@ function renderMenuItems(menuItems)
 
             section.style.display = 'initial';
             items.innerHTML += `<menu-item name="${escapeHTML(item.name)}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
-                            reviews='${JSON.stringify(reviews)}'
+                            reviews="${escapeHTML(JSON.stringify(reviews))}"
                             description="${escapeHTML(item.description)}"
                             masa="${item.masa}" category="${item.category}" id="${item.id}"></menu-item>`;
         }
@@ -256,10 +264,9 @@ function filterMenuItems(menuItems, criteria)
 
     return menuItems.filter(item =>
     {
-        let stars = 5;
+        let stars = 0;
         if (item.reviews.length !== 0)
         {
-            console.log(item.reviews)
             const reviews = item.reviews;
             let totalStars = 0;
 
@@ -269,7 +276,6 @@ function filterMenuItems(menuItems, criteria)
             });
 
             stars = Math.round(totalStars / reviews.length);
-            console.log("NEW STARS: " + stars)
         }
 
         return criteria.every(criterion =>
@@ -597,10 +603,21 @@ class MenuItem extends HTMLElement
         
       </style>
 
+      <style>
+        :host { height:auto; min-height:360px; padding:14px; border:1px solid var(--day-separator); border-radius:16px; background:var(--day-white01); transition:box-shadow .2s; }
+        :host:hover { box-shadow:0 8px 24px rgba(0,0,0,.06); }
+        :host img { height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:10px; }
+        :host>.name { font-size:21px; line-height:1.35; min-height:57px; margin-top:12px; }
+        :host>.stars { font-size:14px; line-height:24px; font-weight:500; margin-top:4px; }
+        :host>.bottom { position:static; margin-top:auto; padding-top:14px; gap:8px; }
+        :host>.bottom>.price, :host>.bottom>.price>span { font-size:21px; }
+        :host>.bottom>button { border-radius:8px; }
+        @media(max-width:550px) { :host { min-height:320px; } }
+      </style>
       <img src="${this.getAttribute('img')}" alt="Imagine cu ${this.getAttribute('name')}" draggable="false" loading="lazy">
       <p class="name">${this.getAttribute('name')}</p>
       <p class="stars">
-      ${assignStars(this.starScore)}
+      ${this.starScore ? assignStars(this.starScore) : "Fără recenzii"}
       </p>
       <div class="bottom">
         <p class="price"><span>${this.getAttribute('price')}</span> MDL</p>
@@ -647,10 +664,10 @@ class MenuItem extends HTMLElement
 
                 popupName.innerText = `${this.getAttribute('name')}`
                 popupPrice.innerText = `${this.getAttribute('price')} MDL`
-                popupStars.innerText = `${assignStars(this.starScore)}`
-                reviewStars.innerText = `${assignStars(this.starScore)}`
+                popupStars.innerText = `${this.starScore ? assignStars(this.starScore) : "Fără recenzii"}`
+                reviewStars.innerText = `${this.starScore ? assignStars(this.starScore) : "Fără recenzii"}`
                 popupDescription.innerText = `${this.getAttribute('description')}`
-                popupMasa.innerText = `${this.getAttribute('masa')}`
+                popupMasa.innerText = `${this.getAttribute('masa')} ${productData.find(item => item.id === this.id)?.unit || 'g'}`
 
                 this.renderReviews()
 
@@ -667,6 +684,7 @@ class MenuItem extends HTMLElement
                 }
 
             currentID = this.getAttribute('id');
+            document.dispatchEvent(new CustomEvent('product-open', { detail: currentID }));
 
 
         });
@@ -710,8 +728,8 @@ class MenuItem extends HTMLElement
             let tempReviewsString = ''
             reviews.forEach(review =>
             {
-                tempReviewsString += `<item-review name="${review.name}" stars="${review.stars}"
-                            description="${review.description}" date="${review.date}"
+                tempReviewsString += `<item-review name="${escapeHTML(review.name)}" stars="${review.stars}"
+                            description="${escapeHTML(review.description)}" date="${escapeHTML(review.date)}"
                             img="${review.img}"></item-review>`;
             })
 
@@ -742,13 +760,13 @@ class MenuItem extends HTMLElement
             totalStars += Number(review.stars);
         });
 
-        return reviews.length ? Math.round(totalStars / reviews.length) : Number(this.getAttribute("stars") || 0);
+        return reviews.length ? Math.round(totalStars / reviews.length) : 0;
     }
     updateStars()
     {
-        popupStars.innerText = `${assignStars(this.starScore)}`;
-        reviewStars.innerText = `${assignStars(this.starScore)}`;
-        this.shadowRoot.querySelector(':host>.stars').innerText = `${assignStars(this.starScore)}`;
+        popupStars.innerText = `${this.starScore ? assignStars(this.starScore) : "Fără recenzii"}`;
+        reviewStars.innerText = `${this.starScore ? assignStars(this.starScore) : "Fără recenzii"}`;
+        this.shadowRoot.querySelector(':host>.stars').innerText = `${this.starScore ? assignStars(this.starScore) : "Fără recenzii"}`;
     }
     hide()
     {
@@ -1042,3 +1060,12 @@ class SideMenuItem extends HTMLElement
 }
 
 window.customElements.define("side-menu-item", SideMenuItem)
+
+connectProductReviews(menuItems, (id, reviews) => {
+    const product = menuItems.find(item => item.id === id); if (!product) return;
+    product.reviews = reviews;
+    const item = itemQuantityMap.get(id); if (!item) return;
+    item.setAttribute('reviews', JSON.stringify(reviews)); item.starScore = item.calculateStars();
+    item.shadowRoot.querySelector('.stars').textContent = item.starScore ? assignStars(item.starScore) : 'Fără recenzii';
+    if (currentID === id) { item.renderReviews(); item.updateStars(); }
+});

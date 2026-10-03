@@ -16,12 +16,16 @@ class ArticleItem extends HTMLElement {
             a:hover img { transform:scale(1.04); }
             .name { font-size:26px; font-weight:700; }
             .date { color:var(--day-dark04); font-size:14px; }
-        </style><a><div class="img"><img loading="lazy"></div><span class="name"></span><span class="date"></span></a>`;
+            .summary { font-size:14px; line-height:1.7; color:var(--day-dark03); margin:0; }
+            .read-more { font-size:14px; font-weight:600; color:var(--day-gold); }
+        </style><a><div class="img"><img loading="lazy"></div><span class="name"></span><span class="date"></span><p class="summary"></p><span class="read-more">Citește articolul →</span></a>`;
         root.querySelector('a').href = siteUrl(`pages/articol.html?id=${encodeURIComponent(article.id)}`);
         root.querySelector('img').src = siteUrl(article.image);
         root.querySelector('img').alt = article.name;
         root.querySelector('.name').textContent = article.name;
         root.querySelector('.date').textContent = niceDateFormatting(article.datePosted);
+        const intro = article.blocks.find(block => block.type === 'paragraph')?.text || '';
+        root.querySelector('.summary').textContent = intro.slice(0, 140).replace(/\s+\S*$/, '') + '…';
     }
 }
 customElements.define('article-item', ArticleItem);

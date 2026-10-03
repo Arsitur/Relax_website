@@ -83,3 +83,5 @@ header>h1 {
         margin-bottom: 56px;
     }
 }
+.article-demo-note { color:var(--day-dark03); max-width:650px; line-height:1.7; margin-top:12px; }
+.articles { grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); }

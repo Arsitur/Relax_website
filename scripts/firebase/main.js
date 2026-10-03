@@ -28,7 +28,7 @@ export function ensureUserProfile(user) {
             const snapshot = await getDoc(ref);
             if (snapshot.exists()) return snapshot.data();
             const name = (user.displayName || user.email?.split('@')[0] || 'Utilizator').trim().slice(0, 80);
-            await setDoc(ref, { name, email: user.email || '', createdAt: serverTimestamp() });
+            await setDoc(ref, { name, email: user.email || '', createdAt: serverTimestamp(), productReviews: [], articleReviews: [], articleLikes: [] });
             if (!user.displayName) await updateProfile(user, { displayName: name });
             return { name, email: user.email || '' };
         })().catch(error => { profileJobs.delete(user.uid); throw error; });

@@ -1,7 +1,8 @@
+import { saveReview, setArticleLike } from './interactions.js';
 import articles from '../../data/articles.json';
 import { auth, db, ensureUserProfile, authErrorMessage } from './main.js';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, doc, query, limit, orderBy, onSnapshot, addDoc, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, query, limit, orderBy, onSnapshot } from 'firebase/firestore';
 import { siteUrl, defaultAvatar } from '../site.js';
 import { niceDateFormatting } from '../utils.js';
 
@@ -20,6 +21,9 @@ if (!article) {
     added.append(back); end.remove();
 } else {
     document.title = `Relax | ${article.name}`;
+    const notice = document.createElement('p'); notice.className = 'demo-notice';
+    notice.textContent = 'Articol demonstrativ pentru portofoliu, datat în iunie 2024.';
+    added.before(notice);
     document.querySelectorAll('.contents .placeholder').forEach(node => node.remove());
     name.textContent = article.name; name.style.display = 'block';
     const date = document.querySelector('.article-date');
@@ -93,20 +97,16 @@ if (!article) {
         if (!text || text.length > 500) { status.textContent = 'Scrie un comentariu între 1 și 500 de caractere.'; return; }
         posting = true; updateEnabled();
         try {
-            const author = user;
-            const profile = await ensureUserProfile(author);
-            await addDoc(collection(db, 'interactions', id, 'comments'), { authorId: author.uid, displayName: profile.name, text, createdAt: serverTimestamp() });
-            textarea.value = ''; words.textContent = '0/500'; status.textContent = 'Comentariul a fost publicat.';
+            await saveReview('article', id, text);
+            textarea.value = ''; words.textContent = '0/500'; status.textContent = 'Comentariul a fost salvat. Îl poți actualiza trimițând din nou.';
         } catch (error) { status.textContent = authErrorMessage(error); }
         finally { posting = false; updateEnabled(); }
     });
     like.addEventListener('click', async () => {
         if (!user || liking) return;
         liking = true; updateEnabled();
-        const ref = doc(db, 'interactions', id, 'likes', user.uid);
         try {
-            if (hasLike) await deleteDoc(ref);
-            else await setDoc(ref, { createdAt: serverTimestamp() });
+            await setArticleLike(id, !hasLike);
         } catch (error) { status.textContent = authErrorMessage(error); }
         finally { liking = false; updateEnabled(); }
     });

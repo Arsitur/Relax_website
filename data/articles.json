@@ -1,48 +1,266 @@
 [
   {
-    "id": "PbDYiU8eYjAbUmBcZVBA",
-    "name": "Bubble Tea",
-    "datePosted": 1718209146775,
-    "image": "assets/Articles/PbDYiU8eYjAbUmBcZVBA/cover.webp",
-    "blocks": []
+    "id": "epic-party-2024",
+    "name": "Epic Party: o seară cu energie bună",
+    "datePosted": 1717840800000,
+    "image": "assets/Articles/epic-party-2024/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Muzică, prieteni și o pauză de la rutină"
+      },
+      {
+        "type": "paragraph",
+        "text": "O petrecere reușită începe cu oamenii potriviți. Epic Party aduce în prim-plan atmosfera pe care o asociem cu Relax: conversații fără grabă, muzică energică și o masă la care se găsește loc pentru încă un prieten. Ideea este simplă — ieși din ritmul săptămânii și bucură-te de o seară în care programul nu este dictat de notificări."
+      },
+      {
+        "type": "heading",
+        "text": "Cum îți pregătești seara"
+      },
+      {
+        "type": "paragraph",
+        "text": "Alege o ținută comodă și stabilește din timp cu cine vii. Înainte de dans, un platou de gustări sau o pizza împărțită la masă poate fi începutul perfect. Nu trebuie să comanzi totul deodată: răsfoiește meniul, descoperă combinațiile preferate și lasă loc pentru conversație."
+      },
+      {
+        "type": "heading",
+        "text": "Atmosfera o facem împreună"
+      },
+      {
+        "type": "paragraph",
+        "text": "Respectul față de ceilalți și față de echipă face diferența. Păstrează un volum potrivit la masă, ai grijă de lucrurile tale și organizează o întoarcere sigură acasă. O fotografie poate păstra amintirea, dar cele mai bune momente sunt adesea cele în care telefonul rămâne în buzunar. Spune-ne în comentarii ce piesă ai pune prima într-un playlist Epic Party."
+      }
+    ],
+    "demo": true
+  },
+  {
+    "id": "disco-roll-2024",
+    "name": "Disco Roll: ritmuri retro, chef de dans",
+    "datePosted": 1717927200000,
+    "image": "assets/Articles/disco-roll-2024/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "O întoarcere la refrenele cunoscute"
+      },
+      {
+        "type": "paragraph",
+        "text": "Unele melodii nu au nevoie de prezentare. Primele acorduri sunt suficiente pentru ca masa să înceapă să fredoneze, iar conversația să se transforme într-o mică sesiune de karaoke. Disco Roll pornește de la această energie: ritmuri dansante, piese cunoscute și plăcerea de a descoperi că prietenii tăi știu aceleași refrene."
+      },
+      {
+        "type": "heading",
+        "text": "Playlistul unei seri relaxate"
+      },
+      {
+        "type": "paragraph",
+        "text": "O selecție bună alternează momentele energice cu pauze în care poți vorbi. Disco, pop și hituri retro pot sta în același playlist fără ca seara să devină o competiție de volum. Important este ca muzica să lase loc și celor care preferă să asculte de la masă."
+      },
+      {
+        "type": "heading",
+        "text": "Ce merge alături de muzică"
+      },
+      {
+        "type": "paragraph",
+        "text": "Gustările ușor de împărțit sunt o alegere firească: bruschette, cartofi crocanți sau o pizza pentru grup. Alege și o băutură care îți place; o variantă fără alcool este la fel de potrivită pentru o seară de dans. Dacă ai o melodie pe care o asociezi cu începutul verii, las-o în comentarii. Din recomandări poate ieși un playlist surprinzător de bun."
+      }
+    ],
+    "demo": true
+  },
+  {
+    "id": "party-2024",
+    "name": "Party: prietenii fac seara",
+    "datePosted": 1718013600000,
+    "image": "assets/Articles/party-2024/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Nu ai nevoie de o ocazie mare"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sfârșitul unui proiect, o revedere după examene sau pur și simplu o zi bună: orice motiv poate fi suficient pentru a strânge câțiva prieteni la aceeași masă. O seară Party nu trebuie planificată până la ultimul minut. Uneori, combinația dintre mâncare bună și o conversație care curge natural este tot ce îți trebuie."
+      },
+      {
+        "type": "heading",
+        "text": "Un meniu pentru gusturi diferite"
+      },
+      {
+        "type": "paragraph",
+        "text": "Într-un grup, preferințele rareori coincid perfect. Tocmai de aceea, merită să începeți cu ceva de împărțit și să alegeți apoi fiecare felul principal. Pizza, o salată proaspătă sau un preparat cald pot sta la aceeași masă. Întreabă-i pe ceilalți înainte să comanzi și ține cont de ingrediente ori de eventuale alergii."
+      },
+      {
+        "type": "heading",
+        "text": "Mai puțină grabă, mai multe amintiri"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lasă seara să aibă propriul ritm. Nu e obligatoriu să bifezi fiecare idee din grup sau să fotografiezi fiecare farfurie. O pauză de la telefon ajută uneori mai mult decât o decorare spectaculoasă a mesei. Ce te face să spui, la final, că a fost o seară reușită? Ne interesează răspunsurile simple: oamenii, muzica, un fel preferat sau poate toate împreună."
+      }
+    ],
+    "demo": true
   },
   {
     "id": "dXJNRPRCAkcAg4Z1jG6m",
-    "name": "Night Party",
-    "datePosted": 1718209175944,
+    "name": "Discoteca de noapte: după apus",
+    "datePosted": 1718100000000,
     "image": "assets/Articles/dXJNRPRCAkcAg4Z1jG6m/cover.webp",
     "blocks": [
       {
         "type": "heading",
-        "text": "Vino în fiecare vineri și sâmbătă la Relax pentru a te distra la petrecerile noastre organizate de un Dj talentat."
-      },
-      {
-        "type": "heading",
-        "text": "Acest eveniment este frumos."
+        "text": "Când orașul încetinește, muzica prinde viață"
       },
       {
         "type": "paragraph",
-        "text": "Voi veni cu siguranță."
+        "text": "După o zi plină, o seară cu muzică poate schimba complet atmosfera. Tema Discoteca de noapte este despre acel moment în care lași grijile de peste zi la ușă și faci loc întâlnirilor cu prietenii. Luminile, ritmul și energia grupului transformă o ieșire obișnuită într-o amintire."
+      },
+      {
+        "type": "heading",
+        "text": "Găsește-ți propriul ritm"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nu trebuie să fii primul pe ringul de dans. Poți începe cu o conversație la masă, o gustare și câteva melodii ascultate fără grabă. O seară plăcută include atât momente energice, cât și pauze. Dacă muzica este prea intensă pentru tine, ia o pauză și revino atunci când te simți confortabil."
+      },
+      {
+        "type": "heading",
+        "text": "O seară bună se termină în siguranță"
+      },
+      {
+        "type": "paragraph",
+        "text": "Stabilește din timp cum ajungi acasă și ai grijă de prietenii cu care ai venit. Apa și opțiunile fără alcool își au locul în orice plan de seară. Pentru programul real al unui eveniment, verifică informațiile direct la local. În comentarii poți povesti ce atmosferă preferi: hituri cunoscute, ritmuri retro sau descoperiri muzicale noi."
       }
-    ]
+    ],
+    "demo": true
+  },
+  {
+    "id": "PbDYiU8eYjAbUmBcZVBA",
+    "name": "Bubble tea: o pauză cu gust de vară",
+    "datePosted": 1718186400000,
+    "image": "assets/Articles/PbDYiU8eYjAbUmBcZVBA/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "O băutură care se savurează încet"
+      },
+      {
+        "type": "paragraph",
+        "text": "Bubble tea combină o bază de ceai cu lapte ori arome de fructe și cu toppinguri care schimbă textura băuturii. Perlele de tapioca sunt printre cele mai cunoscute, dar există și variante cu bile de suc. Farmecul este în contrast: o înghițitură răcoritoare, urmată de un topping surprinzător."
+      },
+      {
+        "type": "heading",
+        "text": "Alege gustul care ți se potrivește"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dacă preferi băuturile cremoase, o bază cu lapte poate fi un punct bun de pornire. Pentru ceva mai lejer, aromele de fructe sunt o alternativă. Nivelul de zahăr și cantitatea de gheață influențează mult experiența, așa că merită să întrebi ce opțiuni sunt disponibile înainte să comanzi."
+      },
+      {
+        "type": "heading",
+        "text": "Detaliile mici contează"
+      },
+      {
+        "type": "paragraph",
+        "text": "Folosește paiul potrivit și ia înghițituri mici; toppingurile nu se beau în grabă. Ceaiul poate conține cofeină, iar variantele cu lapte pot include lactoză, deci verifică ingredientele dacă ai sensibilități. Fotografia este ilustrativă. Tu ce ai alege pentru o pauză de vară: ceva cremos sau o combinație cu fructe? Lasă-ne ideea ta în comentarii."
+      }
+    ],
+    "demo": true
   },
   {
     "id": "wz49JZe79Cg06gRiIQ2t",
-    "name": "Pizza la Relax",
-    "datePosted": 1718209162400,
+    "name": "Pizza la Relax: de împărțit sau doar pentru tine",
+    "datePosted": 1718186400000,
     "image": "assets/Articles/wz49JZe79Cg06gRiIQ2t/cover.webp",
     "blocks": [
       {
         "type": "heading",
-        "text": "Cea mai bună pizza din oraș!!!"
+        "text": "Totul începe cu o combinație bună"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pizza are un avantaj simplu: poate aduna gusturi foarte diferite în jurul aceleiași mese. Un blat rumenit, un sos echilibrat și toppinguri alese cu grijă sunt mai importante decât o listă nesfârșită de ingrediente. De la mozzarella și ciuperci până la salam picant ori legume, fiecare combinație are propriul caracter."
+      },
+      {
+        "type": "heading",
+        "text": "Cum alegi din meniu"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pentru o variantă blândă, încearcă o pizza cu șuncă și mozzarella. Dacă îți plac aromele mai intense, o combinație de brânzeturi sau o pizza picantă poate fi mai potrivită. Opțiunile cu legume sunt utile și când vrei să împarți comanda cu cineva care nu mănâncă carne. Verifică descrierea și gramajul înainte să alegi."
+      },
+      {
+        "type": "heading",
+        "text": "Un mic ritual la masă"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lasă pizza un moment să se răcorească și începe cu o felie, fără grabă. Dacă sunteți mai mulți, puteți combina două sortimente pentru a descoperi ceva nou. În meniul demonstrativ găsești ingrediente, porții și prețuri orientative. După ce explorezi produsele, poți lăsa o recenzie din contul tău. Ce topping nu ar trebui să lipsească de pe pizza ta preferată?"
       }
-    ]
+    ],
+    "demo": true
+  },
+  {
+    "id": "mic-dejun-2024",
+    "name": "Dimineți fără grabă: idei pentru mic dejun",
+    "datePosted": 1718272800000,
+    "image": "assets/Articles/mic-dejun-2024/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Prima pauză bună a zilei"
+      },
+      {
+        "type": "paragraph",
+        "text": "Un mic dejun plăcut nu trebuie să fie complicat. O farfurie simplă, o băutură preferată și câteva minute fără grabă pot schimba felul în care începe dimineața. Uneori alegi ceva sărat, alteori îți dorești clătite și fructe. Important este să găsești o porție care să se potrivească apetitului și programului tău."
+      },
+      {
+        "type": "heading",
+        "text": "Dulce sau sărat?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Omleta și toastul sunt alegeri familiare pentru o dimineață activă. Iaurtul cu granola ori terciul de ovăz aduc alte texturi, iar clătitele pot transforma o întâlnire de weekend într-un mic ritual. Nu există o singură combinație corectă: gusturile, ingredientele și porția contează mai mult decât o regulă universală."
+      },
+      {
+        "type": "heading",
+        "text": "Micul dejun ca moment de întâlnire"
+      },
+      {
+        "type": "paragraph",
+        "text": "O masă de dimineață poate fi o ocazie bună de a vorbi cu cineva înainte ca ziua să se umple de sarcini. Răsfoiește categoria de mic dejun din meniu și compară descrierile. Dacă ai alergii sau preferințe alimentare, verifică ingredientele înainte de o comandă reală. În comentarii ne poți spune ce alegi cel mai des: omletă, toast sau ceva dulce."
+      }
+    ],
+    "demo": true
   },
   {
     "id": "yogBi4C4sCDLARLO3kc0",
-    "name": "supa",
-    "datePosted": 1719403264721,
-    "image": "assets/Articles/yogBi4C4sCDLARLO3kc0/cover.svg",
-    "blocks": []
+    "name": "O supă bună, chiar și vara",
+    "datePosted": 1718359200000,
+    "image": "assets/Articles/yogBi4C4sCDLARLO3kc0/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Un bol care nu se demodează"
+      },
+      {
+        "type": "paragraph",
+        "text": "Supa nu este rezervată zilelor reci. O porție de legume, o cremă fină sau o zeamă cu tăiței poate fi o pauză plăcută între două activități. Textura și intensitatea gustului fac diferența: unele supe sunt ușoare, altele sunt mai consistente și pot deveni partea principală a prânzului."
+      },
+      {
+        "type": "heading",
+        "text": "Cremă fină sau ciorbă cu legume"
+      },
+      {
+        "type": "paragraph",
+        "text": "O supă cremă de ciuperci pune accent pe textura catifelată, în timp ce un borș roșu aduce gustul legumelor într-o formă mai pronunțată. Variantele cu linte, roșii ori dovleac oferă alte combinații de arome. Crutoanele, verdeața și o lingură de smântână pot completa preparatul, dar nu sunt obligatorii pentru orice rețetă."
+      },
+      {
+        "type": "heading",
+        "text": "Alege după poftă și porție"
+      },
+      {
+        "type": "paragraph",
+        "text": "Privește ingredientele și gramajul, apoi decide dacă vrei doar o supă sau și un fel principal. Fotografiile din acest demo sunt ilustrative, iar prețurile sunt orientative. Dacă ai o preferință clară, lasă o recenzie produsului din meniu; dacă vrei să vorbești despre supe în general, comentariile articolului sunt locul potrivit. Care este bolul la care revii de fiecare dată?"
+      }
+    ],
+    "demo": true
   }
 ]

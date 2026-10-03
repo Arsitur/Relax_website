@@ -695,7 +695,7 @@
                 </div>
                 <div class="description">hello</div>
                 <div class="end">
-                    <span class="masa">Masa gr. (netă), <span></span></span>
+                    <span class="masa">Porție: <span></span></span>
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path
@@ -733,6 +733,14 @@
 
                     </div>
                     <div class="separator"></div>
+                    <form id="product-review-form" class="product-review-form">
+                        <label for="review-stars">Nota ta</label>
+                        <select id="review-stars" name="stars" disabled aria-label="Nota ta"><option value="5">★★★★★ — 5</option><option value="4">★★★★ — 4</option><option value="3">★★★ — 3</option><option value="2">★★ — 2</option><option value="1">★ — 1</option></select>
+                        <label for="review-text">Recenzia ta</label>
+                        <textarea id="review-text" required maxlength="500" rows="3" placeholder="Ce ți-a plăcut? Maximum 500 de caractere." disabled></textarea>
+                        <button type="submit" disabled>Salvează recenzia</button>
+                    </form>
+                    <p id="product-review-status" role="status" aria-live="polite"></p>
                     <div class="reviews active"></div>
 
 

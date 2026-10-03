@@ -1813,3 +1813,20 @@
     width: calc(100% - 48px);
   }
 }
+
+/* Signed-in reviews retain the original sidebar and theme. */
+.product-review-form { display:grid; gap:8px; padding:16px 0; }
+.product-review-form label { color:var(--day-dark02); font-weight:600; }
+.product-review-form select, .product-review-form textarea { width:100%; border:1px solid var(--day-dark04); border-radius:10px; padding:10px 12px; background:var(--day-light01); color:var(--day-dark01); font:inherit; }
+.product-review-form textarea { resize:vertical; min-height:85px; }
+.product-review-form button { padding:10px 16px; border:1px solid var(--day-gold); border-radius:10px; color:var(--day-dark01); background:transparent; font:inherit; cursor:pointer; }
+.product-review-form :disabled { opacity:.55; cursor:default; }
+#product-review-status { font-size:14px; color:var(--day-dark03); margin:0 0 16px; }
+.item-popup .reviews-side .content { overflow-y:auto; }
+.item-popup > .reviews-side > .content > .reviews { position:static; transform:none; pointer-events:auto; width:100%; height:auto; min-height:100px; overflow:visible; padding:0 0 24px; flex-shrink:0; }
+.item-popup > .reviews-side > .content > .reviews.none { min-height:120px; }
+.item-popup > .reviews-side > .content > .reviews > .none-div { font-size:16px; margin-bottom:0; }
+.product-review-form, #product-review-status, .item-popup > .reviews-side > .content > .header { flex-shrink:0; }
+.product-review-form select, .product-review-form textarea { background:var(--day-white01); }
+
+.item-popup:has(.reviews-side.show) { height:min(85vh,680px); }

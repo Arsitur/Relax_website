@@ -46,3 +46,11 @@ body > div {
 #account-status {
   margin-bottom: 16px;
 }
+
+#account-activity { margin-top:32px; width:100%; color:var(--day-dark01); }
+#account-activity h2 { margin-bottom:16px; }
+#activity-lists { display:grid; gap:20px; }
+#activity-lists h3 { font-size:18px; margin-bottom:8px; }
+#activity-lists ul { padding-left:20px; }
+#activity-lists a { color:var(--day-dark02); text-decoration:underline; }
+#activity-lists p { color:var(--day-dark04); }

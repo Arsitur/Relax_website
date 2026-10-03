@@ -1,104 +1,92 @@
-class EndSection extends HTMLElement
-{
-    constructor()
-    {
-        super();
-        this.attachShadow({ mode: 'open' });
+class EndSection extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  connectedCallback() {
+    this.render();
+
+    // EVENT LISTENERS
+
+    const themeToggle = this.shadowRoot.querySelector(
+      "footer>.left>label>input",
+    );
+
+    const isDarkMode = localStorage.getItem("darkMode") === "true";
+    const isLightMode = localStorage.getItem("lightMode") === "true";
+
+    if (isDarkMode) {
+      themeToggle.checked = true;
+      document.body.classList.remove("dark-theme");
+      document.documentElement.style.colorScheme = "light";
     }
-
-    connectedCallback()
-    {
-        this.render();
-
-        // EVENT LISTENERS
-
-        const themeToggle = this.shadowRoot.querySelector('footer>.left>label>input');
-
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        const isLightMode = localStorage.getItem('lightMode') === 'true';
-
-
-        if (isDarkMode)
-        {
-            themeToggle.checked = true
-            document.body.classList.remove('dark-theme');
-            document.documentElement.style.colorScheme = 'light';
-        }
-        if (isLightMode)
-        {
-            themeToggle.checked = false
-            document.body.classList.add('dark-theme');
-            document.documentElement.style.colorScheme = 'dark';
-        }
-        if (!isLightMode && !isDarkMode)
-        {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            {
-                document.body.classList.add('dark-theme');
-                document.documentElement.style.colorScheme = 'dark';
-                themeToggle.checked = true
-            } else
-            {
-                document.body.classList.remove('dark-theme');
-                document.documentElement.style.colorScheme = 'light';
-                themeToggle.checked = false
-            }
-        }
-        themeToggle.addEventListener('change', () =>
-        {
-            if (!themeToggle.checked)
-            {
-                document.body.classList.add('dark-theme');
-                document.documentElement.style.colorScheme = 'dark';
-                localStorage.setItem('darkMode', false);
-                localStorage.setItem('lightMode', true);
-            }
-            else
-            {
-                document.body.classList.remove('dark-theme');
-                document.documentElement.style.colorScheme = 'light';
-                localStorage.setItem('darkMode', true);
-                localStorage.setItem('lightMode', false);
-
-            }
-
-        });
-
-
-        // TEMP DISCLAIMER
-
-        const disclaimerButton = this.shadowRoot.querySelector('footer>.left>button');
-        const disclaimer = this.shadowRoot.querySelector('.disclaimer-all');
-        const disclaimerOverlay = this.shadowRoot.querySelector('#disclaimer-overlay');
-        const disclaimerContent = this.shadowRoot.querySelector('.disclaimer');
-        const disclaimerExitBttn = this.shadowRoot.querySelector(".close-disclaimer");
-
-        disclaimerButton.addEventListener('click', () =>
-        {
-            disclaimer.classList.add('show');
-            disclaimerContent.classList.add('show');
-            disclaimerOverlay.classList.add('show');
-        })
-
-        disclaimerExitBttn.addEventListener('click', () =>
-        {
-            disclaimer.classList.remove('show');
-            disclaimerContent.classList.remove('show');
-            disclaimerOverlay.classList.remove('show');
-        })
-        disclaimerOverlay.addEventListener('click', () =>
-        {
-            disclaimer.classList.remove('show');
-            disclaimerContent.classList.remove('show');
-            disclaimerOverlay.classList.remove('show');
-        })
-
-
+    if (isLightMode) {
+      themeToggle.checked = false;
+      document.body.classList.add("dark-theme");
+      document.documentElement.style.colorScheme = "dark";
     }
+    if (!isLightMode && !isDarkMode) {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        document.body.classList.add("dark-theme");
+        document.documentElement.style.colorScheme = "dark";
+        themeToggle.checked = true;
+      } else {
+        document.body.classList.remove("dark-theme");
+        document.documentElement.style.colorScheme = "light";
+        themeToggle.checked = false;
+      }
+    }
+    themeToggle.addEventListener("change", () => {
+      if (!themeToggle.checked) {
+        document.body.classList.add("dark-theme");
+        document.documentElement.style.colorScheme = "dark";
+        localStorage.setItem("darkMode", false);
+        localStorage.setItem("lightMode", true);
+      } else {
+        document.body.classList.remove("dark-theme");
+        document.documentElement.style.colorScheme = "light";
+        localStorage.setItem("darkMode", true);
+        localStorage.setItem("lightMode", false);
+      }
+    });
 
-    render()
-    {
-        this.shadowRoot.innerHTML = `
+    // TEMP DISCLAIMER
+
+    const disclaimerButton = this.shadowRoot.querySelector(
+      "footer>.left>button",
+    );
+    const disclaimer = this.shadowRoot.querySelector(".disclaimer-all");
+    const disclaimerOverlay = this.shadowRoot.querySelector(
+      "#disclaimer-overlay",
+    );
+    const disclaimerContent = this.shadowRoot.querySelector(".disclaimer");
+    const disclaimerExitBttn =
+      this.shadowRoot.querySelector(".close-disclaimer");
+
+    disclaimerButton.addEventListener("click", () => {
+      disclaimer.classList.add("show");
+      disclaimerContent.classList.add("show");
+      disclaimerOverlay.classList.add("show");
+    });
+
+    disclaimerExitBttn.addEventListener("click", () => {
+      disclaimer.classList.remove("show");
+      disclaimerContent.classList.remove("show");
+      disclaimerOverlay.classList.remove("show");
+    });
+    disclaimerOverlay.addEventListener("click", () => {
+      disclaimer.classList.remove("show");
+      disclaimerContent.classList.remove("show");
+      disclaimerOverlay.classList.remove("show");
+    });
+  }
+
+  render() {
+    this.shadowRoot.innerHTML = `
       <style>
         *
       {
@@ -306,10 +294,10 @@ footer>.disclaimer-all.show {
 }
 
 #disclaimer-overlay {
-    z-index: 6 !important;
+    z-index: 999 !important;
     background: rgba(0, 0, 0, 0.75);
-    width: 100vw;
-    height: 100vh;
+    width: 101vw;
+    height: 101vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -512,8 +500,7 @@ footer>.disclaimer-all>.content>.disclaimer>button {
         </div>
     </footer>
     `;
-    }
-
+  }
 }
 
-window.customElements.define("end-section", EndSection)
+window.customElements.define("end-section", EndSection);

@@ -3,7 +3,6 @@
 
 <head>
     <script type="module" src="../scripts/darkTheme.js"></script>
-    <script type="module" src="../scripts/translate.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/Bonus/icon.webp">
@@ -13,16 +12,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
     <link rel="stylesheet" href="../styles/contact.css">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="../scripts/firebase/main.js"></script>
-    <script type="text/javascript">
-        (function ()
-        {
-            emailjs.init("gtbYy5uqwFGl3Kxzl");
-        })();
-    </script>
-
-    <script defer type="module" src="../scripts/contact.js"></script>
+<script defer type="module" src="../scripts/contact.js"></script>
     <script defer src="../scripts/components/NavBar.js"></script>
     <script defer src="../scripts/components/EndSection.js"></script>
 
@@ -31,7 +23,7 @@
         content="Ai întrebări sau sugestii pentru noi? Contactează-ne și suntem aici să te ajutăm. Completează formularul de contact sau folosește informațiile de mai jos pentru a ajunge la noi. Oferim o experiență prietenoasă și promptă, într-un mediu relaxant.">
 
 
-    <title data-translate="title_page">Relax | Contacte</title>
+    <title>Relax | Contacte</title>
 </head>
 
 <body>
@@ -40,8 +32,8 @@
         <header>
             <div class="content">
                 <div class="b-h-p-flex text">
-                    <h1 data-translate="contact_msg" class="b-header">Contacte</h1>
-                    <p data-translate="contact_info" class="b-paragraph">Indiferent dacă dorești să ne
+                    <h1 class="b-header">Contacte</h1>
+                    <p class="b-paragraph">Indiferent dacă dorești să ne
                         Poți găsi
                         toate informațiile de care ai nevoie mai jos.</p>
                     <div class="arrow">
@@ -72,9 +64,9 @@
             <div class="content">
                 <div class="b-h-p-flex text">
                     <div class="header">
-                        <p class="succes">Mesajul a fost trimis cu succes!</p>
-                        <p class="error">A apărut o eroare</p>
-                        <h2 data-translate="contact_info2" class="b-header straight">
+                        <p class="succes" role="status" aria-live="polite">Mesajul a fost trimis cu succes!</p>
+                        <p class="error" role="alert">A apărut o eroare</p>
+                        <h2 class="b-header straight">
                             Hai să vorbim
                         </h2>
                         <div class="underline-anim">
@@ -84,7 +76,7 @@
                         </div>
                     </div>
 
-                    <p data-translate="contact_info3" class="b-paragraph ">Contactează-ne direct sau completează
+                    <p class="b-paragraph ">Contactează-ne direct sau completează
                         formularul
                         pentru a intra în legătură cu
                         noi.</p>
@@ -93,11 +85,11 @@
                     <div class="column1">
                         <div class="inputs">
                             <div>
-                                <label data-translate="name" for="name">Numele Tău</label>
+                                <label for="name">Numele Tău</label>
                                 <input type="text" id="name" autocomplete="off" required>
                             </div>
                             <div>
-                                <label data-translate="email" for="email">Email-ul Tău</label>
+                                <label for="email">Email-ul Tău</label>
                                 <input type="email" id="email" autocomplete="off" required>
                             </div>
 
@@ -154,7 +146,7 @@
                     </div>
                     <div class="column2">
                         <div class="textarea">
-                            <label data-translate="you_msg" for="message">Mesajul Tău</label>
+                            <label for="message">Mesajul Tău</label>
                             <textarea id="message" cols="30" rows="10" required></textarea>
 
                         </div>
@@ -170,7 +162,7 @@
                                 </div>
 
                             </div>
-                            <span data-translate="trimite" class="text">Trimite</span>
+                            <span class="text">Trimite</span>
                             <div class="checkmark">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -225,8 +217,8 @@
         <section class="adress-section">
             <div class="content">
                 <div class="b-h-p-flex text">
-                    <h2 data-translate="adress" class="b-header">Adresă</h2>
-                    <p data-translate="addr_desc" class="b-paragraph">Relax se află pe Strada Independenţei 14, Leova,
+                    <h2 class="b-header">Adresă</h2>
+                    <p class="b-paragraph">Relax se află pe Strada Independenţei 14, Leova,
                         suntem
                         mereu disponibili să
                         îți oferim indicații și sfaturi.</p>
@@ -247,8 +239,8 @@
         <section class="faq-section">
             <div class="content">
                 <div class="b-h-p-flex text">
-                    <h2 data-translate="ask" class="b-header">Întrebări Frecvente</h2>
-                    <p data-translate="ask1" class="b-paragraph">Blocat? Suntem aici să te ajutăm cu toate întrebările
+                    <h2 class="b-header">Întrebări Frecvente</h2>
+                    <p class="b-paragraph">Blocat? Suntem aici să te ajutăm cu toate întrebările
                         tale într-un singur loc.
                     </p>
                 </div>
@@ -263,8 +255,8 @@
                             </svg>
                         </div>
                         <div class="text">
-                            <h3 data-translate="ask_1">Aveți Wifi gratis in zona?</h3>
-                            <p data-translate="ask_1_ans" class="paragraph">Da, avem WiFi gratuit disponibil pentru toți
+                            <h3>Aveți Wifi gratis in zona?</h3>
+                            <p class="paragraph">Da, avem WiFi gratuit disponibil pentru toți
                                 clienții noștri.</p>
                         </div>
                     </div>
@@ -278,8 +270,8 @@
                             </svg>
                         </div>
                         <div class="text">
-                            <h3 data-translate="ask_2">Pot lua mâncarea la pachet?</h3>
-                            <p data-translate="ask_2_ans" class="paragraph">Da, putem ambala mâncarea pentru tine.</p>
+                            <h3>Pot lua mâncarea la pachet?</h3>
+                            <p class="paragraph">Da, putem ambala mâncarea pentru tine.</p>
                         </div>
                     </div>
                     <div class="faq">
@@ -294,8 +286,8 @@
 
                         </div>
                         <div class="text">
-                            <h3 data-translate="ask_3">Pot plăti cu cardul?</h3>
-                            <p data-translate="ask_3_ans" class="paragraph">Da, puteți plati cash si cu cardul.</p>
+                            <h3>Pot plăti cu cardul?</h3>
+                            <p class="paragraph">Da, puteți plati cash si cu cardul.</p>
                         </div>
                     </div>
                     <div class="faq">
@@ -325,8 +317,8 @@
 
                         </div>
                         <div class="text">
-                            <h3 data-translate="ask_4">Există parcări disponibile?</h3>
-                            <p data-translate="ask_4_ans" class="paragraph">Da, avem parcări disponibile.</p>
+                            <h3>Există parcări disponibile?</h3>
+                            <p class="paragraph">Da, avem parcări disponibile.</p>
                         </div>
                     </div>
                     <div class="faq">
@@ -343,8 +335,8 @@
 
                         </div>
                         <div class="text">
-                            <h3 data-translate="ask_5">Când se deschide si inchide Relax?</h3>
-                            <p data-translate="ask_5_ans" class="paragraph">
+                            <h3>Când se deschide si inchide Relax?</h3>
+                            <p class="paragraph">
                                 Luni ~ Joi: 08:00 - 02:00. <br>
                                 Vineri: 08:00 - 04:00. <br>
                                 Sâmbătă ~ Duminica: 09:00 - 04:00. <br>
@@ -363,8 +355,8 @@
 
                         </div>
                         <div class="text">
-                            <h3 data-translate="ask_6">Cum pot comanda mâncarea?</h3>
-                            <p data-translate="ask_6_ans" class="paragraph">Puteți comanda prin site-ul web, sau puteți
+                            <h3>Cum pot comanda mâncarea?</h3>
+                            <p class="paragraph">Puteți comanda prin site-ul web, sau puteți
                                 sa ne sunați la nr.
                                 061007030</p>
                         </div>

@@ -14,7 +14,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
     <script defer src="../scripts/firebase/main.js"></script>
     <script defer type="module" src="../scripts/menu.js"></script>
-    <script defer type="module" src="../scripts/translate.js"></script>
     <script defer type="module" src="../scripts/components/menuItem.js"></script>
     <script defer type="module" src="../scripts/components/ItemReview.js"></script>
     <script defer src="../scripts/components/NavBar.js"></script>
@@ -32,7 +31,7 @@
         <section class="filter-section">
             <div class="content">
                 <div class="stars">
-                    <span data-translate="stars">Stele:</span>
+                    <span>Stele:</span>
                     <div class="stars-container-svg">
                         <svg width="28" height="28" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 
@@ -87,7 +86,7 @@
                     </div>
                 </div>
                 <div class="price">
-                    <span data-translate="price">Pret:</span>
+                    <span>Pret:</span>
                     <div class="slider">
                         <input class="slider-price-input" type="range" min="0" max="500" value="500" id="slider">
                         <div class="progress"></div>
@@ -96,7 +95,7 @@
 
                 </div>
                 <button class="categories">
-                    <span data-translate="categories">
+                    <span>
                         Categorii
                     </span>
 
@@ -131,7 +130,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div data-translate="pizza">Pizza</div>
+                                <div>Pizza</div>
                             </div>
                             <div class="category" data-value="gustari-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -147,7 +146,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div data-translate="cold_s">Gustări Reci</div>
+                                <div>Gustări Reci</div>
                             </div>
                             <div class="category" data-value="garnituri-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -156,7 +155,7 @@
                                         d="M14.8546 5.25018V3.75018C14.8546 3.55127 14.7756 3.3605 14.635 3.21985C14.4943 3.0792 14.3036 3.00018 14.1046 3.00018C13.9057 3.00018 13.715 3.0792 13.5743 3.21985C13.4337 3.3605 13.3546 3.55127 13.3546 3.75018V11.6252H13.9846C14.2966 11.6249 14.6007 11.5274 14.8546 11.3462V5.25018ZM17.2246 9.00018C16.9127 9.00045 16.6086 9.09797 16.3546 9.27918V9.00018H17.8546V5.25018C17.8546 5.05127 17.7756 4.8605 17.635 4.71985C17.4943 4.5792 17.3036 4.50018 17.1046 4.50018C16.9057 4.50018 16.715 4.5792 16.5743 4.71985C16.4337 4.8605 16.3546 5.05127 16.3546 5.25018V9.00018H17.2246ZM18.9796 9.00018C19.2997 9.00019 19.6159 9.07075 19.9056 9.20683C20.1953 9.34291 20.4514 9.54117 20.6558 9.7875C20.8602 10.0338 21.0077 10.3222 21.088 10.632C21.1682 10.9419 21.1792 11.2656 21.1201 11.5802L19.6981 19.1642C19.6016 19.68 19.3277 20.1459 18.924 20.4812C18.5202 20.8165 18.012 21 17.4871 21.0002H7.72215C7.19733 21 6.68908 20.8165 6.28532 20.4812C5.88157 20.1459 5.60771 19.68 5.51115 19.1642L4.08915 11.5802C4.03007 11.2656 4.04105 10.9419 4.12131 10.632C4.20157 10.3222 4.34914 10.0338 4.55351 9.7875C4.75788 9.54117 5.01403 9.34291 5.30373 9.20683C5.59344 9.07075 5.90958 9.00019 6.22965 9.00018H5.85465V5.25018C5.85472 4.70527 6.05255 4.17891 6.41138 3.76883C6.77021 3.35875 7.26567 3.09283 7.80574 3.02044C8.34582 2.94805 8.89382 3.07411 9.34797 3.37522C9.80213 3.67633 10.1316 4.13202 10.2751 4.65768C10.7806 4.45655 11.3419 4.44589 11.8546 4.62768V3.75018C11.8547 3.20527 12.0525 2.67891 12.4114 2.26883C12.7702 1.85875 13.2657 1.59283 13.8057 1.52044C14.3458 1.44805 14.8938 1.57411 15.348 1.87522C15.8021 2.17633 16.1316 2.63202 16.2751 3.15768C16.6165 3.0223 16.9858 2.97252 17.3508 3.0127C17.7158 3.05288 18.0655 3.18178 18.3692 3.38817C18.6729 3.59456 18.9215 3.87215 19.0933 4.19671C19.2651 4.52128 19.3548 4.88296 19.3546 5.25018V9.00018H18.9796ZM16.3261 12.0002C16.0451 12.3512 15.6888 12.6345 15.2835 12.8293C14.8782 13.024 14.4343 13.1251 13.9846 13.1252H11.2246C10.7753 13.1249 10.3317 13.0237 9.92664 12.8289C9.52162 12.6342 9.16552 12.351 8.88465 12.0002H8.85465V11.9642C8.76852 11.8528 8.69032 11.7355 8.62065 11.6132L7.98465 10.5002H6.22965C6.12982 10.5 6.03119 10.5218 5.94079 10.5642C5.85039 10.6065 5.77045 10.6683 5.70669 10.7451C5.64292 10.8219 5.5969 10.9118 5.57192 11.0085C5.54693 11.1051 5.5436 11.2061 5.56215 11.3042L6.25515 15.0002H18.9541L19.6471 11.3042C19.6657 11.2061 19.6624 11.1051 19.6374 11.0085C19.6124 10.9118 19.5664 10.8219 19.5026 10.7451C19.4388 10.6683 19.3589 10.6065 19.2685 10.5642C19.1781 10.5218 19.0795 10.5 18.9796 10.5002H17.2246L16.5886 11.6132C16.5187 11.7354 16.4405 11.8526 16.3546 11.9642V12.0002H16.3261ZM11.8546 6.75018C11.8546 6.55127 11.7756 6.3605 11.635 6.21985C11.4943 6.0792 11.3036 6.00018 11.1046 6.00018C10.9057 6.00018 10.715 6.0792 10.5743 6.21985C10.4337 6.3605 10.3546 6.55127 10.3546 6.75018V11.3462C10.6086 11.5274 10.9127 11.6249 11.2246 11.6252H11.8546V6.75018ZM8.85465 9.00018V5.25018C8.85465 5.05127 8.77563 4.8605 8.63498 4.71985C8.49433 4.5792 8.30356 4.50018 8.10465 4.50018C7.90574 4.50018 7.71497 4.5792 7.57432 4.71985C7.43367 4.8605 7.35465 5.05127 7.35465 5.25018V9.00018H8.85465H7.98465C8.2966 9.00045 8.60072 9.09797 8.85465 9.27918V9.00018ZM6.53715 16.5002L6.98415 18.8882C7.01637 19.0603 7.1078 19.2157 7.24259 19.3275C7.37738 19.4393 7.54704 19.5004 7.72215 19.5002H17.4871C17.6623 19.5004 17.8319 19.4393 17.9667 19.3275C18.1015 19.2157 18.1929 19.0603 18.2251 18.8882L18.6721 16.5002H6.53715Z"
                                         fill="var(--day-dark01)" />
                                 </svg>
-                                <div data-translate="garnituri">Garnituri</div>
+                                <div>Garnituri</div>
                             </div>
                             <div class="category" data-value="ciorbe-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -165,7 +164,7 @@
                                         d="M23.1107 11.9746C23.1107 11.4571 22.6907 11.0371 22.1732 11.0371H3.0354C2.5179 11.0371 2.0979 11.4571 2.0979 11.9746C2.09115 12.1119 2.0874 12.2731 2.0874 12.4351C2.0874 16.3951 4.41615 19.8114 7.77915 21.3886L7.8399 21.4141V22.5001C7.8399 23.0176 8.2599 23.4376 8.7774 23.4376H16.4327C16.9502 23.4369 17.3694 23.0176 17.3702 22.5001V21.4141C20.7932 19.8114 23.1219 16.3951 23.1219 12.4359C23.1219 12.2739 23.1182 12.1119 23.1099 11.9514L23.1107 11.9746ZM16.0884 19.9554L16.0802 19.9606C16.0007 19.9981 15.9324 20.0431 15.8709 20.0964L15.8724 20.0956C15.8342 20.1181 15.8019 20.1399 15.7712 20.1639L15.7734 20.1624C15.6497 20.2659 15.5649 20.4136 15.5447 20.5809V20.5839C15.5207 20.6521 15.5042 20.7309 15.4982 20.8126V20.8156L15.4959 20.8276V21.5626H9.71565V20.8276L9.7134 20.8149C9.70665 20.7384 9.69165 20.6679 9.6699 20.6004L9.6714 20.6071C9.66315 20.5494 9.6519 20.4991 9.63615 20.4496L9.63765 20.4564C9.6159 20.4204 9.59565 20.3896 9.5724 20.3604L9.5739 20.3626C9.53415 20.2861 9.4884 20.2194 9.4344 20.1601L9.43515 20.1609C9.4149 20.1414 9.38565 20.1309 9.3639 20.1129C9.2964 20.0521 9.2184 20.0011 9.1329 19.9629L9.1269 19.9606L9.1194 19.9554C6.22215 18.8259 4.17465 16.1274 4.01265 12.9309L4.0119 12.9121H21.1952C21.0324 16.1274 18.9849 18.8266 16.1417 19.9374L16.0877 19.9561L16.0884 19.9554ZM16.1979 9.50039C16.3667 9.76664 16.6592 9.94064 16.9922 9.94064C17.5097 9.94064 17.9297 9.52139 17.9297 9.00314C17.9297 8.81639 17.8749 8.64239 17.7812 8.49614L17.7834 8.49989L16.9104 7.11389L21.8027 5.38364C22.1702 5.25089 22.4282 4.90514 22.4282 4.49939C22.4282 4.17539 22.2639 3.88964 22.0142 3.72164L22.0112 3.71939L17.5112 0.719391C17.3634 0.617391 17.1804 0.556641 16.9832 0.556641C16.4657 0.556641 16.0457 0.976641 16.0457 1.49414C16.0457 1.82114 16.2137 2.10914 16.4672 2.27714L16.4709 2.27939L19.4124 4.23989L15.1787 5.73614C14.8112 5.86814 14.5524 6.21314 14.5524 6.61964C14.5524 6.80564 14.6064 6.97889 14.7002 7.12439L14.6979 7.12064L16.1979 9.50039ZM6.3684 9.50039C6.53715 9.76664 6.82965 9.94064 7.1634 9.94064C7.68165 9.94064 8.1009 9.52064 8.1009 9.00314C8.1009 8.81639 8.04615 8.64239 7.9524 8.49614L7.95465 8.49989L7.08015 7.11389L11.9739 5.38364C12.3407 5.25089 12.5987 4.90514 12.5987 4.49939C12.5987 4.17539 12.4344 3.88964 12.1847 3.72164L12.1817 3.71939L7.68165 0.719391C7.5369 0.624141 7.3599 0.567141 7.1694 0.567141C6.6519 0.567141 6.2319 0.987141 6.2319 1.50464C6.2319 1.82564 6.39315 2.10839 6.6384 2.27714L6.6414 2.27939L9.58215 4.23989L5.3484 5.73614C4.98165 5.86889 4.72365 6.21464 4.72365 6.62039C4.72365 6.80564 4.77765 6.97889 4.8699 7.12439L4.86765 7.12064L6.3684 9.50039Z"
                                         fill="var(--day-dark01)" />
                                 </svg>
-                                <div data-translate="ciorbe">Ciorbe</div>
+                                <div>Ciorbe</div>
                             </div>
                             <div class="category" data-value="micdejun-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -184,7 +183,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div data-translate="mic">Mic de jun</div>
+                                <div>Mic de jun</div>
                             </div>
                             <div class="category" data-value="sushi-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -213,7 +212,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div data-translate="sushi">Sushi</div>
+                                <div>Sushi</div>
                             </div>
                             <div class="category" data-value="peste-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -229,7 +228,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div data-translate="peste">Preparate din Pește</div>
+                                <div>Preparate din Pește</div>
                             </div>
                             <div class="category" data-value="salate-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -245,7 +244,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div data-translate="salate">Salate</div>
+                                <div>Salate</div>
                             </div>
                             <div class="category" data-value="bere-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -254,7 +253,7 @@
                                         d="M7.55707 3.99886C5.50776 3.90127 4.69501 4.00404 4.04898 4.65007C3.85425 4.8448 3.71592 5.17547 3.64511 5.62662C3.58568 6.00521 3.58809 6.3566 3.59004 6.64128C3.59038 6.6899 3.5907 6.73658 3.59069 6.78111C3.59067 7.05506 3.60215 7.43361 3.71642 7.72571C3.76788 7.85726 3.82013 7.91591 3.85237 7.9412C3.87133 7.95607 3.93048 7.99997 4.10466 7.99997C4.23381 7.99997 4.27889 7.96548 4.30747 7.94007C4.35669 7.89632 4.42169 7.80651 4.48081 7.64887C4.53837 7.49538 4.57153 7.32762 4.58892 7.18845C4.5973 7.12147 4.60128 7.06715 4.60314 7.03243C4.60406 7.01521 4.60444 7.00325 4.60458 6.99746L4.60465 6.9943C4.60771 6.44463 5.05425 5.99999 5.60464 5.99999H16.7543C16.7725 5.69814 16.7411 5.50886 16.7102 5.4472C16.5824 5.1915 16.4814 5.09224 16.0902 4.85748C15.6756 4.6087 15.3454 4.59464 14.8539 4.67593C14.742 4.69443 14.604 4.72349 14.4458 4.75679C13.9622 4.8586 13.2907 4.99999 12.6047 4.99999C11.6379 4.99999 10.6571 4.72503 9.83109 4.49076L9.77018 4.47348C8.91261 4.23017 8.20631 4.02977 7.55707 3.99886ZM16.6047 7.99999H6.60464V19.9999C6.60464 20.5522 7.05235 20.9999 7.60464 20.9999H15.6047C16.157 20.9999 16.6047 20.5522 16.6047 19.9999V17.9999V8.99999V7.99999ZM4.60464 9.95041C4.4465 9.98285 4.27967 9.99994 4.10461 9.99994C3.52879 9.99994 3.02369 9.83299 2.61816 9.51495C2.22591 9.20733 1.9934 8.81101 1.85387 8.45435C1.59035 7.78072 1.5906 7.06195 1.59069 6.7934L1.59069 6.78094C1.59069 6.75214 1.59035 6.7173 1.58996 6.67712C1.58724 6.4009 1.58205 5.87231 1.6693 5.31648C1.768 4.68769 2.00524 3.86538 2.63477 3.23586C3.98887 1.88175 5.72344 1.90927 7.6522 2.00112C8.53897 2.04335 9.44938 2.30261 10.2282 2.52439L10.3768 2.56666C11.2463 2.81324 11.9613 2.99999 12.6047 2.99999C13.0702 2.99999 13.4139 2.92689 13.8269 2.83908C14.0348 2.79488 14.2602 2.74694 14.5276 2.70273C15.2884 2.57691 16.1531 2.56285 17.1192 3.1425C17.6751 3.47603 18.133 3.82052 18.4991 4.55278C18.8125 5.17965 18.7758 5.93523 18.7301 6.36717C18.704 6.61373 18.6653 6.83125 18.6334 6.98683C18.623 7.03711 18.6133 7.08162 18.6047 7.11931V7.99999H19.6047C21.2615 7.99999 22.6047 9.34313 22.6047 10.9999V15.9999C22.6047 17.6568 21.2615 18.9999 19.6047 18.9999H18.6047V19.9999C18.6047 21.6568 17.2615 22.9999 15.6047 22.9999H7.60464C5.94778 22.9999 4.60464 21.6568 4.60464 19.9999V9.95041ZM18.6047 16.9999H19.6047C20.157 16.9999 20.6047 16.5522 20.6047 15.9999V10.9999C20.6047 10.4477 20.157 9.99994 19.6047 9.99994H18.6047V16.9999ZM13.6047 11.9999C13.6047 12.5522 13.157 12.9999 12.6047 12.9999C12.0524 12.9999 11.6047 12.5522 11.6047 11.9999C11.6047 11.4476 12.0524 10.9999 12.6047 10.9999C13.157 10.9999 13.6047 11.4476 13.6047 11.9999ZM9.10464 11.9999C9.93306 11.9999 10.6046 11.3283 10.6046 10.4999C10.6046 9.67151 9.93306 8.99994 9.10464 8.99994C8.27621 8.99994 7.60464 9.67151 7.60464 10.4999C7.60464 11.3283 8.27621 11.9999 9.10464 11.9999ZM10.6046 14.9999C10.6046 15.5522 10.1569 15.9999 9.60464 15.9999C9.05235 15.9999 8.60464 15.5522 8.60464 14.9999C8.60464 14.4476 9.05235 13.9999 9.60464 13.9999C10.1569 13.9999 10.6046 14.4476 10.6046 14.9999ZM13.6047 17.9999C14.157 17.9999 14.6047 17.5522 14.6047 16.9999C14.6047 16.4476 14.157 15.9999 13.6047 15.9999C13.0524 15.9999 12.6047 16.4476 12.6047 16.9999C12.6047 17.5522 13.0524 17.9999 13.6047 17.9999Z"
                                         fill="var(--day-dark01)" />
                                 </svg>
-                                <div data-translate="bere">Meniu la Bere</div>
+                                <div>Meniu la Bere</div>
                             </div>
                             <div class="category" data-value="carne-section">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
@@ -263,7 +262,7 @@
                                         d="M22.4297 17.1002C21.7547 16.4252 20.7047 16.2752 19.8797 16.6502L16.0547 12.9002C16.7297 11.4002 16.6547 9.67524 15.8297 8.47524L11.9297 3.00024C11.3297 2.10024 10.3547 1.57524 9.15467 1.50024C7.65467 1.35024 6.15467 2.02524 4.95467 3.15024L3.82967 4.42524C2.62967 5.55024 2.02967 6.97524 2.10467 8.40024C2.17967 9.52524 2.62967 10.5002 3.45467 11.1752L8.55467 15.4502C9.22967 16.0502 10.1297 16.2752 11.0297 16.2752C11.8547 16.2752 12.6797 16.0502 13.5047 15.6002L17.1797 19.2752C16.8047 20.1002 16.9547 21.1502 17.6297 21.8252C18.0797 22.2752 18.6047 22.5002 19.2047 22.5002C19.8047 22.5002 20.3297 22.2752 20.7797 21.8252C21.0797 21.5252 21.2297 21.2252 21.3797 20.7752C21.7547 20.7002 22.1297 20.4752 22.3547 20.1752C22.8047 19.7252 23.0297 19.2002 23.0297 18.6002C23.1047 18.0752 22.8797 17.4752 22.4297 17.1002ZM9.52967 14.2502L4.35467 10.0502C3.75467 9.52524 3.60467 8.85024 3.60467 8.40024C3.52967 7.35024 4.05467 6.30024 4.87967 5.47524L6.07967 4.27524C6.82967 3.45024 7.87967 3.00024 8.85467 3.00024C8.92967 3.00024 9.00467 3.00024 9.07967 3.00024C9.60467 3.07524 10.2797 3.22524 10.7297 3.90024L14.7047 9.37524C15.3047 10.2002 15.3047 11.4752 14.6297 12.6752C14.4797 12.9752 14.1797 13.2752 13.9547 13.5752C13.7297 13.8002 13.5797 13.9502 13.3547 14.1002C11.9297 14.9252 10.4297 15.0002 9.52967 14.2502ZM21.3797 19.2002C21.1547 19.4252 20.9297 19.4252 20.7797 19.4252C20.5547 19.4252 20.3297 19.5002 20.1797 19.6502C20.0297 19.8002 19.9547 20.0252 19.9547 20.2502C19.9547 20.4002 19.9547 20.6252 19.7297 20.8502C19.5797 21.0002 19.4297 21.0752 19.2047 21.0752C18.9797 21.0752 18.8297 21.0002 18.6797 20.8502C18.3797 20.5502 18.3797 20.1002 18.6797 19.8002C18.9797 19.5002 18.9797 19.0502 18.6797 18.7502L14.7047 14.7752C14.7797 14.7002 14.7797 14.7002 14.8547 14.6252C15.0047 14.4752 15.1547 14.3252 15.2297 14.1752L19.2047 18.1502C19.5047 18.4502 19.9547 18.4502 20.2547 18.1502C20.5547 17.8502 21.0047 17.8502 21.3047 18.1502C21.4547 18.3002 21.5297 18.4502 21.5297 18.6752C21.6047 18.8252 21.5297 19.0502 21.3797 19.2002Z"
                                         fill="var(--day-dark01)" />
                                 </svg>
-                                <div data-translate="carne">Preparate din Carne</div>
+                                <div>Preparate din Carne</div>
                             </div>
                         </div>
                     </div>
@@ -278,7 +277,7 @@
                             <path d="M13.6233 14.123L15.6001 16.0998" stroke="var(--day-dark01)" stroke-width="1.66667"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <span data-translate="search">
+                        <span>
                             Caută
                         </span>
 
@@ -610,34 +609,34 @@
             <form class="inputs" id="admin-form">
                 <div class="input">
                     <input type="text" id="admin-item-name" required>
-                    <label for="admin-item-name" data-translate="dish_name">Nume</label>
+                    <label for="admin-item-name">Nume</label>
                 </div>
                 <div class="input">
                     <input type="number" id="admin-item-price" required max="500">
-                    <label for="admin-item-price" data-translate="dish_price">Preț</label>
+                    <label for="admin-item-price">Preț</label>
                 </div>
                 <div class="input">
 
                     <input type="number" id="admin-item-masa" required>
-                    <label for="admin-item-masa" data-translate="dish_weight">Masa</label>
+                    <label for="admin-item-masa">Masa</label>
                 </div>
                 <div class="input" id="category-input">
                     <select name="" id="admin-item-category" required>
-                        <option value="pizza-section" data-translate="pizza">Pizza</option>
-                        <option value="gustari-section" data-translate="cold_s">Gustări Reci</option>
-                        <option value="garnituri-section" data-translate="garnituri">Garnituri</option>
-                        <option value="ciorbe-section" data-translate="ciorbe">Ciorbe</option>
-                        <option value="micdejun-section" data-translate="mic">Mic de jun</option>
-                        <option value="sushi-section" data-translate="sushi">Sushi</option>
-                        <option value="peste-section" data-translate="peste">Preparate din pește</option>
-                        <option value="salate-section" data-translate="salate">Salate</option>
-                        <option value="bere-section" data-translate="bere">Meniu la Bere</option>
-                        <option value="carne-section" data-translate="carne">Preparate din Carne</option>
+                        <option value="pizza-section">Pizza</option>
+                        <option value="gustari-section">Gustări Reci</option>
+                        <option value="garnituri-section">Garnituri</option>
+                        <option value="ciorbe-section">Ciorbe</option>
+                        <option value="micdejun-section">Mic de jun</option>
+                        <option value="sushi-section">Sushi</option>
+                        <option value="peste-section">Preparate din pește</option>
+                        <option value="salate-section">Salate</option>
+                        <option value="bere-section">Meniu la Bere</option>
+                        <option value="carne-section">Preparate din Carne</option>
                     </select>
                 </div>
                 <div class="input">
                     <textarea name="" id="admin-item-description" cols="30" rows="10" required></textarea>
-                    <label for="admin-item-description" data-translate="dish_desc">Descriere</label>
+                    <label for="admin-item-description">Descriere</label>
                 </div>
 
                 <div class="admin-item-extra-buttons">
@@ -692,7 +691,7 @@
                             stroke="var(--day-dark01)" stroke-opacity="0.75" stroke-width="7.25" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <span data-translate="cos">Coșul este gol</span>
+                    <span>Coșul este gol</span>
 
                 </div>
                 <div class="logo">
@@ -713,12 +712,12 @@
                 <div class="separator"></div>
                 <div class="checkout">
                     <div class="total">
-                        <span class="main"><span data-translate="total">Total:</span> <span id="price-of-checkout"
+                        <span class="main"><span>Total:</span> <span id="price-of-checkout"
                                 class="price">0</span> MDL</span>
                         <!-- <button class="delete-all">Șterge tot</button> -->
                     </div>
 
-                    <button data-translate="buy">
+                    <button>
                         Cumpără
                     </button>
                 </div>
@@ -816,7 +815,7 @@
                                         stroke="var(--day-dark01)" stroke-width="2.66667" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-                                <span data-translate="recenzie">Recenzii</span>
+                                <span>Recenzii</span>
                             </button>
                             <div class="reviews-stats">
                                 <div class="stars-div">
@@ -914,7 +913,7 @@
                             <div class="max"><span>0</span>/500</div>
                         </div>
                         <button type="submit" id="submit-bttn">
-                            <span class="text" data-translate="add">Adaugă</span>
+                            <span class="text">Adaugă</span>
                         </button>
 
                     </form>
@@ -948,7 +947,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <span data-translate="nothing">Nu am găsit niciun rezultat.</span>
+                    <span>Nu am găsit niciun rezultat.</span>
 
                 </div>
                 <div class="placeholder show">
@@ -1072,7 +1071,7 @@
 
                         </div>
 
-                        <span data-translate="pizza">Pizza</span>
+                        <span>Pizza</span>
 
                     </div>
                     <div class="items"></div>
@@ -1098,7 +1097,7 @@
 
 
                         </div>
-                        <span data-translate="cold_s">Gustări Reci</span>
+                        <span>Gustări Reci</span>
 
                     </div>
                     <div class="items"></div>
@@ -1118,7 +1117,7 @@
 
                         </div>
 
-                        <span data-translate="garnituri">Garnituri</span>
+                        <span>Garnituri</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1137,7 +1136,7 @@
 
                         </div>
 
-                        <span data-translate="ciorbe">Ciorbe</span>
+                        <span>Ciorbe</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1166,7 +1165,7 @@
 
                         </div>
 
-                        <span data-translate="mic">Mic de ju</span>
+                        <span>Mic de ju</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1204,7 +1203,7 @@
 
 
                         </div>
-                        <span data-translate="sushi">Sushi</span>
+                        <span>Sushi</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1230,7 +1229,7 @@
 
                         </div>
 
-                        <span data-translate="peste">Preparate din Pește</span>
+                        <span>Preparate din Pește</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1256,7 +1255,7 @@
 
                         </div>
 
-                        <span data-translate="salate">Salate</span>
+                        <span>Salate</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1275,7 +1274,7 @@
 
                         </div>
 
-                        <span data-translate="bere">Meniu la Bere</span>
+                        <span>Meniu la Bere</span>
                     </div>
                     <div class="items"></div>
                 </div>
@@ -1294,7 +1293,7 @@
 
                         </div>
 
-                        <span data-translate="carne">Preparate din Carne</span>
+                        <span>Preparate din Carne</span>
                     </div>
                     <div class="items"></div>
                 </div>

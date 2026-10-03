@@ -1,4 +1,4 @@
-import { deleteTextAnim } from "./utils.js";
+import { sendContactEmail } from "./email.js";
 
 // Copy Function
 const infoDivs = document.querySelectorAll('.form-section>.content>.form-content>.column1>.info>div');
@@ -41,79 +41,51 @@ const messageField = document.querySelector('#message');
 
 const form = document.querySelector("#form");
 
-const nameInput = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
-const messageInput = document.querySelector('#message');
+const submitBtn = document.querySelector("#submit-bttn");
+const submitBtnText = submitBtn.querySelector(".text");
+const submitBtnLoading = submitBtn.querySelector(".loading");
+const succesText = document.querySelector('.form-section .succes');
+const errorText = document.querySelector('.form-section .error');
+const checkmark = submitBtn.querySelector('.checkmark');
+let sending = false;
 
-const submitBtn = document.querySelector("#submit-bttn")
-const submitBtnText = document.querySelector("#submit-bttn>.text")
-const submitBtnLoading = document.querySelector("#submit-bttn>.loading")
-
-const succesText = document.querySelector('.form-section>.content>.text>.header>.succes')
-const errorText = document.querySelector('.form-section>.content>.text>.header>.error')
-const checkmark = document.querySelector('#submit-bttn>.checkmark')
-
-function startLoad()
-{
-    submitBtnLoading.style.opacity = "1";
-    submitBtnText.style.display = "none";
-    submitBtn.style.pointerEvents = "none";
-
-}
-function finishLoad()
-{
-    succesText.classList.add('show')
-    checkmark.classList.add('show')
-    submitBtnLoading.style.opacity = "0";
-}
-
-function errorLoad()
-{
-    submitBtnText.style.display = "block";
-    checkmark.classList.remove('show')
-    succesText.classList.remove('show')
-    errorText.classList.add('show')
-}
-
-
-form.addEventListener('submit', (e) =>
-{
-    e.preventDefault();
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (sending || !form.reportValidity()) return;
     const params = {
-
-        from_name: nameField.value,
-        email_id: emailField.value,
-        message: messageField.value,
+        name: nameField.value.trim(),
+        email: emailField.value.trim(),
+        message: messageField.value.trim(),
+    };
+    if (!params.name || !params.message) {
+        errorText.textContent = 'Completează numele și mesajul.';
+        errorText.classList.add('show');
+        return;
     }
-
-    const serviceId = "service_mcv5bfc";
-    const templateId = "template_iviag0d";
-
-    // loadingAnim(submitBtn)
-
-    deleteTextAnim(nameInput)
-    deleteTextAnim(emailInput)
-    deleteTextAnim(messageInput)
-    startLoad()
-
-    emailjs.send(serviceId, templateId, params).then(res =>
-    {
-
-        // responseAnim(res.status != 200, submitBtn, "Trimite")
-
-
-        if (res.status == 200)
-        {
-            finishLoad()
-        }
-
-    }).catch(error =>
-    {
-        console.error('Error:', error);
-        errorLoad()
-    });
-
-})
+    sending = true;
+    submitBtn.disabled = true;
+    submitBtn.setAttribute('aria-busy', 'true');
+    submitBtnLoading.style.opacity = '1';
+    submitBtnText.style.display = 'none';
+    checkmark.classList.remove('show');
+    succesText.classList.remove('show');
+    errorText.classList.remove('show');
+    try {
+        await sendContactEmail(params);
+        form.reset();
+        succesText.classList.add('show');
+    } catch (error) {
+        console.error('EmailJS:', error);
+        errorText.textContent = 'Mesajul nu a fost trimis. Încearcă din nou.';
+        errorText.classList.add('show');
+    } finally {
+        sending = false;
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
+        submitBtnLoading.style.opacity = '0';
+        submitBtnText.style.display = 'block';
+    }
+});
 
 const faqIcons = document.querySelectorAll(".faq-section>.content>.faqs>.faq>.icon")
 

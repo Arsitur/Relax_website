@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", (event) =>
             }
         ]
     }
-    console.log(reviewsText.pizza[0].name[localStorage.getItem('language')])
 
     // EVENT LISTENERS
 

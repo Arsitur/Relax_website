@@ -316,7 +316,10 @@ productsDB.get().then((querySnapshot) =>
 
     querySnapshot.forEach((product, index) =>
     {
-        menuItems.push(product.data());
+        const data = product.data();
+        // Read Romanian text from older Firebase records; no translation UI or preference.
+        menuItems.push({ ...data, name: data.name ?? data.nametran?.ro ?? "",
+            description: data.description ?? data.descriptiontran?.ro ?? "" });
         menuIDs.push(product.id)
 
     })
@@ -497,12 +500,11 @@ function renderMenuItems(menuItems)
         }
         else
         {
-            let languageSelectedStorage = localStorage.getItem('language') || "ro";
 
             section.style.display = 'initial';
-            items.innerHTML += `<menu-item name="${item.nametran[languageSelectedStorage]}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
+            items.innerHTML += `<menu-item name="${item.name}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
                             reviews='${JSON.stringify(reviews)}'
-                            description="${item.descriptiontran[languageSelectedStorage]}"
+                            description="${item.description}"
                             masa="${item.masa}" category="${item.category}" id="${item.id}"></menu-item>`;
         }
 
@@ -578,7 +580,7 @@ function filterMenuItems(menuItems, criteria)
             {
                 return false;
             }
-            if (field === 'search' && !item.nametran[localStorage.getItem("language") || "ro"].toLowerCase().includes(value.toLowerCase()))
+            if (field === 'search' && !item.name.toLowerCase().includes(value.toLowerCase()))
             {
                 return false;
             }
@@ -743,22 +745,8 @@ function updateMenuSidebar()
 
 function assignReviewNum(div, num)
 {
-    let sing = "";
-    let plurar = "";
-    let lang = localStorage.getItem('language');
-    if (lang == 'ro')
-    {
-        sing = "recenzie";
-        plurar = "recenzii";
-    } else if (lang == 'ru')
-    {
-        sing = "обзор";
-        plurar = "обзоры";
-    } else if (lang == 'en')
-    {
-        sing = "review";
-        plurar = "reviews";
-    }
+    const sing = "recenzie";
+    const plurar = "recenzii";
     const pluralText = num === 1 ? sing : plurar;
     div.innerText = `${num} ${pluralText}`;
 }
@@ -783,7 +771,8 @@ class MenuItem extends HTMLElement
         padding: 0;
         box-sizing: border-box;
         font-family: Poppins, Roboto;
-        user-select: none;
+        -webkit-user-select: text;
+        user-select: text;
         z-index: 3;
       }
         :host {
@@ -1182,7 +1171,8 @@ class SideMenuItem extends HTMLElement
             padding: 0;
             box-sizing: border-box;
             font-family: Poppins, Roboto;
-            user-select: none;
+            -webkit-user-select: text;
+        user-select: text;
             z-index: 3;
         }
         :host {

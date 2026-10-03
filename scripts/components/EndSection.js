@@ -94,81 +94,6 @@ class EndSection extends HTMLElement
         })
 
 
-        // LANGUAGE TEMPORARY
-
-        const langDiv = this.shadowRoot.querySelector('footer>.right>.lang')
-        const langPopup = this.shadowRoot.querySelector('footer>.right>.lang>.popup')
-        const languages = this.shadowRoot.querySelectorAll('footer>.right>.lang>.popup>.language')
-        const crrLangDiv = this.shadowRoot.querySelector('footer>.right>.lang>.crr-lang')
-
-        langDiv.addEventListener('click', (e) =>
-        {
-            e.stopPropagation();
-            langPopup.classList.toggle('show')
-        })
-
-        langPopup.addEventListener('click', (e) =>
-        {
-            e.stopPropagation();
-        })
-
-        languages.forEach(lang =>
-        {
-            lang.addEventListener('click', (e) =>
-            {
-                languages.forEach(lang =>
-                {
-                    lang.classList.remove('selected')
-                    langPopup.classList.remove('show')
-                }
-                )
-                e.target.classList.add('selected')
-                crrLangDiv.innerHTML = e.target.innerHTML
-
-                if (lang.classList.contains('ro'))
-                {
-                    localStorage.setItem("language", "ro");
-                }
-                if (lang.classList.contains('ru'))
-                {
-                    localStorage.setItem("language", "ru");
-                }
-                if (lang.classList.contains('en'))
-                {
-                    localStorage.setItem("language", "en");
-                }
-                location.reload();
-            })
-
-        }
-        )
-
-        this.shadowRoot.addEventListener('click', () =>
-        {
-            if (langPopup.classList.contains('show'))
-            {
-                langPopup.classList.remove('show');
-            }
-        })
-
-
-        const language = localStorage.getItem('language') || 'ro';
-
-        if (language == 'ro')
-        {
-            languages[0].classList.add('selected')
-            crrLangDiv.innerHTML = "Română"
-        }
-        if (language == 'ru')
-        {
-            languages[1].classList.add('selected')
-            crrLangDiv.innerHTML = "Русский"
-        }
-        if (language == 'en')
-        {
-            languages[2].classList.add('selected')
-            crrLangDiv.innerHTML = "English"
-        }
     }
 
     render()
@@ -181,7 +106,8 @@ class EndSection extends HTMLElement
         padding: 0;
         box-sizing: border-box;
         font-family: Poppins, Roboto;
-        user-select: none;
+        -webkit-user-select: text;
+        user-select: text;
         z-index: 3;
         font-weight: 300;
         color: var(--day-dark01);
@@ -361,72 +287,6 @@ footer>.right>.buttons>a:hover {
     border: 1px solid var(--day-dark02);
 }
 
-footer>.right>.lang {
-    width: 100%;
-    text-align: right;
-    cursor: pointer;
-    font-size: 12px;
-    color: var(--day-dark02);
-    position: relative;
-}
-
-footer>.right>.lang>.crr-lang {
-    text-align: inherit;
-    font-weight: inherit;
-    font-size: inherit;
-    color: inherit;
-}
-
-footer>.right>.lang>.popup {
-    position: absolute;
-    padding: 8px 12px;
-    display: none;
-    top: 50%;
-    transform: translateY(-50%);
-    left: -20%;
-    background-color: var(--day-white01);
-    display: none;
-    flex-direction: column;
-    gap: 8px;
-    width: 92px;
-    z-index: 4;
-    box-shadow: var(--day-m-shadow02);
-}
-
-footer>.right>.lang>.popup.show {
-    display: flex;
-}
-
-footer>.right>.lang>.popup>.language {
-    font-size: 12px;
-    color: var(--day-dark03);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    width: 100%;
-    justify-content: space-between;
-    background: none;
-    border: none;
-    curson: pointer;
-}
-
-footer>.right>.lang>.popup>.language.selected {
-    color: var(--day-dark01);
-}
-
-footer>.right>.lang>.popup>.language.selected>div {
-    display: initial;
-}
-
-footer>.right>.lang>.popup>.language>div {
-    width: 4px;
-    height: 4px;
-    border-radius: 1000px;
-    background-color: var(--day-gold);
-    display: none;
-}
-
 footer>.disclaimer-all {
     width: 100%;
     height: 100%;
@@ -550,7 +410,7 @@ footer>.disclaimer-all>.content>.disclaimer>button {
                             stroke="var(--day-dark01)" stroke-opacity="0.9" stroke-width="6.66667"
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-                    <p data-translate="anouncement">Acest website a fost realizat în cadrul competiției ”Tekwill Junior
+                    <p>Acest website a fost realizat în cadrul competiției ”Tekwill Junior
                         Ambassadors” organizată de
                         proiectul ”Tekwill în
                         Fiecare Școală” și nu reflectă neapărat opinia proiectului.</p>
@@ -648,18 +508,7 @@ footer>.disclaimer-all>.content>.disclaimer>button {
 
                 </a>
             </div>
-            <div class="lang">
-                <div class="popup">
-                    <button class="language ro">Română<div></div>
-                    </button>
-                    <button class="language ru">Русский<div></div>
-                    </button>
-                    <button class="language en">English<div></div>
-                    </button>
-                </div>
-                <span class="crr-lang">Romana</span>
 
-            </div>
         </div>
     </footer>
     `;

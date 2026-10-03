@@ -86,7 +86,8 @@ class ArticleItem extends HTMLElement
         padding: 0;
         box-sizing: border-box;
         font-family: Poppins, Roboto;
-        user-select: none;        
+        -webkit-user-select: text;
+        user-select: text;
         z-index: 3;
       }
       img 

@@ -133,8 +133,6 @@ textarea {
   word-break: break-all;
 }
 
-
-
 .loading > .content > .spinner {
   -webkit-animation: rotator 1.4s linear infinite;
   animation: rotator 1.4s linear infinite;
@@ -762,4 +760,14 @@ nav.more>.more>svg {
     font-size: 22px;
   }
 }
-.demo-notice { max-width:1100px; margin:20px auto; padding:16px; font:500 16px Poppins,sans-serif; color:var(--day-dark02); border:1px solid var(--day-dark04); border-radius:12px; }
+.demo-notice {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 16px;
+  font:
+    500 16px Poppins,
+    sans-serif;
+  color: var(--day-dark02);
+  border: 1px solid var(--day-dark04);
+  border-radius: 12px;
+}

@@ -1,79 +1,81 @@
-import { auth } from '../firebase/main.js';
-import { onAuthStateChanged } from 'firebase/auth';
-import { siteUrl, defaultAvatar } from '../site.js';
-class NavBar extends HTMLElement
-{
-    constructor()
-    {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.currentPage = this.getAttribute('current-page') || 'home';
-        this.contactHome = this.getAttribute('contact-home') || 'false';
-        this.mainHome = this.getAttribute('main-home') || 'false';
-    }
+import { auth } from "../firebase/main.js";
+import { onAuthStateChanged } from "firebase/auth";
+import { siteUrl, defaultAvatar } from "../site.js";
+class NavBar extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.currentPage = this.getAttribute("current-page") || "home";
+    this.contactHome = this.getAttribute("contact-home") || "false";
+    this.mainHome = this.getAttribute("main-home") || "false";
+  }
 
-    connectedCallback()
-    {
-        this.render();
+  connectedCallback() {
+    this.render();
 
-        const root = this.shadowRoot;
-        this.unsubscribeAuth = onAuthStateChanged(auth, user => {
-            root.querySelectorAll('.account>a').forEach(link => { link.style.display = user ? 'none' : 'initial'; });
-            root.querySelector('.more-menu .account').style.display = user ? 'none' : 'flex';
-            root.querySelectorAll('.acc-img').forEach(link => {
-                link.style.display = user ? 'initial' : 'none';
-                link.querySelector('img').src = defaultAvatar();
-                link.querySelector('img').alt = user?.displayName || 'Contul tău';
-            });
-        });
+    const root = this.shadowRoot;
+    this.unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      root.querySelectorAll(".account>a").forEach((link) => {
+        link.style.display = user ? "none" : "initial";
+      });
+      root.querySelector(".more-menu .account").style.display = user
+        ? "none"
+        : "flex";
+      root.querySelectorAll(".acc-img").forEach((link) => {
+        link.style.display = user ? "initial" : "none";
+        link.querySelector("img").src = defaultAvatar();
+        link.querySelector("img").alt = user?.displayName || "Contul tău";
+      });
+    });
 
-        // MOBILE MORE NAV
+    // MOBILE MORE NAV
 
-        const moreMenuButton = this.shadowRoot.querySelector('.more');
-        const moreMenu = this.shadowRoot.querySelector('.more-menu');
-        const moreMenuAccImage = this.shadowRoot.querySelector('.more-menu>.content>.acc-img');
-        const moreMenuAccBttns = this.shadowRoot.querySelector('.more-menu>.content>.account');
-        const navBar = this.shadowRoot.querySelector("nav");
-        const moreMenuLinks = this.shadowRoot.querySelector('.more-menu>.content>.links-list');
+    const moreMenuButton = this.shadowRoot.querySelector(".more");
+    const moreMenu = this.shadowRoot.querySelector(".more-menu");
+    const moreMenuAccImage = this.shadowRoot.querySelector(
+      ".more-menu>.content>.acc-img",
+    );
+    const moreMenuAccBttns = this.shadowRoot.querySelector(
+      ".more-menu>.content>.account",
+    );
+    const navBar = this.shadowRoot.querySelector("nav");
+    const moreMenuLinks = this.shadowRoot.querySelector(
+      ".more-menu>.content>.links-list",
+    );
 
-        moreMenu.addEventListener('click', (e) =>
-        {
-            if (!moreMenuLinks.contains(e.target) || !moreMenuAccImage.contains(e.target) || !moreMenuAccBttns.contains(e.target))
-            {
-                moreMenu.classList.remove('show');
-                navBar.classList.remove('more')
-            }
+    moreMenu.addEventListener("click", (e) => {
+      if (
+        !moreMenuLinks.contains(e.target) ||
+        !moreMenuAccImage.contains(e.target) ||
+        !moreMenuAccBttns.contains(e.target)
+      ) {
+        moreMenu.classList.remove("show");
+        navBar.classList.remove("more");
+      }
+    });
 
+    moreMenuLinks.addEventListener("click", (event) => {
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+    });
 
-        })
+    moreMenuButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      moreMenu.classList.toggle("show");
+      if (moreMenu.classList.contains("show")) {
+        navBar.classList.add("more");
+      } else {
+        navBar.classList.remove("more");
+      }
+    });
+  }
 
-        moreMenuLinks.addEventListener('click', (event) =>
-        {
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-        });
+  disconnectedCallback() {
+    this.unsubscribeAuth?.();
+  }
 
-        moreMenuButton.addEventListener('click', (e) =>
-        {
-            e.stopPropagation();
-            moreMenu.classList.toggle('show');
-            if (moreMenu.classList.contains('show'))
-            {
-                navBar.classList.add('more')
-            }
-            else
-            {
-                navBar.classList.remove('more')
-            }
-
-        })
-    }
-
-    disconnectedCallback() { this.unsubscribeAuth?.(); }
-
-    render()
-    {
-        this.shadowRoot.innerHTML = `
+  render() {
+    this.shadowRoot.innerHTML = `
       <style>
         *
       {
@@ -215,7 +217,7 @@ nav>.account>.transparent-bttn {
     font-weight: 600;
     background: none;
     transition: color 0.1s linear;
-    pointer-events: none;
+    
     display: none;
 }
 
@@ -230,7 +232,7 @@ nav>.account>.outline-buttn {
     font-weight: 600;
     background: none;
     transition: all 0.1s linear;
-    pointer-events: none;
+    
     display: none;
 }
 
@@ -441,14 +443,16 @@ nav.more>.more>svg {
         font-size: 28px;
     }
 }
-    ${this.contactHome == 'true' ?
-                '@media(max-width: 1100px) {nav>.content>.logo>a {color:white;} nav>.more {stroke: white; fill: white;}}'
-                : ''
-            }
+    ${
+      this.contactHome == "true"
+        ? "@media(max-width: 1100px) {nav>.content>.logo>a {color:white;} nav>.more {stroke: white; fill: white;}}"
+        : ""
+    }
 
-            ${this.mainHome == 'true' ?
-                '@media(max-width: 1250px) {nav>.content>.logo>a {color:white;} nav>.more {stroke: white; fill: white;}}'
-                : ''
+            ${
+              this.mainHome == "true"
+                ? "@media(max-width: 1250px) {nav>.content>.logo>a {color:white;} nav>.more {stroke: white; fill: white;}}"
+                : ""
             }
     
 
@@ -461,26 +465,26 @@ nav.more>.more>svg {
     <nav class="nav-bar">
         <div class="content">
             <div class="logo">
-                <a href="${siteUrl('index.html')}" aria-label="Intră pe pagina principala RELAX">RELAX</a>
+                <a href="${siteUrl("index.html")}" aria-label="Intră pe pagina principala RELAX">RELAX</a>
             </div>
             <ul class="links-list">
-                <li class="link ${this.currentPage === 'home' ? 'current' : ''}"><a href="${siteUrl('index.html')}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
-                <li class="link ${this.currentPage === 'menu' ? 'current' : ''}"><a href="${siteUrl('pages/menu.html')}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
-                <li class="link ${this.currentPage === 'articles' ? 'current' : ''}"><a href="${siteUrl('pages/articole.html')}" aria-label="Intră pe pagina de articole">Articole</a>
+                <li class="link ${this.currentPage === "home" ? "current" : ""}"><a href="${siteUrl("index.html")}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
+                <li class="link ${this.currentPage === "menu" ? "current" : ""}"><a href="${siteUrl("pages/menu.html")}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
+                <li class="link ${this.currentPage === "articles" ? "current" : ""}"><a href="${siteUrl("pages/articole.html")}" aria-label="Intră pe pagina de articole">Articole</a>
                 </li>
-                <li class="link ${this.currentPage === 'contact' ? 'current' : ''}"><a href="${siteUrl('pages/contact.html')}" aria-label="Intră pe pagina de contacte">Contacte</a>
+                <li class="link ${this.currentPage === "contact" ? "current" : ""}"><a href="${siteUrl("pages/contact.html")}" aria-label="Intră pe pagina de contacte">Contacte</a>
                 </li>
             </ul>
 
         </div>
         <div class="account">
-            <a href="${siteUrl('pages/autentificare.html')}" class="transparent-bttn" aria-label="Autentifica-te"
+            <a href="${siteUrl("pages/autentificare.html")}" class="transparent-bttn" aria-label="Autentifica-te"
                     aria-label="Intră pe pagina de Autentificare">
                     Autentificare
                 </a>
                 
-            <a href="${siteUrl('pages/inregistrare.html')}" aria-label="Intră pe pagina de Înregistrare" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
-            <a class="acc-img" href="${siteUrl('pages/account.html')}" aria-label="Contul tău">
+            <a href="${siteUrl("pages/inregistrare.html")}" aria-label="Intră pe pagina de Înregistrare" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
+            <a class="acc-img" href="${siteUrl("pages/account.html")}" aria-label="Contul tău">
                     <img src="" alt="Imaginea ta de profil">
                 </a>
         </div>
@@ -494,29 +498,28 @@ nav.more>.more>svg {
     <div class="more-menu overlay">
         <div class="content">
             <ul class="links-list">
-                <li class="link ${this.currentPage === 'home' ? 'current' : ''}"><a href="${siteUrl('index.html')}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
-                <li class=" link ${this.currentPage === 'menu' ? 'current' : ''}"><a href="${siteUrl('pages/menu.html')}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
-                <li class="link ${this.currentPage === 'articles' ? 'current' : ''}"><a href="${siteUrl('pages/articole.html')}" aria-label="Intră pe pagina de articole">Articole</a>
+                <li class="link ${this.currentPage === "home" ? "current" : ""}"><a href="${siteUrl("index.html")}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
+                <li class=" link ${this.currentPage === "menu" ? "current" : ""}"><a href="${siteUrl("pages/menu.html")}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
+                <li class="link ${this.currentPage === "articles" ? "current" : ""}"><a href="${siteUrl("pages/articole.html")}" aria-label="Intră pe pagina de articole">Articole</a>
                 </li>
-                <li class="link ${this.currentPage === 'contact' ? 'current' : ''}"><a href="${siteUrl('pages/contact.html')}" aria-label="Intră pe pagina de contacte">Contacte</a>
+                <li class="link ${this.currentPage === "contact" ? "current" : ""}"><a href="${siteUrl("pages/contact.html")}" aria-label="Intră pe pagina de contacte">Contacte</a>
                 </li>
             </ul>
             <div class="account">
-                <a href="${siteUrl('pages/autentificare.html')}" class="transparent-bttn" aria-label="Autentifica-te"
+                <a href="${siteUrl("pages/autentificare.html")}" class="transparent-bttn" aria-label="Autentifica-te"
                         aria-label="Intră pe pagina de Autentificare">
                         Autentificare
                     </a>
-                <a href="${siteUrl('pages/inregistrare.html')}" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
+                <a href="${siteUrl("pages/inregistrare.html")}" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
             </div>
-            <a class="acc-img" href="${siteUrl('pages/account.html')}" aria-label="Contul tău">
+            <a class="acc-img" href="${siteUrl("pages/account.html")}" aria-label="Contul tău">
                 <img src="" alt="Imaginea ta de profil">
             </a>
         </div>
 
     </div>
 `;
-    }
-
+  }
 }
 
-window.customElements.define("nav-bar", NavBar)
+window.customElements.define("nav-bar", NavBar);

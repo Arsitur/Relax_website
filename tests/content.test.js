@@ -1,4 +1,5 @@
 import { test } from 'node:test';
+import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { readCart } from '../scripts/cart.js';
@@ -7,6 +8,9 @@ const articles = JSON.parse(readFileSync(new URL('../data/articles.json', import
 test('each of the ten categories has ten unique local products and valid local assets', () => {
     assert.equal(menu.length, 100);
     assert.equal(new Set(menu.map(item => item.id)).size, 100);
+    assert.equal(new Set(menu.map(item => item.photoURL)).size, 100);
+    const hashes = menu.map(item => createHash("sha256").update(readFileSync(new URL("../" + item.photoURL, import.meta.url))).digest("hex"));
+    assert.equal(new Set(hashes).size, 100, "menu photographs must not repeat under different filenames");
     const counts = {};
     for (const item of menu) {
         counts[item.category] = (counts[item.category] || 0) + 1;

@@ -36,7 +36,12 @@
     },
     {
       "file": "assets/Menu/pexels-5659753.webp",
-      "source": "https://www.pexels.com/photo/5659753/"
+      "source": "https://www.pexels.com/photo/5659753/",
+      "productId": "bere-demo-08",
+      "product": "Stout",
+      "photographer": "Eva Bronzini",
+      "title": "A Glass of Stout Beer",
+      "description": "A close-up shot of a dark beer in a tulip glass on a rustic surface."
     },
     {
       "file": "assets/Menu/pexels-6107771.webp",
@@ -48,11 +53,21 @@
     },
     {
       "file": "assets/Menu/pexels-7111470.webp",
-      "source": "https://www.pexels.com/photo/7111470/"
+      "source": "https://www.pexels.com/photo/7111470/",
+      "productId": "garnituri-demo-06",
+      "product": "Orez cu broccoli",
+      "photographer": "Piotr Arnoldes",
+      "title": "Rice with Vegetables in Bowl Beside Chopsticks",
+      "description": "Vibrant bowl of rice with broccoli, peppers, and chopsticks for a healthy meal."
     },
     {
       "file": "assets/Menu/pexels-8508488.webp",
-      "source": "https://www.pexels.com/photo/8508488/"
+      "source": "https://www.pexels.com/photo/8508488/",
+      "productId": "bere-demo-01",
+      "product": "Bere blondă",
+      "photographer": "Vilnis Husko",
+      "title": "Clear Drinking Glass With Beer and Foam",
+      "description": "A full glass of frosty lager beer with rich foam and bubbles."
     },
     {
       "file": "assets/Menu/pexels-8513314.webp",
@@ -64,7 +79,12 @@
     },
     {
       "file": "assets/Menu/pexels-8697537.webp",
-      "source": "https://www.pexels.com/photo/8697537/"
+      "source": "https://www.pexels.com/photo/8697537/",
+      "productId": "carne-demo-06",
+      "product": "Pui cu sos cremos",
+      "photographer": "Farhad Ibrahimzade",
+      "title": "Cooked Food on White Ceramic Plate",
+      "description": "Delicious grilled chicken breast with creamy sauce, vegetables, and potatoes on a plate."
     },
     {
       "file": "assets/Menu/pexels-8880738.webp",
@@ -76,7 +96,9 @@
     },
     {
       "file": "assets/Menu/pexels-9044318.webp",
-      "source": "https://www.pexels.com/photo/9044318/"
+      "source": "https://www.pexels.com/photo/9044318/",
+      "productId": "ciorbe-demo-08",
+      "product": "Supă cu tăiței"
     },
     {
       "file": "assets/Menu/pexels-9568318.webp",
@@ -148,7 +170,12 @@
     },
     {
       "file": "assets/Menu/pexels-20182311.webp",
-      "source": "https://www.pexels.com/photo/20182311/"
+      "source": "https://www.pexels.com/photo/20182311/",
+      "productId": "peste-demo-07",
+      "product": "Somon cu broccoli",
+      "photographer": "Valeria Boltneva",
+      "title": "Close-up of Salmon in Sauce with Broccoli ",
+      "description": "Delicious salmon fillet served with broccoli, mashed potatoes, and green sauce on a white plate."
     },
     {
       "file": "assets/Menu/pexels-20934274.webp",
@@ -160,7 +187,9 @@
     },
     {
       "file": "assets/Menu/pexels-27305267.webp",
-      "source": "https://www.pexels.com/photo/27305267/"
+      "source": "https://www.pexels.com/photo/27305267/",
+      "productId": "carne-demo-04",
+      "product": "Steak de vită clasic"
     },
     {
       "file": "assets/Menu/pexels-27603253.webp",
@@ -172,7 +201,12 @@
     },
     {
       "file": "assets/Menu/pexels-28292008.webp",
-      "source": "https://www.pexels.com/photo/28292008/"
+      "source": "https://www.pexels.com/photo/28292008/",
+      "productId": "carne-demo-08",
+      "product": "Steak cu legume",
+      "photographer": "Valeria Boltneva",
+      "title": "Delicious Dinner with Meat and Vegetables Served on a Plate",
+      "description": "Delicious grilled steak dinner plate with vegetables, served outdoors on a sunny day."
     },
     {
       "file": "assets/Menu/pexels-33929957.webp",
@@ -221,6 +255,876 @@
     {
       "file": "assets/Articles/dXJNRPRCAkcAg4Z1jG6m/cover.webp",
       "source": "https://www.pexels.com/photo/14925309/"
+    },
+    {
+      "file": "assets/Menu/pexels-25225619.webp",
+      "source": "https://www.pexels.com/photo/25225619/",
+      "productId": "GuCYd9c5g41M2ADSaeVg",
+      "product": "Pizza Siciliană",
+      "photographer": "Prem Singh Tanwar",
+      "title": "Pizza with Olives",
+      "description": "Top view of a scrumptious spinach and olive pizza with fresh ingredients around it."
+    },
+    {
+      "file": "assets/Menu/pexels-15878786.webp",
+      "source": "https://www.pexels.com/photo/15878786/",
+      "productId": "pizza-demo-02",
+      "product": "Capricciosa",
+      "photographer": "Aliaksei Smalenski",
+      "title": "Capricciosa pizza with cheese, bacon, tomatoes, mushrooms and basil, italian meal. Baked neapolitan pizza with artichokes served on wooden board.",
+      "description": "Freshly baked Italian pizza topped with artichoke, mushrooms, and prosciutto on a wooden board."
+    },
+    {
+      "file": "assets/Menu/pexels-33458021.webp",
+      "source": "https://www.pexels.com/photo/33458021/",
+      "productId": "pizza-demo-03",
+      "product": "Quattro Formaggi",
+      "photographer": "pedro furtado",
+      "title": "Close-up of Delicious Four Cheese Pizza on Wooden Table",
+      "description": "Mouth-watering four cheese pizza with a crispy crust served on a rustic wooden table."
+    },
+    {
+      "file": "assets/Menu/pexels-30948829.webp",
+      "source": "https://www.pexels.com/photo/30948829/",
+      "productId": "pizza-demo-04",
+      "product": "Pepperoni",
+      "photographer": "damla selen demir",
+      "title": "Close-Up of Pepperoni Pizza with Crispy Crust",
+      "description": "Delicious pepperoni pizza with a perfectly crispy crust, ideal for food lovers."
+    },
+    {
+      "file": "assets/Menu/pexels-33593000.webp",
+      "source": "https://www.pexels.com/photo/33593000/",
+      "productId": "pizza-demo-05",
+      "product": "Vegetariană",
+      "photographer": "Anhelina Vasylyk",
+      "title": "Delicious Vegetarian Pizza on Rustic Wood Table",
+      "description": "Top-down view of a freshly baked vegetarian pizza with mushrooms, tomatoes, olives, and red peppers on a wooden table."
+    },
+    {
+      "file": "assets/Menu/pexels-10875298.webp",
+      "source": "https://www.pexels.com/photo/10875298/",
+      "productId": "pizza-demo-06",
+      "product": "Prosciutto",
+      "photographer": "Valeria Boltneva",
+      "title": "Deliciously Looking Pizza with Parma Ham ",
+      "description": "Close-up of a traditional Italian pizza topped with Parma ham."
+    },
+    {
+      "file": "assets/Menu/pexels-6488931.webp",
+      "source": "https://www.pexels.com/photo/6488931/",
+      "productId": "pizza-demo-07",
+      "product": "Diavola",
+      "photographer": "Piotr Arnoldes",
+      "title": "Delicious pizza with pepperoni and chili pepper slices",
+      "description": "Delicious pepperoni pizza topped with spicy jalapeños and melted cheese."
+    },
+    {
+      "file": "assets/Menu/pexels-11432059.webp",
+      "source": "https://www.pexels.com/photo/11432059/",
+      "productId": "pizza-demo-08",
+      "product": "Funghi",
+      "photographer": "Evgeniya Davydova",
+      "title": "Delicious Homemade Mushroom and Cheese Pizza",
+      "description": "Delicious mushroom pizza with cheese in a cardboard box on a wooden table with flour."
+    },
+    {
+      "file": "assets/Menu/pexels-38976313.webp",
+      "source": "https://www.pexels.com/photo/38976313/",
+      "productId": "pizza-demo-09",
+      "product": "Hawaii",
+      "photographer": "Tanikorn Chaisrisa",
+      "title": "Hawaiian Pizza with Ham and Pineapple Toppings",
+      "description": "Delicious Hawaiian pizza topped with ham and pineapple on a wooden platter."
+    },
+    {
+      "file": "assets/Menu/pexels-5639547.webp",
+      "source": "https://www.pexels.com/photo/5639547/",
+      "productId": "pizza-demo-10",
+      "product": "Pollo",
+      "photographer": "Shameel mukkath",
+      "title": "Pizza in Close-Up Photography",
+      "description": "Delicious chicken pizza topped with vegetables on a wooden surface."
+    },
+    {
+      "file": "assets/Menu/pexels-37326869.webp",
+      "source": "https://www.pexels.com/photo/37326869/",
+      "productId": "gustari-demo-01",
+      "product": "Bruschette",
+      "photographer": "Anh Nguyen",
+      "title": "Fresh Tomato Bruschetta on Bamboo Mat",
+      "description": "Delicious fresh tomato bruschetta on a bamboo mat with herbs and cherry tomatoes."
+    },
+    {
+      "file": "assets/Menu/pexels-29850710.webp",
+      "source": "https://www.pexels.com/photo/29850710/",
+      "productId": "gustari-demo-02",
+      "product": "Nachos cu dip",
+      "photographer": "Snappr  ",
+      "title": "Delicious Cheese Dip with Tortilla Chips",
+      "description": "A creamy cheese dip paired with crunchy tortilla chips, perfect for snacking."
+    },
+    {
+      "file": "assets/Menu/pexels-17313960.webp",
+      "source": "https://www.pexels.com/photo/17313960/",
+      "productId": "gustari-demo-03",
+      "product": "Inele de ceapă",
+      "photographer": "Hombre de Goma",
+      "title": "Pouring Honey on Pastry",
+      "description": "Close-up of crispy onion rings with barbecue sauce being poured, highlighting delicious food photography."
+    },
+    {
+      "file": "assets/Menu/pexels-16892379.webp",
+      "source": "https://www.pexels.com/photo/16892379/",
+      "productId": "gustari-demo-04",
+      "product": "Aripioare crocante",
+      "photographer": "Nadin Sh",
+      "title": "Crispy Chicken Wings",
+      "description": "Hand holding crispy fried chicken wing with sauce on wooden table."
+    },
+    {
+      "file": "assets/Menu/pexels-9650081.webp",
+      "source": "https://www.pexels.com/photo/9650081/",
+      "productId": "gustari-demo-05",
+      "product": "Bastonașe de mozzarella",
+      "photographer": "Alberta Studios",
+      "title": "Mozzarella Sticks on a Plate ",
+      "description": "Golden mozzarella sticks served with a side of tangy marinara sauce on a white plate."
+    },
+    {
+      "file": "assets/Menu/pexels-1618898.webp",
+      "source": "https://www.pexels.com/photo/1618898/",
+      "productId": "gustari-demo-06",
+      "product": "Hummus cu lipie",
+      "photographer": "Zak Chapman",
+      "title": "Fresh Hummus And Pita Bread",
+      "description": "A close-up of creamy homemade hummus with pita slices, garnished with olive and herbs."
+    },
+    {
+      "file": "assets/Menu/pexels-14095896.webp",
+      "source": "https://www.pexels.com/photo/14095896/",
+      "productId": "gustari-demo-07",
+      "product": "Platou de legume",
+      "photographer": "Shalom Dare",
+      "title": "Assorted Fresh Vegetables on Round Golden Platter",
+      "description": "A vibrant vegetable salad platter showcasing fresh ingredients arranged beautifully for a healthy meal."
+    },
+    {
+      "file": "assets/Menu/pexels-13995291.webp",
+      "source": "https://www.pexels.com/photo/13995291/",
+      "productId": "gustari-demo-08",
+      "product": "Toast cu cașcaval",
+      "photographer": "Diana ✨",
+      "title": "Sandwiches in an Electric Grill ",
+      "description": "Close-up of spinach and cheese sandwiches grilling, showcasing fresh ingredients and artisanal bread."
+    },
+    {
+      "file": "assets/Menu/pexels-19963516.webp",
+      "source": "https://www.pexels.com/photo/19963516/",
+      "productId": "gustari-demo-09",
+      "product": "Crochete de cartofi",
+      "photographer": "Alexandre Lima",
+      "title": "Potato Croquettes and a Bowl of Dressing",
+      "description": "Delicious crispy potato croquettes served with a savory mustard dipping sauce, perfect for sharing."
+    },
+    {
+      "file": "assets/Menu/pexels-12469931.webp",
+      "source": "https://www.pexels.com/photo/12469931/",
+      "productId": "gustari-demo-10",
+      "product": "Sandviș cu pui",
+      "photographer": "Steviano ",
+      "title": "Club Sandwich with Bowl of Fries",
+      "description": "A close-up of a club sandwich paired with golden french fries on a white plate."
+    },
+    {
+      "file": "assets/Menu/pexels-29150162.webp",
+      "source": "https://www.pexels.com/photo/29150162/",
+      "productId": "garnituri-demo-01",
+      "product": "Cartofi prăjiți",
+      "photographer": "卜 兰",
+      "title": "Crispy French Fries with Ketchup in a Bowl",
+      "description": "A plate of golden, crispy French fries served with a side of ketchup."
+    },
+    {
+      "file": "assets/Menu/pexels-30635680.webp",
+      "source": "https://www.pexels.com/photo/30635680/",
+      "productId": "garnituri-demo-02",
+      "product": "Piure de cartofi",
+      "photographer": "IARA MELO",
+      "title": "Delicious Creamy Mashed Potatoes in White Bowl",
+      "description": "Top-down view of creamy mashed potatoes garnished with scallion in a white bowl."
+    },
+    {
+      "file": "assets/Menu/pexels-33776459.webp",
+      "source": "https://www.pexels.com/photo/33776459/",
+      "productId": "garnituri-demo-03",
+      "product": "Orez cu legume",
+      "photographer": "Speak Media Uganda",
+      "title": "Colorful Vegetarian Rice Dish on Plate",
+      "description": "Delicious vegetarian rice dish with mixed vegetables on a white plate, perfect for healthy meals."
+    },
+    {
+      "file": "assets/Menu/pexels-5637759.webp",
+      "source": "https://www.pexels.com/photo/5637759/",
+      "productId": "garnituri-demo-04",
+      "product": "Legume la grătar",
+      "photographer": "Askar Abayev",
+      "title": "Vegetables on a Griller",
+      "description": "Assorted grilled vegetables including peppers, eggplant, and broccoli on a barbecue grill."
+    },
+    {
+      "file": "assets/Menu/pexels-34722097.webp",
+      "source": "https://www.pexels.com/photo/34722097/",
+      "productId": "garnituri-demo-05",
+      "product": "Cartofi wedges",
+      "photographer": "Willians Huerta",
+      "title": "Crispy Potato Wedges in Rustic Bowl",
+      "description": "Golden crispy potato wedges served in a rustic white bowl on wood."
+    },
+    {
+      "file": "assets/Menu/pexels-5266096.webp",
+      "source": "https://www.pexels.com/photo/5266096/",
+      "productId": "garnituri-demo-07",
+      "product": "Broccoli cu sos",
+      "photographer": "Kai-Chieh Chan",
+      "title": "Close-Up Shot of Broccoli on a Plate",
+      "description": "A close-up of fresh steamed broccoli served with sauce on a white plate, highlighting healthy cuisine."
+    },
+    {
+      "file": "assets/Menu/pexels-29640883.webp",
+      "source": "https://www.pexels.com/photo/29640883/",
+      "productId": "garnituri-demo-08",
+      "product": "Cartofi copți",
+      "photographer": "Ellie Burgin",
+      "title": "Golden Crispy Roast Potatoes on a Plate",
+      "description": "A close-up of golden crispy roast potatoes, freshly cooked."
+    },
+    {
+      "file": "assets/Menu/pexels-8992927.webp",
+      "source": "https://www.pexels.com/photo/8992927/",
+      "productId": "garnituri-demo-09",
+      "product": "Orez aromat",
+      "photographer": "I Own My Food Art",
+      "title": "Rice and Vegetables with Lime in White Ceramic Plate",
+      "description": "A delicious plate of vegetable fried rice topped with fresh lime slices."
+    },
+    {
+      "file": "assets/Menu/pexels-36505855.webp",
+      "source": "https://www.pexels.com/photo/36505855/",
+      "productId": "garnituri-demo-10",
+      "product": "Legume cu piure",
+      "photographer": "Critical Smith ",
+      "title": "Elegant Mashed Potatoes with Green Beans",
+      "description": "Plate of creamy mashed potatoes topped with fresh green beans, garnished with herbs."
+    },
+    {
+      "file": "assets/Menu/pexels-29160626.webp",
+      "source": "https://www.pexels.com/photo/29160626/",
+      "productId": "CHsj1tPXzUH3oK5ngCs4",
+      "product": "Bouillabaisse",
+      "photographer": "Nadin Sh",
+      "title": "Rustic Seafood Soup with Herb Bread",
+      "description": "Hearty seafood soup served with herb bread on a rustic table setting."
+    },
+    {
+      "file": "assets/Menu/pexels-32795462.webp",
+      "source": "https://www.pexels.com/photo/32795462/",
+      "productId": "ciorbe-demo-02",
+      "product": "Ciorbă de legume",
+      "photographer": "Helen Brudna",
+      "title": "Healthy Vegetable Soup with Fresh Ingredients",
+      "description": "Warm vegetable soup with fresh dill, carrots, and zucchini, perfect for a healthy meal."
+    },
+    {
+      "file": "assets/Menu/pexels-29653179.webp",
+      "source": "https://www.pexels.com/photo/29653179/",
+      "productId": "ciorbe-demo-03",
+      "product": "Supă cremă de ciuperci",
+      "photographer": "Valeria Boltneva",
+      "title": "Creamy Mushroom Soup with Chunks and Spoon",
+      "description": "Delicious homemade creamy mushroom soup served in a white bowl with spoon"
+    },
+    {
+      "file": "assets/Menu/pexels-19992957.webp",
+      "source": "https://www.pexels.com/photo/19992957/",
+      "productId": "ciorbe-demo-04",
+      "product": "Borș roșu",
+      "photographer": "Роман Нагаевский",
+      "title": "Bowl of Soup on Plate",
+      "description": "Top view of a traditional borscht served with garnish and cream on a rustic wooden table."
+    },
+    {
+      "file": "assets/Menu/pexels-30635687.webp",
+      "source": "https://www.pexels.com/photo/30635687/",
+      "productId": "ciorbe-demo-05",
+      "product": "Ciorbă de fasole",
+      "photographer": "IARA MELO",
+      "title": "Delicious Homemade Bean Soup in White Bowl",
+      "description": "Hearty homemade bean soup garnished with green onions served in a white bowl."
+    },
+    {
+      "file": "assets/Menu/pexels-20590322.webp",
+      "source": "https://www.pexels.com/photo/20590322/",
+      "productId": "ciorbe-demo-06",
+      "product": "Supă de linte",
+      "photographer": "Galiya Tenisheva",
+      "title": "Delicious Soup with Herbs in White Bowl",
+      "description": "Delicious lentil soup garnished with basil served in a white bowl, perfect for a healthy meal."
+    },
+    {
+      "file": "assets/Menu/pexels-17302314.webp",
+      "source": "https://www.pexels.com/photo/17302314/",
+      "productId": "ciorbe-demo-07",
+      "product": "Supă de roșii",
+      "photographer": "Sacha Moreau",
+      "title": "A Creamy Tomato Soup ",
+      "description": "Creamy tomato soup garnished with basil, served with bread and garlic."
+    },
+    {
+      "file": "assets/Menu/pexels-26586564.webp",
+      "source": "https://www.pexels.com/photo/26586564/",
+      "productId": "ciorbe-demo-09",
+      "product": "Ciorbă de pește",
+      "photographer": "Luiz Henrique  Mendes",
+      "title": "Fish Soup with Bread Sticks",
+      "description": "Delicious fish soup garnished with herb-crusted fish and crispy bread sticks."
+    },
+    {
+      "file": "assets/Menu/pexels-5662190.webp",
+      "source": "https://www.pexels.com/photo/5662190/",
+      "productId": "ciorbe-demo-10",
+      "product": "Supă cremă de dovleac",
+      "photographer": "KATRIN  BOLOVTSOVA",
+      "title": "Pumpkin Soup On A Bowl ",
+      "description": "Top view of creamy pumpkin soup, artisan bread, and pumpkins on rustic wooden surface, ideal for autumn food themes."
+    },
+    {
+      "file": "assets/Menu/pexels-19801650.webp",
+      "source": "https://www.pexels.com/photo/19801650/",
+      "productId": "micdejun-demo-01",
+      "product": "Clătite cu fructe",
+      "photographer": "Sarah AlAmeri",
+      "title": "Close-up of Pancakes with Fruit on a White Plate",
+      "description": "Close-up of pancakes topped with strawberries and blueberries, drizzled with honey."
+    },
+    {
+      "file": "assets/Menu/pexels-27331092.webp",
+      "source": "https://www.pexels.com/photo/27331092/",
+      "productId": "micdejun-demo-02",
+      "product": "Omletă",
+      "photographer": "dytmeri ",
+      "title": "Top View of an Omelette and Vegetables",
+      "description": "Delicious omelette with feta, tomatoes, cucumbers, and greens on a white plate."
+    },
+    {
+      "file": "assets/Menu/pexels-32986480.webp",
+      "source": "https://www.pexels.com/photo/32986480/",
+      "productId": "micdejun-demo-03",
+      "product": "Ouă ochiuri",
+      "photographer": "J KREATOR",
+      "title": "Three Fried Eggs on White Plate Overhead View",
+      "description": "Three perfectly fried eggs on a white plate from a top-down perspective."
+    },
+    {
+      "file": "assets/Menu/pexels-8775575.webp",
+      "source": "https://www.pexels.com/photo/8775575/",
+      "productId": "micdejun-demo-04",
+      "product": "Toast cu avocado",
+      "photographer": "Arun Thomas",
+      "title": "Delicious Avocado Toast on Wooden Chopping Board ",
+      "description": "Close-up of an avocado toast with a drizzle of olive oil, on a rustic wooden board."
+    },
+    {
+      "file": "assets/Menu/pexels-4736809.webp",
+      "source": "https://www.pexels.com/photo/4736809/",
+      "productId": "micdejun-demo-05",
+      "product": "Terci de ovăz",
+      "photographer": "   https://kaboompics.com/",
+      "title": "Close-Up Shot of a Bowl With Fruits and Oats ",
+      "description": "A close-up of a breakfast bowl filled with fresh strawberries, blueberries, banana slices, and oats."
+    },
+    {
+      "file": "assets/Menu/pexels-38485734.webp",
+      "source": "https://www.pexels.com/photo/38485734/",
+      "productId": "micdejun-demo-06",
+      "product": "Iaurt cu granola",
+      "photographer": "Larysa Stratiichuk",
+      "title": "Delicious Yogurt Bowl with Granola and Fruits",
+      "description": "A mouthwatering yogurt bowl topped with granola, berries, and mint leaves."
+    },
+    {
+      "file": "assets/Menu/pexels-31079905.webp",
+      "source": "https://www.pexels.com/photo/31079905/",
+      "productId": "micdejun-demo-07",
+      "product": "Croissant cu unt",
+      "photographer": "Raymond Petrik",
+      "title": "Delicious Croissant with Butter and Jam",
+      "description": "Freshly baked croissant on a wooden board with butter and apricot jam."
+    },
+    {
+      "file": "assets/Menu/pexels-27558294.webp",
+      "source": "https://www.pexels.com/photo/27558294/",
+      "productId": "micdejun-demo-08",
+      "product": "Sandviș de dimineață",
+      "photographer": "Darren Fan",
+      "title": "A sandwich with eggs and vegetables on a plate",
+      "description": "Delicious homemade egg sandwich with lettuce on a plate, surrounded by fresh vegetables."
+    },
+    {
+      "file": "assets/Menu/pexels-37354115.webp",
+      "source": "https://www.pexels.com/photo/37354115/",
+      "productId": "micdejun-demo-09",
+      "product": "Clătite cu iaurt",
+      "photographer": "Aleyna Yetkin",
+      "title": "Delicious Pancakes with Yogurt and Berries",
+      "description": "Top view of pancakes with yogurt, cherries, and mint, offering a fresh and tasty breakfast option."
+    },
+    {
+      "file": "assets/Menu/pexels-31098652.webp",
+      "source": "https://www.pexels.com/photo/31098652/",
+      "productId": "micdejun-demo-10",
+      "product": "Clătite cu miere",
+      "photographer": "Dilara ",
+      "title": "Stack of Pancakes with Honey Drizzle and Strawberries",
+      "description": "Mouthwatering stack of fluffy pancakes with strawberries and honey drizzle, perfect breakfast inspiration."
+    },
+    {
+      "file": "assets/Menu/pexels-12659891.webp",
+      "source": "https://www.pexels.com/photo/12659891/",
+      "productId": "sushi-demo-01",
+      "product": "Philadelphia",
+      "photographer": "Valeria Boltneva",
+      "title": "A Close-up Shot of a Sushi Rolls",
+      "description": "Close-up view of sushi rolls with salmon, avocado, and cream cheese. Perfect for food enthusiasts."
+    },
+    {
+      "file": "assets/Menu/pexels-10692498.webp",
+      "source": "https://www.pexels.com/photo/10692498/",
+      "productId": "sushi-demo-02",
+      "product": "California",
+      "photographer": "Yang Hao",
+      "title": "Sushi Roll on White Ceramic Plate",
+      "description": "Tempting sushi rolls with avocado and crab sticks on a stylish ceramic plate."
+    },
+    {
+      "file": "assets/Menu/pexels-10692517.webp",
+      "source": "https://www.pexels.com/photo/10692517/",
+      "productId": "sushi-demo-03",
+      "product": "Maki cu somon",
+      "photographer": "Yang Hao",
+      "title": "Sushi on a Plate ",
+      "description": "Close-up of fresh salmon sushi maki rolls served on a white ceramic plate."
+    },
+    {
+      "file": "assets/Menu/pexels-12878170.webp",
+      "source": "https://www.pexels.com/photo/12878170/",
+      "productId": "sushi-demo-04",
+      "product": "Maki cu castravete",
+      "photographer": "Jacob  Yavin",
+      "title": "Sushi Rolls on Black Surface",
+      "description": "Close-up of maki sushi roll against a black background, showcasing Japanese culinary art."
+    },
+    {
+      "file": "assets/Menu/pexels-28460879.webp",
+      "source": "https://www.pexels.com/photo/28460879/",
+      "productId": "sushi-demo-05",
+      "product": "Maki cu avocado",
+      "photographer": "Nano Erdozain",
+      "title": "Fresh Avocado Sushi Rolls on Elegant Plate",
+      "description": "Vibrant avocado sushi rolls served on a textured square plate."
+    },
+    {
+      "file": "assets/Menu/pexels-17584441.webp",
+      "source": "https://www.pexels.com/photo/17584441/",
+      "productId": "sushi-demo-06",
+      "product": "Tempura roll",
+      "photographer": "Rasul Yarichev",
+      "title": "Sushi Served in a Restaurant ",
+      "description": "Close-up of crispy tempura sushi rolls served with wasabi and decorative chopsticks in Istanbul."
+    },
+    {
+      "file": "assets/Menu/pexels-38706526.webp",
+      "source": "https://www.pexels.com/photo/38706526/",
+      "productId": "sushi-demo-07",
+      "product": "Dragon roll",
+      "photographer": "Anthony Rahayel",
+      "title": "Delicious Dragon Roll with Spicy Toppings",
+      "description": "Close-up of a vibrant dragon roll sushi topped with spicy mayo and roe on a white plate."
+    },
+    {
+      "file": "assets/Menu/pexels-1199970.webp",
+      "source": "https://www.pexels.com/photo/1199970/",
+      "photographer": "Valeria Boltneva",
+      "title": "Three Sushi Rolls in White Plastic Container",
+      "description": "Delicious salmon sushi rolls topped with sesame seeds, perfect for lunch or dinner."
+    },
+    {
+      "file": "assets/Menu/pexels-17894237.webp",
+      "source": "https://www.pexels.com/photo/17894237/",
+      "productId": "sushi-demo-09",
+      "product": "Roll cu creveți",
+      "photographer": "Valeria Boltneva",
+      "title": "Sushi Served in a Restaurant",
+      "description": "Macro shot of a sushi roll featuring shrimp, avocado, and cream cheese wrapped in nori and rice."
+    },
+    {
+      "file": "assets/Menu/pexels-37134671.webp",
+      "source": "https://www.pexels.com/photo/37134671/",
+      "productId": "sushi-demo-10",
+      "product": "Set vegetarian",
+      "photographer": "peri ✨",
+      "title": "Elegant Sushi Platter with Assorted Dishes",
+      "description": "Elegant sushi platter with avocado rolls, soy sauce, and diverse side dishes for a festive meal."
+    },
+    {
+      "file": "assets/Menu/pexels-14515103.webp",
+      "source": "https://www.pexels.com/photo/14515103/",
+      "productId": "peste-demo-01",
+      "product": "Somon cu legume",
+      "photographer": "Vidal Balielo Jr.",
+      "title": "Salmon Dish on a Ceramic Plate",
+      "description": "Delicious grilled salmon served with colorful roasted vegetables. Perfect for healthy dining."
+    },
+    {
+      "file": "assets/Menu/pexels-36304641.webp",
+      "source": "https://www.pexels.com/photo/36304641/",
+      "photographer": "Efrem C.",
+      "title": "Grilled Trout with Vegetables on BBQ",
+      "description": "Freshly grilled trout with peppers and spices on an outdoor BBQ."
+    },
+    {
+      "file": "assets/Menu/pexels-38573904.webp",
+      "source": "https://www.pexels.com/photo/38573904/",
+      "productId": "peste-demo-03",
+      "product": "Doradă la grătar",
+      "photographer": "Mariya Muschard ",
+      "title": "Delicious Sea Bream Meal with Salad and Coffee",
+      "description": "Tasty grilled sea bream served with polenta and a fresh salad, perfect for a healthy meal."
+    },
+    {
+      "file": "assets/Menu/pexels-5855235.webp",
+      "source": "https://www.pexels.com/photo/5855235/",
+      "photographer": "David Harvey",
+      "title": "Steamed Shrimps garnished with Minced Leaves on a Black Saucer",
+      "description": "Top view of garlic shrimp beautifully arranged in black square plates against a white background."
+    },
+    {
+      "file": "assets/Menu/pexels-35543389.webp",
+      "source": "https://www.pexels.com/photo/35543389/",
+      "productId": "peste-demo-05",
+      "product": "Calamar crocant",
+      "photographer": "Anthony Rahayel",
+      "title": "Crispy Calamari with Lime and Dipping Sauce",
+      "description": "Crispy calamari garnished with lime, served with dipping sauce. Perfect appetizer."
+    },
+    {
+      "file": "assets/Menu/pexels-38268399.webp",
+      "source": "https://www.pexels.com/photo/38268399/",
+      "productId": "peste-demo-06",
+      "product": "Biban la grătar",
+      "photographer": "Sharafat Siddiqui",
+      "title": "Delicious Grilled Sea Bass with Sides on Plate",
+      "description": "A flavorful grilled sea bass served with rice, salad, sauce, and garnish on a stylish plate."
+    },
+    {
+      "file": "assets/Menu/pexels-38995738.webp",
+      "source": "https://www.pexels.com/photo/38995738/",
+      "productId": "peste-demo-08",
+      "product": "File de cod",
+      "photographer": "Nadin Sh",
+      "title": "Gourmet Cod with Mushrooms and Peas",
+      "description": "Elegant plated cod fillet with spring peas and mushrooms in a yellow sauce."
+    },
+    {
+      "file": "assets/Menu/pexels-5639482.webp",
+      "source": "https://www.pexels.com/photo/5639482/",
+      "productId": "peste-demo-09",
+      "product": "Pește cu legume",
+      "photographer": "Shameel mukkath",
+      "title": "Fish with Lemon and Vegetables",
+      "description": "A beautifully plated salmon dish with fresh vegetables and lemon slices, perfect for a gourmet meal."
+    },
+    {
+      "file": "assets/Menu/pexels-566343.webp",
+      "source": "https://www.pexels.com/photo/566343/",
+      "productId": "peste-demo-10",
+      "product": "Platou de fructe de mare",
+      "photographer": "Terje Sollie",
+      "title": "Bowl of Mussels and Shrimps Selective-focus Photography",
+      "description": "A vibrant seafood platter featuring lobster, mussels, and shrimp, garnished with herbs and lemon."
+    },
+    {
+      "file": "assets/Menu/pexels-29935339.webp",
+      "source": "https://www.pexels.com/photo/29935339/",
+      "productId": "salate-demo-01",
+      "product": "Caesar",
+      "photographer": "khezez  | خزاز",
+      "title": "Delicious Caesar Salad with Grilled Chicken",
+      "description": "Appetizing Caesar salad with grilled chicken, croutons, and Parmesan cheese, perfect for a gourmet meal."
+    },
+    {
+      "file": "assets/Menu/pexels-34293330.webp",
+      "source": "https://www.pexels.com/photo/34293330/",
+      "productId": "salate-demo-02",
+      "product": "Grecească",
+      "photographer": "Sergei Starostin",
+      "title": "Fresh Greek Salad with Feta Cheese Cubes",
+      "description": "Vibrant Greek salad featuring fresh veggies, olives, and feta cheese cubes."
+    },
+    {
+      "file": "assets/Menu/pexels-4958946.webp",
+      "source": "https://www.pexels.com/photo/4958946/",
+      "productId": "salate-demo-03",
+      "product": "Salată mediteraneeană",
+      "photographer": "ROMAN ODINTSOV",
+      "title": "Vegetable Salad on Black and White Ceramic Plate",
+      "description": "Tasty salad with crispy falafel, fresh veggies, and tomatoes for a healthy meal."
+    },
+    {
+      "file": "assets/Menu/pexels-26756794.webp",
+      "source": "https://www.pexels.com/photo/26756794/",
+      "productId": "salate-demo-04",
+      "product": "Salată cu avocado",
+      "photographer": "Nadin Sh",
+      "title": "Salad with Avocado Served in a Restaurant",
+      "description": "Healthy green salad with avocado, lettuce, and peppers in a ceramic bowl, served with roasted red peppers on a dining table."
+    },
+    {
+      "file": "assets/Menu/pexels-7660433.webp",
+      "source": "https://www.pexels.com/photo/7660433/",
+      "photographer": "Cup of  Couple",
+      "title": "Mixed Vegetables in Plastic Bowls",
+      "description": "Discover these vibrant salad bowls with fresh vegetables like edamame and carrots for a healthy diet."
+    },
+    {
+      "file": "assets/Menu/pexels-5192435.webp",
+      "source": "https://www.pexels.com/photo/5192435/",
+      "productId": "salate-demo-06",
+      "product": "Salată cu pui",
+      "photographer": "Maor Attias",
+      "title": "Cooked Meal with Chicken in Black Ceramic Bowl",
+      "description": "Savor this close-up of a grilled chicken salad in a stylish black bowl indoors."
+    },
+    {
+      "file": "assets/Menu/pexels-36929171.webp",
+      "source": "https://www.pexels.com/photo/36929171/",
+      "productId": "salate-demo-07",
+      "product": "Salată cu feta",
+      "photographer": "Christina & Peter",
+      "title": "Fresh Mixed Salad with Feta Cheese",
+      "description": "A vibrant mixed salad with feta cheese, cucumbers, and tomatoes in a glass dish."
+    },
+    {
+      "file": "assets/Menu/pexels-9544507.webp",
+      "source": "https://www.pexels.com/photo/9544507/",
+      "productId": "salate-demo-08",
+      "product": "Salată cu creveți",
+      "photographer": "Алексей Вечерин",
+      "title": "Vegetable Salad with Shrimp on White Ceramic Plate",
+      "description": "A delicious shrimp salad with lettuce, radish, and microgreens on a white plate."
+    },
+    {
+      "file": "assets/Menu/pexels-36936951.webp",
+      "source": "https://www.pexels.com/photo/36936951/",
+      "productId": "salate-demo-09",
+      "product": "Salată Relax",
+      "photographer": "Joerg Mangelsen ",
+      "title": "Healthy Mixed Vegetable Salad with Dressing",
+      "description": "Delicious mixed vegetable salad with fresh greens, tomatoes, and creamy dressing for a nutritious meal."
+    },
+    {
+      "file": "assets/Menu/pexels-13630358.webp",
+      "source": "https://www.pexels.com/photo/13630358/",
+      "photographer": "Engin Akyurt",
+      "title": "Healthy Foods on a Bowl",
+      "description": "A colorful assortment of fresh salads and vegetables in ceramic bowls. Perfect for healthy food photography."
+    },
+    {
+      "file": "assets/Menu/pexels-19963544.webp",
+      "source": "https://www.pexels.com/photo/19963544/",
+      "productId": "bere-demo-02",
+      "product": "Bere brună",
+      "photographer": "Alexandre Lima",
+      "title": "Frosted Glass of Dark Lager",
+      "description": "Close-up of a dark beer in a glass on a sunny day in Holambra, Brazil."
+    },
+    {
+      "file": "assets/Menu/pexels-28656124.webp",
+      "source": "https://www.pexels.com/photo/28656124/",
+      "productId": "bere-demo-03",
+      "product": "Bere fără alcool",
+      "photographer": "Egor Kunovsky",
+      "title": "Super Bock Non-Alcoholic Beer in Porto Cafe",
+      "description": "Chilled Super Bock 0.0% beer with glass in a Porto cafe setting."
+    },
+    {
+      "file": "assets/Menu/pexels-15272650.webp",
+      "source": "https://www.pexels.com/photo/15272650/",
+      "productId": "bere-demo-04",
+      "product": "Bere de grâu",
+      "photographer": "Magda Ehlers",
+      "title": "Two Glasses of Beer on a Table in a Patio ",
+      "description": "Erdinger beer glasses on a patio table with people dining in the background."
+    },
+    {
+      "file": "assets/Menu/pexels-30745495.webp",
+      "source": "https://www.pexels.com/photo/30745495/",
+      "productId": "bere-demo-05",
+      "product": "Pilsner",
+      "photographer": "Erik Mclean",
+      "title": "Close-Up of Tidepool Pilsner Can with Beer Glass",
+      "description": "Tidepool Pilsner can and beer glass against dark background. Classic beverage concept."
+    },
+    {
+      "file": "assets/Menu/pexels-5538223.webp",
+      "source": "https://www.pexels.com/photo/5538223/",
+      "productId": "bere-demo-06",
+      "product": "Lager",
+      "photographer": "cottonbro studio",
+      "title": "A Clear Drinking Glass With Beer",
+      "description": "A studio shot of a frothy and overflowing pint of golden beer against a dark backdrop."
+    },
+    {
+      "file": "assets/Menu/pexels-9814623.webp",
+      "source": "https://www.pexels.com/photo/9814623/",
+      "photographer": "carlos lopez",
+      "title": "Beer Bottle, Glass, Cards and Toy Sword",
+      "description": "Vivid still life featuring IPA beer, playing cards, and toys on a reflective surface."
+    },
+    {
+      "file": "assets/Menu/pexels-14356408.webp",
+      "source": "https://www.pexels.com/photo/14356408/",
+      "productId": "bere-demo-09",
+      "product": "Bere artizanală",
+      "photographer": "Fernando B M",
+      "title": "Photograph of Glasses with Beer",
+      "description": "Warm and inviting pub setting with two beers on a wooden table."
+    },
+    {
+      "file": "assets/Menu/pexels-27623982.webp",
+      "source": "https://www.pexels.com/photo/27623982/",
+      "productId": "bere-demo-10",
+      "product": "Bere nefiltrată",
+      "photographer": "Donovan Kelly",
+      "title": "A glass of beer sitting on a wooden table",
+      "description": "A glass of refreshing craft beer with fresh hops, set on a rustic wooden barrel, perfect for brewery lovers."
+    },
+    {
+      "file": "assets/Menu/pexels-6419716.webp",
+      "source": "https://www.pexels.com/photo/6419716/",
+      "productId": "carne-demo-01",
+      "product": "Șnițel de pui",
+      "photographer": "Polina Tankilevitch",
+      "title": "A Meal of Deep Fried Chicken with Dips",
+      "description": "Close-up of a crispy chicken schnitzel on a plate with sauces, showcasing a delicious meal option."
+    },
+    {
+      "file": "assets/Menu/pexels-6107757.webp",
+      "source": "https://www.pexels.com/photo/6107757/",
+      "productId": "carne-demo-02",
+      "product": "Piept de pui la grătar",
+      "photographer": "alleksana ",
+      "title": "Close-Up Shot of Sliced Chicken Breast ",
+      "description": "Close-up of grilled chicken breasts sliced on slate with tomato garnish."
+    },
+    {
+      "file": "assets/Menu/pexels-32754748.webp",
+      "source": "https://www.pexels.com/photo/32754748/",
+      "productId": "carne-demo-03",
+      "product": "Frigărui de pui",
+      "photographer": "Deane Bayas",
+      "title": "Grilled Chicken Skewers with Scallions on Elegant Plate",
+      "description": "Delicious grilled chicken skewers garnished with fresh scallions, served on a stylish plate."
+    },
+    {
+      "file": "assets/Menu/pexels-34495394.webp",
+      "source": "https://www.pexels.com/photo/34495394/",
+      "productId": "carne-demo-05",
+      "product": "Coaste barbecue",
+      "photographer": "Nobleseed Nobleseed",
+      "title": "Delicious BBQ Ribs with Savory Sides",
+      "description": "Close-up of grilled barbecue ribs with pickles, onions, and sauce on picnic table."
+    },
+    {
+      "file": "assets/Menu/pexels-29481861.webp",
+      "source": "https://www.pexels.com/photo/29481861/",
+      "productId": "carne-demo-07",
+      "product": "Burger de vită",
+      "photographer": "ufuk iseloglu",
+      "title": "Delicious Cheeseburger and Fries on Wooden Board",
+      "description": "Juicy cheeseburger with double patties and fries served on a wooden board."
+    },
+    {
+      "file": "assets/Menu/pexels-8769143.webp",
+      "source": "https://www.pexels.com/photo/8769143/",
+      "productId": "carne-demo-09",
+      "product": "Pui cu legume",
+      "photographer": "ENESFİLM ",
+      "title": "Plate Full of Roasted Meat ",
+      "description": "Delicious grilled chicken with roasted vegetables on a decorative platter outdoors."
+    },
+    {
+      "file": "assets/Menu/pexels-6851932.webp",
+      "source": "https://www.pexels.com/photo/6851932/",
+      "productId": "carne-demo-10",
+      "product": "Pui cu cartofi",
+      "photographer": "Zizi zi",
+      "title": "Delicious fried potatoes and chicken dish with carrots and herbs",
+      "description": "Tasty chicken and vegetable platter with herbs, perfect for a homemade meal."
+    },
+    {
+      "file": "assets/Menu/pexels-17894269.webp",
+      "source": "https://www.pexels.com/photo/17894269/",
+      "productId": "sushi-demo-08",
+      "product": "Roll cu somon și susan",
+      "photographer": "Valeria Boltneva",
+      "title": "Top View of a Sushi Rolls ",
+      "description": "Close-up flat lay of salmon sushi rolls topped with sesame seeds, perfect for gourmet dining."
+    },
+    {
+      "file": "assets/Menu/pexels-11776375.webp",
+      "source": "https://www.pexels.com/photo/11776375/",
+      "productId": "peste-demo-02",
+      "product": "Păstrăv la grătar",
+      "photographer": "Nadin Sh",
+      "title": "Trout with Vegetables Served in Dish",
+      "description": "Gourmet grilled fish with roasted vegetables on a silver platter, ready to serve."
+    },
+    {
+      "file": "assets/Menu/pexels-8633745.webp",
+      "source": "https://www.pexels.com/photo/8633745/",
+      "productId": "peste-demo-04",
+      "product": "Creveți la tigaie",
+      "photographer": "Vilnis Husko",
+      "title": "Shrimp Dish with Sliced Lemon and Dill Garnish",
+      "description": "Close-up of flavorful shrimp garnished with garlic, lemon, and dill."
+    },
+    {
+      "file": "assets/Menu/pexels-38399723.webp",
+      "source": "https://www.pexels.com/photo/38399723/",
+      "productId": "salate-demo-05",
+      "product": "Salată de legume",
+      "photographer": "Anthony Rahayel",
+      "title": "Colorful Vegetable Salad with Cheese Topping",
+      "description": "A vibrant salad featuring fresh diced vegetables and seasoned cheese cubes."
+    },
+    {
+      "file": "assets/Menu/pexels-19808763.webp",
+      "source": "https://www.pexels.com/photo/19808763/",
+      "productId": "salate-demo-10",
+      "product": "Salată verde",
+      "photographer": "Eduardo Krajan",
+      "title": "Salad in a Bowl",
+      "description": "Colorful salad with mixed greens, blue cheese, and nuts, perfect for healthy eating visuals."
+    },
+    {
+      "file": "assets/Menu/pexels-12714994.webp",
+      "source": "https://www.pexels.com/photo/12714994/",
+      "productId": "bere-demo-07",
+      "product": "IPA",
+      "photographer": "Brett Jordan",
+      "title": "Can and Glass of India Pale Ale Stohk x Harbor",
+      "description": "Close-up of a craft beer can with a glass of IPA on a wooden table."
     }
   ]
 }

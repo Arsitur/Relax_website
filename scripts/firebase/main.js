@@ -14,9 +14,6 @@ const APP = firebase.initializeApp(firebaseConfig);
 // Google Provider
 let GoogleProvider = new firebase.auth.GoogleAuthProvider();
 
-// Twitter Provider
-let TwitterProvider = new firebase.auth.TwitterAuthProvider();;
-
 // User Collection
 const usersDB = firebase.firestore().collection("users");
 

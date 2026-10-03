@@ -257,9 +257,6 @@ header>form>input::placeholder {
         color: white;
     }
 
-    #twitter-login-btn>svg>path {
-        fill: white;
-    }
 }
 
 @media(max-width: 800px) {}

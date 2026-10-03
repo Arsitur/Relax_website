@@ -1,7 +1,6 @@
 let submitBtn = document.querySelector(".submit-btn-form-register");
 let emailField = document.querySelector(".email-field-input-sign");
 let GoogleBTN = document.getElementById("google-signin-provider");
-let TwitterBTN = document.getElementById("twitter-login-btn");
 
 // Google SignIn
 
@@ -126,74 +125,5 @@ GoogleBTN.addEventListener("click", () =>
             console.error(error);
             succesText.classList.remove('show')
             errorText.classList.add('show')
-        });
-});
-
-// Twitter SignIn
-
-TwitterBTN.addEventListener("click", () =>
-{
-    startLoad()
-    firebase
-        .auth()
-        .signInWithPopup(TwitterProvider)
-        .then((result) =>
-        {
-            var user = result.user;
-            let is_user = false;
-            usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
-            {
-                querySnapshot.forEach((obj) =>
-                {
-                    console.log(obj)
-                    is_user = true;
-                })
-            }).then(() =>
-            {
-                usersDB.where("ID", "==", user.email).get().then((querySnapshot) =>
-                {
-                    querySnapshot.forEach((obj) =>
-                    {
-                        console.log(obj)
-                        is_user = true;
-                    })
-                }).then(() =>
-                {
-                    console.log(user)
-                    if (!is_user)
-                    {
-
-                        let date = new Date();
-                        usersDB.add({
-                            name: user.displayName,
-                            ID: user.uid,
-                            admin: false,
-                            created: date.getTime(),
-                            photoURL: startImage,
-                            email: user.email
-                        }).then(() =>
-                        {
-                            cartsDB.add({
-                                ID: user.uid,
-                                products: [],
-                            }).then(() =>
-                            {
-
-                                // End anim
-
-
-                                window.location.href = '/';
-                            });
-                        });
-                    }
-                });
-            })
-        }).catch((error) =>
-        {
-            // Error anim
-            console.error(error);
-            succesText.classList.remove('show')
-            errorText.classList.add('show')
-
         });
 });

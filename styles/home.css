@@ -106,7 +106,7 @@ header > .pizza > .glow {
   padding-right: var(--padding-side);
   justify-content: flex-end;
   width: 100%;
-  height: 300vh;
+  height: 180vh;
 }
 
 .img-section > .img {
@@ -1017,4 +1017,36 @@ header > .pizza > .glow {
     width: 300px;
     height: 300px;
   }
+}
+
+/* Useful menu information in the original animated showcase layout. */
+.info > .feature-title {
+  margin-top: 24px;
+  font-size: clamp(26px, 2.5vw, 34px);
+  line-height: 1.2;
+  color: var(--day-dark01);
+}
+.info > .review { margin-top: 16px; font-size: 20px; line-height: 1.55; }
+.info > .extra { gap: 16px; align-items: flex-start; }
+.info > .extra > .name-flex > .name { font-size: 15px; line-height: 1.5; }
+.info > .extra > .more { flex-shrink: 0; }
+.feature-link {
+  align-self: flex-start;
+  margin-top: 20px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--day-gold);
+  color: var(--day-dark01);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.feature-link:hover { color: var(--day-gold); }
+.feature-link:focus-visible, .info button:focus-visible {
+  outline: 2px solid var(--day-gold);
+  outline-offset: 5px;
+}
+#reviews, .reviewss { height: auto; min-height: 340px; }
+@media (max-width: 1250px) {
+  .img-section { height: auto; min-height: 100vh; padding-top: 32px; padding-bottom: 64px; }
+  .info > .feature-title { font-size: 28px; }
 }

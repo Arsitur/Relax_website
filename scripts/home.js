@@ -1,5 +1,9 @@
+import menuData from "../data/menu.json";
+import { createHomeHighlights } from "./homeHighlights.js";
+import { siteUrl } from "./site.js";
+
 document.addEventListener("DOMContentLoaded", (event) => {
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
   const pizzaAnim = document.querySelector(".pizza");
   const headerSection = document.querySelector("header");
 
@@ -16,124 +20,57 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // const info03 = document.querySelector('#img-section03>.container')
 
   const reviewName = document.querySelector("#review-name");
-  const reviewContent = document.querySelector("#review-content");
-  const reviewAuthor = document.querySelector("#review-author");
-  const reviewNumber = document.querySelector("#review-number");
   const prevReviewArrow = document.querySelector("#prev-review-arrow");
   const nextReviewArrow = document.querySelector("#next-review-arrow");
 
-  const reviewsText = {
-    pizza: [
-      {
-        name: "Ana Dobre",
-        content:
-          "“Delicioasă! Blatul subțire și crocant, topping-urile proaspete. Recomand cu drag!”",
-      },
-      {
-        name: "Ioan Vasilescu",
-        content:
-          "“Ingredientele sunt echilibrate și blatul e crocant. Atmosfera e relaxantă și personalul amabil.”",
-      },
-      {
-        name: "Radu Roman",
-        content:
-          "“Pizza Capricioasa a fost o alegere excelentă. Gustul e incredibil, iar porția e mai mult decât generoasă.”",
-      },
-    ],
-    sushi: [
-      {
-        name: "Mihai Stoica",
-        content:
-          "“Am comandat sushi și am fost foarte mulțumit. Ingrediente proaspete, gust autentic și prezentare impecabilă.”",
-      },
-      {
-        name: "Ioana Petrescu",
-        content:
-          "“Sushi-ul m-a impresionat. Localul e foarte primitor și curat. Cu siguranță o să revin!”",
-      },
-      {
-        name: "Andrei Constantinescu",
-        content:
-          "“Sushi-ul e absolut minunat! Rolele sunt bine echilibrate și foarte gustoase.”",
-      },
-    ],
-    shaorma: [
-      {
-        name: "Marius Dumitru",
-        content:
-          "“Am comandat shaorma la Relax și a fost extraordinară. Carnea suculentă și legumele proaspete!”",
-      },
-      {
-        name: "Cristina Pop",
-        content:
-          "“Shaorma m-a impresionat cu adevărat. Gustul e incredibil, iar porția generoasă.”",
-      },
-      {
-        name: "Bogdan Ionescu",
-        content:
-          "“Shaorma de la Relax e de neegalat! Carnea e fragedă, sosurile delicioase și legumele proaspete.”",
-      },
-    ],
-  };
+  const highlights = createHomeHighlights(menuData);
+  const desktopInfo = document.querySelector("#reviews .info");
+  let activeCategory = "pizza";
+  let activeSlide = 0;
 
-  // EVENT LISTENERS
+  function renderSlide(info, category, index) {
+    const { label, slides } = highlights[category];
+    const slide = slides[index];
+    info.querySelector(".item-name").textContent = label;
+    info.querySelector(".feature-title").textContent = slide.title;
+    info.querySelector(".review").textContent = slide.content;
+    info.querySelector(".name").textContent = slide.detail;
+    info.querySelector(".more span span").textContent = index + 1;
+    const link = info.querySelector(".feature-link");
+    link.textContent = `${slide.action} →`;
+    link.href = siteUrl(slide.link);
+  }
+
+  function setSlide(category, index) {
+    activeCategory = category;
+    activeSlide = index;
+    renderSlide(desktopInfo, category, index);
+  }
 
   prevReviewArrow.addEventListener("click", () => {
-    let currentReview = parseInt(reviewNumber.innerHTML);
-    let currentReviewText = reviewName.innerHTML.toLowerCase();
-    if (currentReviewText == "pizza capricioasa") {
-      currentReviewText = "pizza";
-    }
-    let reviewsArray = reviewsText[currentReviewText];
-    let newReview = currentReview - 1;
-    if (newReview < 1) {
-      newReview = reviewsArray.length;
-    }
-    reviewContent.innerHTML = reviewsArray[newReview - 1].content;
-    reviewAuthor.innerHTML = reviewsArray[newReview - 1].name;
-    reviewNumber.innerHTML = newReview;
-    console.log(newReview);
+    setSlide(activeCategory, (activeSlide + 2) % 3);
   });
-
   nextReviewArrow.addEventListener("click", () => {
-    let currentReview = parseInt(reviewNumber.innerHTML);
-    let currentReviewText = reviewName.innerHTML.toLowerCase();
-    if (currentReviewText == "pizza capricioasa") {
-      currentReviewText = "pizza";
-    }
-    let reviewsArray = reviewsText[currentReviewText];
-    let newReview = currentReview + 1;
-    if (newReview > reviewsArray.length) {
-      newReview = 1;
-    }
-    reviewContent.innerHTML = reviewsArray[newReview - 1].content;
-    reviewAuthor.innerHTML = reviewsArray[newReview - 1].name;
-    reviewNumber.innerHTML = newReview;
-    console.log(newReview);
+    setSlide(activeCategory, (activeSlide + 1) % 3);
   });
-
-  // STATIC EVENT LISTENERS FOR ARROWS
-
-  const reviewssDivs = document.querySelectorAll(".reviewss");
-
-  for (let i = 0; i < reviewssDivs.length; i++) {
-    const itemReviewContent = reviewssDivs[i].querySelector(".review");
-    const itemAuthor = reviewssDivs[i].querySelector(".name");
-    const itemNr = reviewssDivs[i].querySelector(".nr");
-    const itemLArrow = reviewssDivs[i].querySelector(".l-arrow");
-    const itemRArrow = reviewssDivs[i].querySelector(".r-arrow");
-
-    let keys = Object.keys(reviewsText);
-    let name = keys[i];
-
-    itemLArrow.addEventListener("click", () => {
-      prevReview(itemReviewContent, itemAuthor, itemNr, name, reviewsText);
+  document.querySelectorAll(".reviewss .info").forEach(info => {
+    const category = info.dataset.showcase;
+    let index = 0;
+    renderSlide(info, category, index);
+    info.querySelector(".l-arrow").addEventListener("click", () => {
+      index = (index + 2) % 3;
+      renderSlide(info, category, index);
     });
-
-    itemRArrow.addEventListener("click", () => {
-      nextReview(itemReviewContent, itemAuthor, itemNr, name, reviewsText);
+    info.querySelector(".r-arrow").addEventListener("click", () => {
+      index = (index + 1) % 3;
+      renderSlide(info, category, index);
     });
-  }
+  });
+  setSlide("pizza", 0);
+
+  // Navigation still works if the external animation library is unavailable.
+  if (!window.gsap || !window.ScrollTrigger || !window.ScrollToPlugin) return;
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   // HEADER ANIMATION
 
@@ -263,14 +200,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       end: () => `+=100px`,
       scrub: true,
       onEnter: () => {
-        reviewContent.innerHTML = reviewsText.pizza[1].content;
-        reviewAuthor.innerHTML = reviewsText.pizza[1].name;
-        reviewNumber.innerHTML = 2;
+        setSlide("pizza", 1);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.pizza[0].content;
-        reviewAuthor.innerHTML = reviewsText.pizza[0].name;
-        reviewNumber.innerHTML = 1;
+        setSlide("pizza", 0);
       },
     },
   });
@@ -283,14 +216,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrub: true,
 
       onEnter: () => {
-        reviewContent.innerHTML = reviewsText.pizza[2].content;
-        reviewAuthor.innerHTML = reviewsText.pizza[2].name;
-        reviewNumber.innerHTML = 3;
+        setSlide("pizza", 2);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.pizza[1].content;
-        reviewAuthor.innerHTML = reviewsText.pizza[1].name;
-        reviewNumber.innerHTML = 2;
+        setSlide("pizza", 1);
       },
     },
   });
@@ -334,16 +263,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrub: true,
 
       onEnter: () => {
-        reviewName.innerHTML = "Sushi";
-        reviewContent.innerHTML = reviewsText.sushi[0].content;
-        reviewAuthor.innerHTML = reviewsText.sushi[0].name;
-        reviewNumber.innerHTML = 1;
+        setSlide("sushi", 0);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.pizza[2].content;
-        reviewAuthor.innerHTML = reviewsText.pizza[2].name;
-        reviewNumber.innerHTML = 3;
-        reviewName.innerHTML = "Pizza Capricioasa";
+        setSlide("pizza", 2);
       },
     },
   });
@@ -441,14 +364,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       end: () => `+=100px`,
       scrub: true,
       onEnter: () => {
-        reviewContent.innerHTML = reviewsText.sushi[1].content;
-        reviewAuthor.innerHTML = reviewsText.sushi[1].name;
-        reviewNumber.innerHTML = 2;
+        setSlide("sushi", 1);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.sushi[0].content;
-        reviewAuthor.innerHTML = reviewsText.sushi[0].name;
-        reviewNumber.innerHTML = 1;
+        setSlide("sushi", 0);
       },
     },
   });
@@ -461,14 +380,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrub: true,
 
       onEnter: () => {
-        reviewContent.innerHTML = reviewsText.sushi[2].content;
-        reviewAuthor.innerHTML = reviewsText.sushi[2].name;
-        reviewNumber.innerHTML = 3;
+        setSlide("sushi", 2);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.sushi[1].content;
-        reviewAuthor.innerHTML = reviewsText.sushi[1].name;
-        reviewNumber.innerHTML = 2;
+        setSlide("sushi", 1);
       },
     },
   });
@@ -559,16 +474,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrub: true,
 
       onEnter: () => {
-        reviewName.innerHTML = "Shaorma";
-        reviewContent.innerHTML = reviewsText.shaorma[0].content;
-        reviewAuthor.innerHTML = reviewsText.shaorma[0].name;
-        reviewNumber.innerHTML = 1;
+        setSlide("shaorma", 0);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.sushi[2].content;
-        reviewAuthor.innerHTML = reviewsText.sushi[2].name;
-        reviewNumber.innerHTML = 3;
-        reviewName.innerHTML = "Sushi";
+        setSlide("sushi", 2);
       },
     },
   });
@@ -580,14 +489,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       end: () => `+=100px`,
       scrub: true,
       onEnter: () => {
-        reviewContent.innerHTML = reviewsText.shaorma[1].content;
-        reviewAuthor.innerHTML = reviewsText.shaorma[1].name;
-        reviewNumber.innerHTML = 2;
+        setSlide("shaorma", 1);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.shaorma[0].content;
-        reviewAuthor.innerHTML = reviewsText.shaorma[0].name;
-        reviewNumber.innerHTML = 1;
+        setSlide("shaorma", 0);
       },
     },
   });
@@ -600,14 +505,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       scrub: true,
 
       onEnter: () => {
-        reviewContent.innerHTML = reviewsText.shaorma[2].content;
-        reviewAuthor.innerHTML = reviewsText.shaorma[2].name;
-        reviewNumber.innerHTML = 3;
+        setSlide("shaorma", 2);
       },
       onLeaveBack: () => {
-        reviewContent.innerHTML = reviewsText.shaorma[1].content;
-        reviewAuthor.innerHTML = reviewsText.shaorma[1].name;
-        reviewNumber.innerHTML = 2;
+        setSlide("shaorma", 1);
       },
     },
   });
@@ -887,42 +788,3 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   waitingForYouArrow.to(waitArrow, { rotation: -45, stroke: "#FF9922" }, 0);
 });
-
-function prevReview(
-  itemReviewContent,
-  itemAuthor,
-  itemNr,
-  itemName,
-  reviewsText,
-) {
-  let currentReview = parseInt(itemNr.innerHTML);
-
-  let reviewsArray = reviewsText[itemName];
-  let newReview = currentReview - 1;
-  if (newReview < 1) {
-    newReview = reviewsArray.length;
-  }
-  itemReviewContent.innerHTML = reviewsArray[newReview - 1].content;
-  itemAuthor.innerHTML = reviewsArray[newReview - 1].name;
-  itemNr.innerHTML = newReview;
-}
-function nextReview(
-  itemReviewContent,
-  itemAuthor,
-  itemNr,
-  itemName,
-  reviewsText,
-) {
-  let currentReview = parseInt(itemNr.innerHTML);
-
-  let reviewsArray = reviewsText[itemName];
-  let newReview = currentReview + 1;
-  if (newReview > reviewsArray.length) {
-    newReview = 1;
-  }
-  itemReviewContent.innerHTML = reviewsArray[newReview - 1].content;
-  itemAuthor.innerHTML = reviewsArray[newReview - 1].name;
-  itemNr.innerHTML = newReview;
-}
-
-// TEMP DARK THEME

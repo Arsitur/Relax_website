@@ -1,127 +1,30 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
-    <script type="module" src="../scripts/darkTheme.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relax | Contul tău</title>
     <link rel="icon" href="../assets/Bonus/icon.webp">
-    <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="../styles/account.css">
-    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
-    <script defer src="../scripts/firebase/main.js"></script>
-    <script defer type="module" src="../scripts/account.js"></script>
-    <script defer src="../scripts/firebase/settings.js"></script>
-    <script defer src="../scripts/components/NavBar.js"></script>
-    <script defer src="../scripts/components/EndSection.js"></script>
-
-
-    <meta name="robots" content="noindex, nofollow">
-
-    <title>Relax | Setări</title>
+    <link rel="stylesheet" href="../index.css"><link rel="stylesheet" href="../styles/account.css">
+    <script type="module" src="../scripts/darkTheme.js"></script>
+    <script type="module" src="../scripts/account.js"></script>
+    <script type="module" src="../scripts/components/NavBar.js"></script>
+    <script type="module" src="../scripts/components/EndSection.js"></script>
 </head>
-
 <body>
     <nav-bar current-page="account"></nav-bar>
-    <main>
-        <div class="settings-flex">
-            <div class="settings-column">
-                <div class="placeholder block"></div>
-                <div class="placeholder block"></div>
-
-                <div class="block initial">
-                    <div class="content">
-                        <div class="text">
-                            <p class="header">Setările utilizatorului</p>
-                            <p class="email" id="email-space-util">unknown@gmail.com</p>
-                            <p class="date" id="register-space-util">Înregistrat la unknown</p>
-                        </div>
-                        <div class="image-div">
-                            <img id="avatar-place-first" src="" alt="Imagine cu poza ta de account">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block actual initial" id="settings">
-                    <div class="content">
-                        <div class="header">
-                            <p>Informație Personală</p>
-                            <div class="separator"></div>
-                        </div>
-                        <div class="avatar">
-                            <span>Avatar:</span>
-                            <div>
-                                <img class="show" id="avatar-photo-change" src="" alt="Imaginea ta de profil">
-                                <label for="file-id-change">
-                                    Alege imaginea
-                                    <input type="file" accept="image/*" id="file-id-change" max="10">
-                                </label>
-
-                            </div>
-                        </div>
-                        <div class="settings">
-                            <div class="setting">
-                                <span>Nume:</span>
-                                <div contenteditable="true" id="name-id-change">Unknown</div>
-                            </div>
-                        </div>
-                        <div class="buttons">
-                            <div class="main-buttons">
-                                <button id="edit" class="show">Editează setările</button>
-                                <button id="save" class="edit-settings-btn">Salveaza</button>
-                                <button id="cancel" class="outline">Anulează</button>
-                            </div>
-                            <button class="delete" id="sign-out-btn">
-                                Deconectează-te
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="settings-column">
-                <div class="placeholder block"></div>
-                <div class="placeholder block"></div>
-                <div class="block actual initial" id="theme">
-                    <div class="content">
-                        <div class="header">
-                            <p>Aparență</p>
-                            <div class="separator"></div>
-                        </div>
-                        <div class="themes">
-                            <div class="theme theme">
-                                <input type="radio" name="theme" id="system-theme" value="system" checked>
-                                <div class="extended">
-                                    <label for="system-theme">Folosește sistemul implicit.</label>
-                                    <p>Sincronizează cu setările de preferință ale sistemului tău de operare pentru o
-                                        temă
-                                        luminoasă sau întunecată.</p>
-                                </div>
-
-                            </div>
-                            <div class="theme theme">
-                                <input type="radio" name="theme" id="light-theme" value="light">
-                                <label for="light-theme">Luminoasă</label>
-                            </div>
-                            <div class="theme theme">
-                                <input type="radio" name="theme" id="dark-theme" value="dark">
-                                <label for="dark-theme">Intunecată</label>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
+    <main class="account-settings">
+        <h1>Contul tău</h1>
+        <p id="account-status" role="status" aria-live="polite">Se încarcă…</p>
+        <form id="profile-form" hidden>
+            <img id="account-avatar" alt="Avatar">
+            <p id="account-email"></p>
+            <label for="profile-name">Nume afișat</label>
+            <input id="profile-name" name="name" required maxlength="80" autocomplete="nickname">
+            <button type="submit">Salvează</button>
+            <button type="button" id="sign-out-btn">Deconectează-te</button>
+        </form>
+        <a id="account-sign-in" hidden>Autentifică-te</a>
     </main>
     <end-section></end-section>
 </body>
-
 </html>

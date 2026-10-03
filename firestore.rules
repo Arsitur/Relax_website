@@ -1,0 +1,34 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function knownArticle(id) { return id in ['PbDYiU8eYjAbUmBcZVBA','dXJNRPRCAkcAg4Z1jG6m','wz49JZe79Cg06gRiIQ2t','yogBi4C4sCDLARLO3kc0']; }
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name','email','createdAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.createdAt == request.time;
+      allow update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name'])
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80;
+    }
+    match /interactions/{articleId}/likes/{uid} {
+      allow read: if knownArticle(articleId);
+      allow create: if knownArticle(articleId) && signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['createdAt']) && request.resource.data.createdAt == request.time;
+      allow delete: if knownArticle(articleId) && signedIn() && request.auth.uid == uid;
+    }
+    match /interactions/{articleId}/comments/{commentId} {
+      allow read: if knownArticle(articleId);
+      allow create: if knownArticle(articleId) && signedIn()
+        && request.resource.data.keys().hasOnly(['authorId','displayName','text','createdAt'])
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.displayName == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.name
+        && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 500
+        && request.resource.data.createdAt == request.time;
+    }
+    // No admin, remote menu/article content, carts or Storage.
+  }
+}

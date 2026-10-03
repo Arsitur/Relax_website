@@ -4,3 +4,6 @@ pastHome.html
 pastHome.css
 pastHome.js
 node_modules/
+dist/
+.firebase/
+*-debug.log

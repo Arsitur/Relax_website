@@ -1,0 +1,8 @@
+.account-settings { max-width:650px; margin:80px auto; padding:24px; min-height:50vh; color:var(--day-dark01); }
+.account-settings h1 { margin-bottom:24px; }
+.account-settings form { display:flex; flex-direction:column; gap:16px; }
+.account-settings [hidden] { display:none; }
+#account-avatar { width:80px; height:80px; border-radius:50%; }
+.account-settings input { padding:14px; border:1px solid var(--day-dark04); border-radius:8px; background:var(--day-white01); color:var(--day-dark01); font:inherit; }
+.account-settings button { padding:14px; border:1px solid var(--day-dark04); border-radius:8px; background:var(--day-white01); color:var(--day-dark01); cursor:pointer; font:inherit; }
+#account-status { margin-bottom:16px; }

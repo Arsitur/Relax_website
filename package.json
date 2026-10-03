@@ -1,5 +1,19 @@
 {
   "dependencies": {
     "firebase": "^12.19.0"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "vite": "^8.3.2"
+  },
+  "name": "relax-portfolio-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.js",
+    "test:rules": "npx --yes --package firebase-tools firebase emulators:exec --only firestore --project demo-relax \"node --test tests/firestore.rules.test.js\""
   }
 }

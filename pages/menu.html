@@ -8,16 +8,11 @@
     <link rel="icon" href="../assets/Bonus/icon.webp">
     <link rel="stylesheet" href="../index.css">
     <link rel="stylesheet" href="../styles/menu.css">
-    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
-    <script defer src="../scripts/firebase/main.js"></script>
     <script defer type="module" src="../scripts/menu.js"></script>
     <script defer type="module" src="../scripts/components/menuItem.js"></script>
     <script defer type="module" src="../scripts/components/ItemReview.js"></script>
-    <script defer src="../scripts/components/NavBar.js"></script>
-    <script defer src="../scripts/components/EndSection.js"></script>
+    <script type="module" defer src="../scripts/components/NavBar.js"></script>
+    <script type="module" defer src="../scripts/components/EndSection.js"></script>
 
     <meta name="description"
         content="Descoperă deliciile noastre la RELAX - meniul nostru bogat te va purta într-o călătorie culinară unică. Savurează preparate proaspete și delicioase, pregătite cu pasiune pentru a satisface orice gust. Alege dintr-o varietate de opțiuni culinare autentice pentru a transforma fiecare masă într-o experiență de neuitat la RELAX restaurant.">
@@ -28,6 +23,7 @@
 <body>
     <nav-bar current-page="menu"></nav-bar>
     <main>
+
         <section class="filter-section">
             <div class="content">
                 <div class="stars">
@@ -294,6 +290,7 @@
             </div>
             <div class="separator"></div>
         </section>
+        <p class="demo-notice">Meniu demonstrativ pentru portofoliu. Produsele și prețurile nu reprezintă o ofertă actuală.</p>
 
         <div class="more-filter">
             <div class="content">
@@ -571,102 +568,10 @@
             </div>
         </div>
 
-        <button class="add-item-bttn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none">
-                <g clip-path="url(#clip0_58_2613)">
-                    <path d="M11.9998 1.61084V24.3896" stroke="var(--day-dark01)" stroke-width="2.99998"
-                        stroke-linecap="round" />
-                    <path d="M23.0042 13.0005L0.995884 13.0005" stroke="var(--day-dark01)" stroke-width="2.99998"
-                        stroke-linecap="round" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_58_2613">
-                        <rect width="24" height="24.7705" fill="white" transform="translate(0 0.614258)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </button>
 
-        <div class="overlay" id="admin-item-overlay"></div>
-        <div class="admin-item-popup">
-            <div class="image">
-                <label for="admin-item-photo">
-                    <input type="file" id="admin-item-photo" accept="image/*" max="10" />
-                    <span class="text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
-                            <path
-                                d="M57.0556 63.75L50.3832 57.1336C47.1636 53.9404 45.5536 52.344 43.7064 51.7604C42.0816 51.2472 40.3352 51.266 38.7219 51.8144C36.8875 52.438 35.3126 54.0688 32.1627 57.3304L16.1764 73.1204M57.0556 63.75L58.4212 62.396C61.6448 59.1992 63.2564 57.6008 65.106 57.0172C66.7324 56.504 68.48 56.5244 70.0944 57.0748C71.9296 57.7004 73.5044 59.3356 76.6536 62.6056L80 65.9736M57.0556 63.75L73.1 79.826M16.1764 73.1204C16.3005 74.1284 16.5118 74.9252 16.872 75.632C17.6389 77.1372 18.8628 78.3612 20.3681 79.128C22.0794 80 24.3196 80 28.8 80H67.2C69.8172 80 71.6704 80 73.1 79.826M16.1764 73.1204C16 71.6884 16 69.83 16 67.2V28.8C16 24.3196 16 22.0794 16.872 20.3681C17.6389 18.8628 18.8628 17.6389 20.3681 16.872C22.0794 16 24.3196 16 28.8 16H67.2C71.6804 16 73.9208 16 75.632 16.872C77.1372 17.6389 78.3612 18.8628 79.128 20.3681C80 22.0794 80 24.3196 80 28.8V65.9736M80 65.9736V67.2C80 71.6804 80 73.9208 79.128 75.632C78.3612 77.1372 77.1372 78.3612 75.632 79.128C74.9204 79.4908 74.1172 79.7024 73.1 79.826M68 35.9996C68 40.418 64.4184 43.9996 60 43.9996C55.5816 43.9996 52 40.418 52 35.9996C52 31.5813 55.5816 27.9996 60 27.9996C64.4184 27.9996 68 31.5813 68 35.9996Z"
-                                stroke="white" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </span>
 
-                </label>
 
-                <img class="image-full-product" src="" alt="" width="100" height="100">
-                <!-- <button class="change">Schimbă</button> -->
 
-            </div>
-            <form class="inputs" id="admin-form">
-                <div class="input">
-                    <input type="text" id="admin-item-name" required>
-                    <label for="admin-item-name">Nume</label>
-                </div>
-                <div class="input">
-                    <input type="number" id="admin-item-price" required max="500">
-                    <label for="admin-item-price">Preț</label>
-                </div>
-                <div class="input">
-
-                    <input type="number" id="admin-item-masa" required>
-                    <label for="admin-item-masa">Masa</label>
-                </div>
-                <div class="input" id="category-input">
-                    <select name="" id="admin-item-category" required>
-                        <option value="pizza-section">Pizza</option>
-                        <option value="gustari-section">Gustări Reci</option>
-                        <option value="garnituri-section">Garnituri</option>
-                        <option value="ciorbe-section">Ciorbe</option>
-                        <option value="micdejun-section">Mic de jun</option>
-                        <option value="sushi-section">Sushi</option>
-                        <option value="peste-section">Preparate din pește</option>
-                        <option value="salate-section">Salate</option>
-                        <option value="bere-section">Meniu la Bere</option>
-                        <option value="carne-section">Preparate din Carne</option>
-                    </select>
-                </div>
-                <div class="input">
-                    <textarea name="" id="admin-item-description" cols="30" rows="10" required></textarea>
-                    <label for="admin-item-description">Descriere</label>
-                </div>
-
-                <div class="admin-item-extra-buttons">
-                    <button type="button" class="admin-extra-bttn" id="extra-delete">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <path
-                                d="M24.0002 8L22.9323 24.0172C22.8388 25.42 22.792 26.1215 22.4891 26.6533C22.2223 27.1216 21.8199 27.498 21.335 27.7331C20.7842 28 20.0811 28 18.6751 28H13.3252C11.9192 28 11.2162 28 10.6653 27.7331C10.1804 27.498 9.77802 27.1216 9.51126 26.6533C9.20826 26.1215 9.1615 25.42 9.06798 24.0172L8.00016 8M5.3335 8H26.6668M21.3335 8L20.9727 6.91743C20.623 5.86833 20.448 5.34379 20.1238 4.95597C19.8374 4.61351 19.4696 4.34843 19.0542 4.18504C18.5836 4 18.0308 4 16.925 4H15.0754C13.9695 4 13.4167 4 12.9462 4.18504C12.5307 4.34843 12.1629 4.61351 11.8766 4.95597C11.5522 5.34379 11.3774 5.86833 11.0277 6.91743L10.6668 8M18.6668 13.3333V22.6667M13.3335 13.3333V22.6667"
-                                stroke="#0C0C0C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <button type="submit" class="admin-extra-bttn" id="extra-action">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none">
-                            <g clip-path="url(#clip0_298_2425)">
-                                <path d="M11.9995 1.61084V24.3896" stroke="var(--day-dark01)" stroke-width="2.99998"
-                                    stroke-linecap="round" />
-                                <path d="M23.0039 13.0005L0.99564 13.0005" stroke="var(--day-dark01)"
-                                    stroke-width="2.99998" stroke-linecap="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_298_2425">
-                                    <rect width="24" height="24.7705" fill="var(--day-white01)"
-                                        transform="translate(0 0.614258)" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-
-        </div>
 
 
         <!-- MENU BUTTON STUFF -->
@@ -825,98 +730,11 @@
                             </div>
                         </div>
 
-                        <button class="disabled">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18"
-                                fill="none">
-                                <g clip-path="url(#clip0_216_361)">
-                                    <path d="M8 1.40723V16.5931" stroke-width="1.99999" stroke-linecap="round" />
-                                    <path d="M15.3364 9L0.664249 9" stroke-width="1.99999" stroke-linecap="round" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_216_361">
-                                        <rect width="16" height="16.5137" fill="var(--day-white01)"
-                                            transform="translate(0 0.743164)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            Adaugă
-                        </button>
+
                     </div>
                     <div class="separator"></div>
                     <div class="reviews active"></div>
-                    <form class="create-review">
-                        <div class="front">
-                            <div class="img">
-                                <img src="../assets/Account/pizza.webp" alt="Imaginea ta de profil">
-                            </div>
-                            <p class="name">error</p>
-                            <div class="stars">
-                                <svg width="24" height="24" viewBox="0 0 60 60" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
 
-                                    <path
-                                        d="M29.3636 42.7926L13.2557 54.4261L19.6051 35.5057L3.45455 23.8295H23.2273L29.3636 4.90909L35.5 23.8295H55.2727L39.1222 35.5057L45.4716 54.4261L29.3636 42.7926ZM29.3636 36.571L35.7131 41.152L33.1989 33.5881L39.7614 28.858H31.8778L29.3636 21.1875L26.892 28.858H19.0085L25.5497 33.5881L23.0142 41.152L29.3636 36.571Z"
-                                        fill="var(--day-gold)" />
-                                    <path
-                                        d="M29.6364 36.7699L22.1193 42.1989L25.0824 33.3693L17.5455 27.9205H26.7727L29.6364 19.0909L32.5 27.9205H41.7273L34.1903 33.3693L37.1534 42.1989L29.6364 36.7699Z"
-                                        fill="var(--day-gold)" class="fill not" />
-
-                                </svg>
-                                <svg width="24" height="24" viewBox="0 0 60 60" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-
-                                    <path
-                                        d="M29.3636 42.7926L13.2557 54.4261L19.6051 35.5057L3.45455 23.8295H23.2273L29.3636 4.90909L35.5 23.8295H55.2727L39.1222 35.5057L45.4716 54.4261L29.3636 42.7926ZM29.3636 36.571L35.7131 41.152L33.1989 33.5881L39.7614 28.858H31.8778L29.3636 21.1875L26.892 28.858H19.0085L25.5497 33.5881L23.0142 41.152L29.3636 36.571Z"
-                                        fill="var(--day-gold)" />
-                                    <path
-                                        d="M29.6364 36.7699L22.1193 42.1989L25.0824 33.3693L17.5455 27.9205H26.7727L29.6364 19.0909L32.5 27.9205H41.7273L34.1903 33.3693L37.1534 42.1989L29.6364 36.7699Z"
-                                        fill="var(--day-gold)" class="fill not" />
-
-                                </svg>
-                                <svg width="24" height="24" viewBox="0 0 60 60" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-
-                                    <path
-                                        d="M29.3636 42.7926L13.2557 54.4261L19.6051 35.5057L3.45455 23.8295H23.2273L29.3636 4.90909L35.5 23.8295H55.2727L39.1222 35.5057L45.4716 54.4261L29.3636 42.7926ZM29.3636 36.571L35.7131 41.152L33.1989 33.5881L39.7614 28.858H31.8778L29.3636 21.1875L26.892 28.858H19.0085L25.5497 33.5881L23.0142 41.152L29.3636 36.571Z"
-                                        fill="var(--day-gold)" />
-                                    <path
-                                        d="M29.6364 36.7699L22.1193 42.1989L25.0824 33.3693L17.5455 27.9205H26.7727L29.6364 19.0909L32.5 27.9205H41.7273L34.1903 33.3693L37.1534 42.1989L29.6364 36.7699Z"
-                                        fill="var(--day-gold)" class="fill not" />
-
-                                </svg>
-                                <svg width="24" height="24" viewBox="0 0 60 60" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-
-                                    <path
-                                        d="M29.3636 42.7926L13.2557 54.4261L19.6051 35.5057L3.45455 23.8295H23.2273L29.3636 4.90909L35.5 23.8295H55.2727L39.1222 35.5057L45.4716 54.4261L29.3636 42.7926ZM29.3636 36.571L35.7131 41.152L33.1989 33.5881L39.7614 28.858H31.8778L29.3636 21.1875L26.892 28.858H19.0085L25.5497 33.5881L23.0142 41.152L29.3636 36.571Z"
-                                        fill="var(--day-gold)" />
-                                    <path
-                                        d="M29.6364 36.7699L22.1193 42.1989L25.0824 33.3693L17.5455 27.9205H26.7727L29.6364 19.0909L32.5 27.9205H41.7273L34.1903 33.3693L37.1534 42.1989L29.6364 36.7699Z"
-                                        fill="var(--day-gold)" class="fill not" />
-
-                                </svg>
-                                <svg width="24" height="24" viewBox="0 0 60 60" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-
-                                    <path
-                                        d="M29.3636 42.7926L13.2557 54.4261L19.6051 35.5057L3.45455 23.8295H23.2273L29.3636 4.90909L35.5 23.8295H55.2727L39.1222 35.5057L45.4716 54.4261L29.3636 42.7926ZM29.3636 36.571L35.7131 41.152L33.1989 33.5881L39.7614 28.858H31.8778L29.3636 21.1875L26.892 28.858H19.0085L25.5497 33.5881L23.0142 41.152L29.3636 36.571Z"
-                                        fill="var(--day-gold)" />
-                                    <path
-                                        d="M29.6364 36.7699L22.1193 42.1989L25.0824 33.3693L17.5455 27.9205H26.7727L29.6364 19.0909L32.5 27.9205H41.7273L34.1903 33.3693L37.1534 42.1989L29.6364 36.7699Z"
-                                        fill="var(--day-gold)" class="fill not" />
-
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="textarea">
-                            <textarea placeholder="Scrie recenzia..." name="" id="" cols="30" rows="10"></textarea>
-                            <div class="max"><span>0</span>/500</div>
-                        </div>
-                        <button type="submit" id="submit-bttn">
-                            <span class="text">Adaugă</span>
-                        </button>
-
-                    </form>
 
 
                 </div>

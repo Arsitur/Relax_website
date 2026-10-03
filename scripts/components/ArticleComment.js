@@ -77,19 +77,14 @@ class ArticleComment extends HTMLElement
       
     
         <div class="header">
-            <div class="img">
-                <img src="${this.getAttribute('img')}" alt="Imaginea de profil a lui ${this.getAttribute('name')}">
-            </div>
-            <div class="text">
-                <div class="name">${this.getAttribute('name')}</div>
-                <div class="date">${this.getAttribute('date')}</div>
-            </div>
-        </div>
-        <p>${this.getAttribute('text')}</p>
-
-    `;
+            <div class="img"><img></div>
+            <div class="text"><div class="name"></div><div class="date"></div></div>
+        </div><p></p>`;
+        this.shadowRoot.querySelector('img').src = this.getAttribute('img');
+        this.shadowRoot.querySelector('img').alt = 'Avatar';
+        this.shadowRoot.querySelector('.name').textContent = this.getAttribute('name');
+        this.shadowRoot.querySelector('.date').textContent = this.getAttribute('date');
+        this.shadowRoot.querySelector('p').textContent = this.getAttribute('text');
     }
-
 }
-
-window.customElements.define("article-comment", ArticleComment)
+customElements.define('article-comment', ArticleComment);

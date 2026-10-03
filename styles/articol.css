@@ -203,7 +203,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .contents>.end>.wrap>.likes>svg {
@@ -366,42 +366,6 @@
     width: 800px;
 }
 
-.admin-buttons {
-    position: fixed;
-    left: 32px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.admin-buttons>button {
-    width: 64px;
-    height: 64px;
-    border-radius: 100px;
-    border: 2px solid var(--day-separator);
-    background: var(--day-white01);
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.15), 0px 2px 2px 0px rgba(0, 0, 0, 0.13), 0px 5px 3px 0px rgba(0, 0, 0, 0.08), 0px 9px 4px 0px rgba(0, 0, 0, 0.02), 0px 15px 4px 0px rgba(0, 0, 0, 0.00);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.admin-buttons>button.big-text {
-    color: var(--day-dark01);
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 175%;
-}
-
-.admin-buttons>button.small-text {
-    color: var(--day-dark01);
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 175%;
-}
-
 .progress-bar {
     position: fixed;
     top: 0;
@@ -415,10 +379,6 @@
 @media(max-width: 1300px) {
     .contents {
         padding: 128px 128px;
-    }
-
-    .admin-buttons {
-        display: none !important;
     }
 
     .contents>.added>.paragraph,
@@ -481,3 +441,7 @@
     }
 
 }
+
+.contents>.end>.wrap>.likes { background:none; border:0; font:inherit; cursor:pointer; }
+#interaction-status { color:var(--day-dark02); font:500 16px Poppins,sans-serif; }
+#add-comment button:disabled { opacity:.55; cursor:default; }

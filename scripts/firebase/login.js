@@ -1,129 +1,47 @@
-let submitBtn = document.querySelector(".submit-btn-form-register");
-let emailField = document.querySelector(".email-field-input-sign");
-let GoogleBTN = document.getElementById("google-signin-provider");
-
-// Google SignIn
-
-const form = document.querySelector("#form")
-const submitBtnLoading = document.querySelector('#submit-bttn>.loading');
-const submitBtnText = document.querySelector('#submit-bttn>.text');
-
-const errorText = document.querySelector('header>.main-text>.error')
-const succesText = document.querySelector('header>.main-text>.succes')
-const checkmark = document.querySelector('#submit-bttn>.checkmark')
-
-function startLoad()
-{
-    submitBtnLoading.style.opacity = "1";
-    submitBtnText.style.display = "none";
-    submitBtn.style.pointerEvents = "none";
-
+import { signInWithPopup, sendSignInLinkToEmail } from 'firebase/auth';
+import { auth, googleProvider, ensureUserProfile, authErrorMessage } from './main.js';
+import { siteUrl } from '../site.js';
+const form = document.querySelector('#form');
+const emailField = document.querySelector('.email-field-input-sign');
+const submitBtn = document.querySelector('#submit-bttn');
+const googleBtn = document.querySelector('#google-signin-provider');
+const loading = submitBtn.querySelector('.loading');
+const text = submitBtn.querySelector('.text');
+const success = document.querySelector('header>.main-text>.succes');
+const errorText = document.querySelector('header>.main-text>.error');
+const checkmark = submitBtn.querySelector('.checkmark');
+let busy = false;
+function setBusy(value) {
+    busy = value;
+    submitBtn.disabled = value;
+    googleBtn.disabled = value;
+    loading.style.opacity = value ? '1' : '0';
+    text.style.display = value ? 'none' : 'block';
+    submitBtn.style.pointerEvents = value ? 'none' : 'initial';
+    submitBtn.setAttribute('aria-busy', String(value));
 }
-function finishLoad()
-{
-    succesText.classList.add('show')
-    checkmark.classList.add('show')
-    submitBtnLoading.style.opacity = "0";
-}
-
-function errorLoad()
-{
-    submitBtnText.style.display = "block";
-    checkmark.classList.remove('show')
-    succesText.classList.remove('show')
-    errorText.classList.add('show')
-}
-
-form.addEventListener('submit', (e) =>
-{
-    submitBtnLoading.style.opacity = "1";
-    submitBtnText.style.display = "none";
-
-    e.preventDefault();
-    email = emailField.value;
-    if (email.value != "")
-    {
-        startLoad()
-        var actionCodeSettings = {
-            url: window.location.origin + '/pages/menu.html',
-            handleCodeInApp: true,
-        };
-
-        firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
-            .then(() =>
-            {
-                window.localStorage.setItem('emailForSignIn', email);
-                finishLoad()
-            })
-            .catch((error) =>
-            {
-                console.log(error)
-                errorLoad()
-            });
-    }
-})
-
-GoogleBTN.addEventListener("click", () =>
-{
-    startLoad()
-    firebase.auth()
-        .signInWithPopup(GoogleProvider)
-        .then((result) =>
-        {
-            var user = result.user;
-            let is_user = false;
-            usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
-            {
-                querySnapshot.forEach((obj) =>
-                {
-                    console.log(obj)
-                    is_user = true;
-                })
-            }).then(() =>
-            {
-                usersDB.where("ID", "==", user.email).get().then((querySnapshot) =>
-                {
-                    querySnapshot.forEach((obj) =>
-                    {
-                        console.log(obj)
-                        is_user = true;
-                    })
-                }).then(() =>
-                {
-                    console.log(user)
-                    if (!is_user)
-                    {
-
-                        let date = new Date();
-                        usersDB.add({
-                            name: user.displayName,
-                            ID: user.uid,
-                            admin: false,
-                            created: date.getTime(),
-                            photoURL: startImage,
-                            email: user.email
-                        }).then(() =>
-                        {
-                            cartsDB.add({
-                                ID: user.uid,
-                                products: [],
-                            }).then(() =>
-                            {
-
-
-                                // End animation
-                                window.location.href = '/';
-
-                            });
-                        });
-                    }
-                });
-            })
-        }).catch((error) =>
-        {
-            // Error anim
-            console.error(error);
-            succesText.classList.remove('show')
-            errorText.classList.add('show')
-        });
+function clearStatus() { success.classList.remove('show'); errorText.classList.remove('show'); checkmark.classList.remove('show'); }
+function showError(error) { console.error(error); errorText.textContent = authErrorMessage(error); errorText.classList.add('show'); }
+form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (busy || !form.reportValidity()) return;
+    clearStatus(); setBusy(true);
+    try {
+        const email = emailField.value.trim();
+        await sendSignInLinkToEmail(auth, email, { url: siteUrl('pages/menu.html'), handleCodeInApp: true });
+        localStorage.setItem('emailForSignIn', email);
+        success.textContent = 'Ți-am trimis un link de conectare. Verifică emailul.';
+        success.classList.add('show');
+    } catch (error) { showError(error); }
+    finally { setBusy(false); }
+});
+googleBtn.addEventListener('click', async () => {
+    if (busy) return;
+    clearStatus(); setBusy(true);
+    try {
+        const { user } = await signInWithPopup(auth, googleProvider);
+        await ensureUserProfile(user);
+        window.location.assign(siteUrl('pages/menu.html'));
+    } catch (error) { showError(error); }
+    finally { setBusy(false); }
 });

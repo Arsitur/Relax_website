@@ -1,6 +1,9 @@
-import { lockScroll, unlockScroll, assignStars, starsAnim, deleteTextAnim, generateMongoLikeID, formatDate, displayImage } from "../utils.js";
+import { lockScroll, unlockScroll, assignStars, starsAnim } from "../utils.js";
+import productData from "../../data/menu.json";
+import { siteUrl, escapeHTML } from "../site.js";
+import { readCart } from "../cart.js";
 
-let orders = JSON.parse(localStorage.getItem('orders'));
+let orders = readCart(productData);
 
 let ordersKeysArray = []
 
@@ -16,317 +19,12 @@ let currentID = '';
 const itemQuantityMap = new Map();
 let sideMenuIDs = [...ordersKeysArray];
 
-let addItemBool = false;
-let currentEditID = "";
-
-const createReviewBttn = document.querySelector(".item-popup>.reviews-side>.content>.header>button")
-
-const createReviewImg = document.querySelector(".item-popup>.reviews-side>.content>.create-review>.front>.img>img");
-const createReviewName = document.querySelector(".item-popup>.reviews-side>.content>.create-review>.front>.name");
-const addItemButton = document.querySelector(".add-item-bttn");
-const adminItemPopup = document.querySelector('.admin-item-popup');
-const adminItemOverlay = document.querySelector('#admin-item-overlay');
-const adminExtraButtons = document.querySelector('.admin-item-extra-buttons');
-const adminPopupInputs = document.querySelectorAll('.admin-item-popup>.inputs>.input>input');
-const adminPopupTextarea = document.querySelector('.admin-item-popup>.inputs>.input>textarea');
-const adminExtraDelete = document.querySelector('#extra-delete');
-const adminExtraAction = document.querySelector('#extra-action');
-const adminCategorySelect = document.querySelector('#admin-item-category');
-const adminForm = document.querySelector('#admin-form');
-const adminAddImage = document.querySelector('#admin-item-photo');
-
-let adminPopupImage = adminItemPopup.querySelector('.admin-item-popup>.image>img');
-let adminPopupName = adminItemPopup.querySelector('#admin-item-name');
-let adminPopupPrice = adminItemPopup.querySelector('#admin-item-price');
-let adminPopupDescription = adminItemPopup.querySelector('#admin-item-description');
-let adminPopupMasa = adminItemPopup.querySelector('#admin-item-masa');
-
-let accountAdmin = false;
-let accountName = '';
-let isAccount = false;
-let accountImage;
-let accountID;
-
-function openAdminPopup()
-{
-    lockScroll();
-    adminItemPopup.classList.add('show');
-    adminItemOverlay.classList.add('show');
-    adminExtraButtons.classList.add('show');
-}
-function closeAdminPopup()
-{
-    unlockScroll()
-    adminItemPopup.classList.remove('show');
-    adminItemOverlay.classList.remove('show');
-    adminExtraButtons.classList.remove('show');
-
-    setTimeout(() =>
-    {
-
-        adminExtraDelete.classList.remove('show');
-
-        adminPopupImage.value = '';
-        adminPopupName.value = '';
-        adminPopupPrice.value = '';
-        adminPopupDescription.value = '';
-        adminPopupMasa.value = '';
-
-        adminPopupImage.classList.remove('show')
-
-        adminAddImage
-        let label = adminAddImage.parentElement
-        let previewImg = label.nextElementSibling
-
-        label.classList.remove('img')
-        previewImg.classList.remove('show');
-        label.children[1].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
-                        <path
-                            d="M57.0556 63.75L50.3832 57.1336C47.1636 53.9404 45.5536 52.344 43.7064 51.7604C42.0816 51.2472 40.3352 51.266 38.7219 51.8144C36.8875 52.438 35.3126 54.0688 32.1627 57.3304L16.1764 73.1204M57.0556 63.75L58.4212 62.396C61.6448 59.1992 63.2564 57.6008 65.106 57.0172C66.7324 56.504 68.48 56.5244 70.0944 57.0748C71.9296 57.7004 73.5044 59.3356 76.6536 62.6056L80 65.9736M57.0556 63.75L73.1 79.826M16.1764 73.1204C16.3005 74.1284 16.5118 74.9252 16.872 75.632C17.6389 77.1372 18.8628 78.3612 20.3681 79.128C22.0794 80 24.3196 80 28.8 80H67.2C69.8172 80 71.6704 80 73.1 79.826M16.1764 73.1204C16 71.6884 16 69.83 16 67.2V28.8C16 24.3196 16 22.0794 16.872 20.3681C17.6389 18.8628 18.8628 17.6389 20.3681 16.872C22.0794 16 24.3196 16 28.8 16H67.2C71.6804 16 73.9208 16 75.632 16.872C77.1372 17.6389 78.3612 18.8628 79.128 20.3681C80 22.0794 80 24.3196 80 28.8V65.9736M80 65.9736V67.2C80 71.6804 80 73.9208 79.128 75.632C78.3612 77.1372 77.1372 78.3612 75.632 79.128C74.9204 79.4908 74.1172 79.7024 73.1 79.826M68 35.9996C68 40.418 64.4184 43.9996 60 43.9996C55.5816 43.9996 52 40.418 52 35.9996C52 31.5813 55.5816 27.9996 60 27.9996C64.4184 27.9996 68 31.5813 68 35.9996Z"
-                            stroke="white" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>`
-
-    }, 100)
 
 
 
-}
-
-adminAddImage.addEventListener('change', (e) =>
-{
-    let selectedFile = e.target.files[0];
-    let label = e.target.parentElement
-    let previewImg = label.nextElementSibling
-
-    if (selectedFile)
-    {
-        label.classList.add('img')
-        displayImage(selectedFile, previewImg);
-        previewImg.classList.add('show');
-        label.children[1].innerHTML = 'Schimbă'
-    }
-    else
-    {
-        label.classList.remove('img')
-        previewImg.classList.remove('show');
-        label.children[1].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
-                        <path
-                            d="M57.0556 63.75L50.3832 57.1336C47.1636 53.9404 45.5536 52.344 43.7064 51.7604C42.0816 51.2472 40.3352 51.266 38.7219 51.8144C36.8875 52.438 35.3126 54.0688 32.1627 57.3304L16.1764 73.1204M57.0556 63.75L58.4212 62.396C61.6448 59.1992 63.2564 57.6008 65.106 57.0172C66.7324 56.504 68.48 56.5244 70.0944 57.0748C71.9296 57.7004 73.5044 59.3356 76.6536 62.6056L80 65.9736M57.0556 63.75L73.1 79.826M16.1764 73.1204C16.3005 74.1284 16.5118 74.9252 16.872 75.632C17.6389 77.1372 18.8628 78.3612 20.3681 79.128C22.0794 80 24.3196 80 28.8 80H67.2C69.8172 80 71.6704 80 73.1 79.826M16.1764 73.1204C16 71.6884 16 69.83 16 67.2V28.8C16 24.3196 16 22.0794 16.872 20.3681C17.6389 18.8628 18.8628 17.6389 20.3681 16.872C22.0794 16 24.3196 16 28.8 16H67.2C71.6804 16 73.9208 16 75.632 16.872C77.1372 17.6389 78.3612 18.8628 79.128 20.3681C80 22.0794 80 24.3196 80 28.8V65.9736M80 65.9736V67.2C80 71.6804 80 73.9208 79.128 75.632C78.3612 77.1372 77.1372 78.3612 75.632 79.128C74.9204 79.4908 74.1172 79.7024 73.1 79.826M68 35.9996C68 40.418 64.4184 43.9996 60 43.9996C55.5816 43.9996 52 40.418 52 35.9996C52 31.5813 55.5816 27.9996 60 27.9996C64.4184 27.9996 68 31.5813 68 35.9996Z"
-                            stroke="white" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>`
-    }
-});
-
-addItemButton.addEventListener('click', () =>
-{
-    addItemBool = true;
-    currentEditID = "";
-    adminPopupInputs.forEach(input =>
-    {
-        input.nextElementSibling.classList.remove('move')
-
-    })
-    adminExtraAction.innerHTML = `
-    
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none">
-                    <g clip-path="url(#clip0_298_2425)">
-                        <path d="M11.9995 1.61084V24.3896" stroke="var(--day-dark01)" stroke-width="2.99998"
-                            stroke-linecap="round" />
-                        <path d="M23.0039 13.0005L0.99564 13.0005" stroke="var(--day-dark01)" stroke-width="2.99998"
-                            stroke-linecap="round" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_298_2425">
-                            <rect width="24" height="24.7705" fill="var(--day-white01)" transform="translate(0 0.614258)" />
-                        </clipPath>
-                    </defs>
-                </svg>`
-
-    adminPopupTextarea.nextElementSibling.classList.remove('move')
-    adminCategorySelect.value = 'pizza-section'
-    openAdminPopup()
-})
-adminItemOverlay.addEventListener('click', () =>
-{
-    closeAdminPopup()
-})
-
-adminExtraDelete.addEventListener('click', () =>
-{
-    if (addItemBool = true && currentEditID != "")
-    {
-        productsDB.doc(currentEditID).delete().then(() =>
-        {
-            location.reload()
-        });
-    }
-    closeAdminPopup();
-})
-adminForm.addEventListener('submit', (e) =>
-{
-    e.preventDefault();
-    if (!addItemBool && accountAdmin)
-    {
-        // Update current item
-
-        if (adminAddImage.files[0] != null)
-        {
-            productsDB.doc(currentEditID).update({
-                name: adminPopupName.value,
-                description: adminPopupDescription.value,
-                category: adminCategorySelect.value,
-                price: Number(adminPopupPrice.value),
-                masa: Number(adminPopupMasa.value),
-                photoURL: "",
-            }).then((object2) =>
-            {
-                let file2 = adminAddImage.files[0];
-                firebase.storage().ref().child('/' + currentEditID + ".png").put(file2).then((snapshot) =>
-                {
-                    snapshot.ref.getDownloadURL().then((urlfile) =>
-                    {
-                        productsDB.doc(currentEditID).update({
-                            photoURL: urlfile,
-                        })
-                    }).then(() =>
-                    {
-                        location.reload();
-                    });
-                })
-            })
-        } else
-        {
-            productsDB.doc(currentEditID).update({
-                name: adminPopupName.value,
-                description: adminPopupDescription.value,
-                category: adminCategorySelect.value,
-                price: Number(adminPopupPrice.value),
-                masa: Number(adminPopupMasa.value),
-            }).then(() =>
-            {
-                location.reload();
-            })
-        }
-    }
-    if (addItemBool && accountAdmin)
-    {
-        productsDB.add({
-            name: adminPopupName.value,
-            description: adminPopupDescription.value,
-            category: adminCategorySelect.value,
-            price: Number(adminPopupPrice.value),
-            masa: Number(adminPopupMasa.value),
-            photoURL: "",
-            nrReviews: 1,
-            stars: 5,
-            reviews: [],
-        }).then((object) =>
-        {
-            let file = adminAddImage.files[0];
-            firebase.storage().ref().child('/' + object.id + ".png").put(file).then((snapshot) =>
-            {
-                snapshot.ref.getDownloadURL().then((urlfile) =>
-                {
-                    productsDB.doc(object.id).update({
-                        photoURL: urlfile,
-                    })
-                }).then(() =>
-                {
-                    location.reload();
-                });
-            })
-        })
-    }
-
-    closeAdminPopup()
-})
-
-// Admin Inputs
-
-adminPopupInputs.forEach(input =>
-{
-    input.addEventListener('focus', (e) =>
-    {
-        e.target.nextElementSibling.classList.add('move')
-    })
-    input.addEventListener('blur', (e) =>
-    {
-        if (e.target.value == '')
-        {
-            e.target.nextElementSibling.classList.remove('move')
-        }
-    })
-})
-
-adminPopupTextarea.addEventListener('focus', (e) =>
-{
-    e.target.nextElementSibling.classList.add('move')
-})
-adminPopupTextarea.addEventListener('blur', (e) =>
-{
-    if (e.target.value == '')
-    {
-        e.target.nextElementSibling.classList.remove('move')
-    }
-})
-
-firebase.auth().onAuthStateChanged((user) =>
-{
-    if (user)
-    {
-        console.log(user)
-        usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
-        {
-            querySnapshot.forEach((doc) =>
-            {
-                console.log(doc.data())
-                createReviewImg.src = doc.data().photoURL;
-                createReviewName.innerText = doc.data().name;
-                accountName = doc.data().name;
-                accountImage = doc.data().photoURL;
-                if (doc.data().admin)
-                {
-                    addItemButton.style.display = 'flex';
-                    accountAdmin = true;;
-                }
-                isAccount = true;
-                accountID = doc.id
-
-                createReviewBttn.classList.remove('disabled')
-                createReviewBttn.addEventListener('click', () =>
-                {
-                    createReviewBttn.classList.toggle('active')
-                    reviewsDiv.classList.toggle('active');
-                    createReviewDiv.classList.toggle('active');
-                    xSVG.classList.toggle('active')
-                })
-            });
-
-        })
-    }
-});
-
-let menuItems = [];
-let menuIDs = [];
-
-productsDB.get().then((querySnapshot) =>
-{
-
-    // Work
-
-    querySnapshot.forEach((product, index) =>
-    {
-        const data = product.data();
-        // Read Romanian text from older Firebase records; no translation UI or preference.
-        menuItems.push({ ...data, name: data.name ?? data.nametran?.ro ?? "",
-            description: data.description ?? data.descriptiontran?.ro ?? "" });
-        menuIDs.push(product.id)
-
-    })
-    menuItems.forEach((item, index) =>
-    {
-        item.id = menuIDs[index]
-    })
+// Products are local JSON; the menu never reads or writes Firebase.
+const menuItems = productData.map(item => ({ ...item, photoURL: siteUrl(item.photoURL) }));
+Promise.resolve().then(() => {
     renderMenuItems(menuItems)
 
     itemQuantityMap.forEach(item =>
@@ -471,9 +169,11 @@ const categories = document.querySelectorAll('.filter-section>.content>.categori
 const moreCategories = document.querySelectorAll('.more-filter>.content>.options>.categories>.category')
 
 
-let price = 500;
+let price = Math.ceil(Math.max(...menuItems.map(item => Number(item.price))) / 50) * 50;
+[slider, moreSlider].forEach(input => { input.max = price; input.value = price; });
+[sliderValue, moreSliderValue].forEach(label => { label.textContent = price; });
 let mainStarsFilled = 5;
-let categoriesIndexesArray;
+let categoriesIndexesArray = [];
 updateMainCategories();
 
 function renderMenuItems(menuItems)
@@ -502,9 +202,9 @@ function renderMenuItems(menuItems)
         {
 
             section.style.display = 'initial';
-            items.innerHTML += `<menu-item name="${item.name}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
+            items.innerHTML += `<menu-item name="${escapeHTML(item.name)}" price="${item.price}" img="${item.photoURL}" stars="${item.stars}"
                             reviews='${JSON.stringify(reviews)}'
-                            description="${item.description}"
+                            description="${escapeHTML(item.description)}"
                             masa="${item.masa}" category="${item.category}" id="${item.id}"></menu-item>`;
         }
 
@@ -576,7 +276,7 @@ function filterMenuItems(menuItems, criteria)
         {
             const [field, value] = criterion;
 
-            if (field === 'stars' && stars > value)
+            if (field === 'stars' && stars < value)
             {
                 return false;
             }
@@ -643,7 +343,7 @@ function updateMainCategories()
     categoriesIndexesArray = [];
     let windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-    if (windowWidth < 1100)
+    if (windowWidth < 850)
     {
         moreCategories.forEach((category, index) =>
         {
@@ -677,7 +377,7 @@ function closeItemPopup()
     unlockScroll();
     reviewSide.classList.remove('show')
     popupButton.classList.remove('shake')
-    resetReviewSlide()
+
 }
 
 const closeItemPopupButtons = document.querySelectorAll('.close-item-popup')
@@ -691,7 +391,7 @@ checkoutButton.addEventListener('click', () =>
 {
     if (sideMenuIDs.length > 0)
     {
-        window.location.href = '/pages/checkout.html'
+        window.location.href = siteUrl("pages/checkout.html")
     }
 })
 
@@ -937,45 +637,6 @@ class MenuItem extends HTMLElement
 
         this.addEventListener('click', () =>
         {
-            addItemBool = false;
-
-            if (accountAdmin)
-            {
-                openAdminPopup()
-                adminCategorySelect.value = this.getAttribute('category')
-
-                adminPopupImage.classList.add('show')
-
-                let label = adminAddImage.parentElement
-                let previewImg = label.nextElementSibling
-                label.classList.add('img')
-                previewImg.classList.add('show');
-                label.children[1].innerHTML = 'Schimbă'
-
-                adminExtraDelete.classList.add('show')
-
-                adminPopupImage.src = `${this.getAttribute('img')}`;
-                adminPopupImage.setAttribute('alt', `${this.getAttribute('name')}`);
-
-                adminPopupName.value = `${this.getAttribute('name')}`
-                adminPopupPrice.value = `${this.getAttribute('price')}`
-                adminPopupDescription.value = `${this.getAttribute('description')}`
-                adminPopupMasa.value = `${this.getAttribute('masa')}`
-
-                adminPopupInputs.forEach(input =>
-                {
-                    input.nextElementSibling.classList.add('move')
-
-                })
-
-                adminPopupTextarea.nextElementSibling.classList.add('move')
-
-                adminExtraAction.innerHTML = `<svg xmlns = "http://www.w3.org/2000/svg" width = "32" height = "32" viewBox = "0 0 32 32" fill = "none">
-            <path d="M5.3335 16.8146L11.8976 23.3332L26.6668 8.6665" stroke="var(--day-dark01)" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" />
-</ >`
-            }
-            else
-            {
                 itemPopup.classList.add('show');
                 itemOverlay.classList.add('show');
                 lockScroll();
@@ -1005,9 +666,8 @@ class MenuItem extends HTMLElement
                     popupButton.classList.remove('shake')
                 }
 
-            }
             currentID = this.getAttribute('id');
-            currentEditID = this.getAttribute('id');
+
 
         });
 
@@ -1072,38 +732,6 @@ class MenuItem extends HTMLElement
         assignReviewNum(popupReviewsNum, reviews.length)
         assignReviewNum(reviewReviewsNum, reviews.length)
     }
-    addReview(review)
-    {
-        const currentReviews = JSON.parse(this.getAttribute('reviews'));
-        currentReviews.push(review)
-        this.setAttribute('reviews', JSON.stringify(currentReviews));
-        this.renderReviews();
-        review = JSON.stringify(review)
-        review = JSON.parse(review);
-        // Salvare reviews in baza de date [Andrei]
-        productsDB.doc(currentID).get().then((product) =>
-        {
-            let reviews2 = product.data().reviews;
-            let nrOfRev = product.data().nrReviews;
-            reviews2.push(review);
-            productsDB.doc(currentEditID).update({
-                reviews: reviews2,
-                nrReviews: nrOfRev + 1,
-            });
-        })
-        // {AICI}
-
-        // reviewsDB.add(review);
-
-        const reviewTextarea = document.querySelector('.item-popup>.reviews-side>.content>.create-review>.textarea>textarea')
-        deleteTextAnim(reviewTextarea)
-        this.starScore = this.calculateStars();
-
-        this.updateStars();
-
-        // Sa se updateze stelele daca pui 0 si schimbi la 3 sa se schimbe si la meniu
-        updateMenuSidebar()
-    }
     calculateStars()
     {
         const reviews = JSON.parse(this.getAttribute('reviews'));
@@ -1114,7 +742,7 @@ class MenuItem extends HTMLElement
             totalStars += Number(review.stars);
         });
 
-        return Math.round(totalStars / reviews.length);
+        return reviews.length ? Math.round(totalStars / reviews.length) : Number(this.getAttribute("stars") || 0);
     }
     updateStars()
     {
@@ -1414,114 +1042,3 @@ class SideMenuItem extends HTMLElement
 }
 
 window.customElements.define("side-menu-item", SideMenuItem)
-
-const reviewTextarea = document.querySelector('.item-popup>.reviews-side>.content>.create-review>.textarea>textarea')
-const reviewWordsSpan = document.querySelector('.item-popup>.reviews-side>.content>.create-review>.textarea>.max>span')
-
-const createReviewStars = document.querySelectorAll(".item-popup>.reviews-side>.content>.create-review>.front>.stars>svg")
-const createReviewForm = document.querySelector('.item-popup>.reviews-side>.content>.create-review')
-
-const xSVG = document.querySelector('.item-popup>.reviews-side>.content>.header>button>svg')
-
-const reviewsDiv = document.querySelector(".item-popup>.reviews-side>.content>.reviews")
-const createReviewDiv = document.querySelector('.item-popup>.reviews-side>.content>.create-review')
-const createStarsDiv = document.querySelector('.item-popup>.reviews-side>.content>.create-review>.front>.stars')
-
-let pastTextareaValue = '';
-let createReviewStarsFilled = 0;
-let starsAreSelected = false;
-
-reviewTextarea.addEventListener('input', (e) =>
-{
-    if (e.target.value.length <= 500)
-    {
-        reviewWordsSpan.innerText = `${e.target.value.length}`;
-        pastTextareaValue = e.target.value
-    }
-    else
-    {
-        e.target.value = pastTextareaValue;
-    }
-})
-
-createReviewStars.forEach(star =>
-{
-    star.addEventListener('click', (e) =>
-    {
-        starsAreSelected = true;
-        createReviewStarsFilled = starsAnim(createReviewStars, e.target, ".item-popup>.reviews-side>.content>.create-review>.front>.stars>svg>.fill")
-    })
-})
-
-let canPostComment = true;
-let reviewErrorTimeout;
-
-createReviewForm.addEventListener('submit', (e) =>
-{
-    e.preventDefault();
-
-    if (reviewTextarea.value == '' || !starsAreSelected)
-    {
-        clearTimeout(reviewErrorTimeout)
-
-        if (reviewTextarea.value == '')
-        {
-            reviewTextarea.classList.add('anim')
-            reviewErrorTimeout = setTimeout(() =>
-            {
-                reviewTextarea.classList.remove('anim')
-            }, 350)
-        }
-        if (!starsAreSelected)
-        {
-            createStarsDiv.classList.add('anim')
-            reviewErrorTimeout = setTimeout(() =>
-            {
-                createStarsDiv.classList.remove('anim')
-            }, 350)
-        }
-    }
-    else if (canPostComment)
-    {
-        const currentItem = itemQuantityMap.get(currentID);
-        const date = formatDate(new Date());
-
-        currentItem.addReview({
-            name: accountName,
-            date: date,
-            stars: `${createReviewStarsFilled}`,
-            description: `${reviewTextarea.value}`,
-            img: accountImage,
-            userID: accountID,
-            itemID: currentID,
-        })
-        canPostComment = false;
-        setTimeout(() =>
-        {
-            canPostComment = true;
-        }, 10000);
-
-        resetReviewSlide()
-    }
-    else
-    {
-        window.alert('Vă rog așteptați 10 secunde înainte să postați un alt comentariu.');
-    }
-})
-
-function resetReviewSlide()
-{
-    reviewWordsSpan.innerText = "0";
-
-    createReviewBttn.classList.remove('active')
-    reviewsDiv.classList.add('active');
-    createReviewDiv.classList.remove('active');
-    xSVG.classList.remove('active')
-
-    createReviewStars.forEach(star =>
-    {
-        star.querySelector('path.fill').classList.add('not')
-    })
-    starsAreSelected = false;
-    createReviewStarsFilled = 0;
-}

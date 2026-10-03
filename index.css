@@ -15,7 +15,6 @@
   --day-ebackground: rgba(247, 247, 247, 0.5);
   --day-gold: rgba(255, 151, 30, 1);
   --day-gold4: rgba(255, 151, 30, 0.5);
-  --day-admin: rgba(0, 87, 24, 1);
   --day-heart: rgba(255, 60, 60, 1);
   --day-brown: rgba(46, 46, 46, 1);
   --day-m-shadow01: rgba(2, 2, 2, 1);
@@ -51,7 +50,6 @@
   --day-i-background: rgba(9, 9, 9, 1);
   --day-ebackground: rgba(18, 18, 18, 0.65);
   --day-gold: rgba(255, 151, 30, 1);
-  --day-admin: rgba(85, 255, 133, 1);
   --day-heart: rgba(255, 99, 99, 1);
   --day-brown: rgba(34, 34, 34, 1);
   --day-m-shadow01: rgba(27, 27, 27, 1);
@@ -135,12 +133,7 @@ textarea {
   word-break: break-all;
 }
 
-div[contenteditable="true"] {
-  word-break: break-all;
-  border: none;
-  outline: transparent;
-  -webkit-user-modify: read-write-plaintext-only;
-}
+
 
 .loading > .content > .spinner {
   -webkit-animation: rotator 1.4s linear infinite;
@@ -769,3 +762,4 @@ nav.more>.more>svg {
     font-size: 22px;
   }
 }
+.demo-notice { max-width:1100px; margin:20px auto; padding:16px; font:500 16px Poppins,sans-serif; color:var(--day-dark02); border:1px solid var(--day-dark04); border-radius:12px; }

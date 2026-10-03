@@ -8,15 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/Bonus/icon.webp">
     <link rel="stylesheet" href="../index.css">
-    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
     <link rel="stylesheet" href="../styles/articole.css">
-    <script defer src="../scripts/firebase/main.js"></script>
     <script defer type="module" src="../scripts/articole.js"></script>
-    <script defer src="../scripts/components/NavBar.js"></script>
-    <script defer src="../scripts/components/EndSection.js"></script>
+    <script type="module" defer src="../scripts/components/NavBar.js"></script>
+    <script type="module" defer src="../scripts/components/EndSection.js"></script>
 
     <meta name="description"
         content="Descoperă cele mai recente și captivante articole la RELAX. Explorează subiecte variate, de la tendințe culinare și rețete inovatoare la povestiri din bucătăria noastră. Immersează-te în lumea culinară și inspiră-te cu articolele noastre.">
@@ -31,36 +26,10 @@
             <h1>Articole</h1>
         </header>
 
-        <div class="overlay" id="article-overlay"></div>
-        <div class="article-popup">
-            <div id="article-img-div" class="img">
-                <img class="preview-img" src="../assets/Account/pizza.webp" alt="Adaugă imaginea">
-                <label for="article-img-add" class="img-add-label show">
-                    <span>Adaugă imagine</span>
-                    <input type="file" accept="image/*" id="article-img-add" required>
-                </label>
-            </div>
-            <input type="text" id="article-name" placeholder="Nume" required autocomplete="false">
-            <div class="buttons">
-                <button class="add" id="article-form-add">Adaugă</button>
-                <button type="button" class="delete active" id="article-form-delete">Șterge</button>
-            </div>
-        </div>
 
-        <button class="add-article">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="26" viewBox="0 0 24 26" fill="none">
-                <g clip-path="url(#clip0_298_2567)">
-                    <path d="M12 1.61084V24.3896" stroke="var(--day-dark01)" stroke-width="3" stroke-linecap="round" />
-                    <path d="M23.0039 13.0005L0.99564 13.0005" stroke="var(--day-dark01)" stroke-width="3"
-                        stroke-linecap="round" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_298_2567">
-                        <rect width="24" height="24.7705" fill="white" transform="translate(0 0.614258)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </button>
+
+
+
 
         <section class="articles">
             <div class="article-placeholder">

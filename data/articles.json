@@ -1,0 +1,48 @@
+[
+  {
+    "id": "PbDYiU8eYjAbUmBcZVBA",
+    "name": "Bubble Tea",
+    "datePosted": 1718209146775,
+    "image": "assets/Articles/PbDYiU8eYjAbUmBcZVBA/cover.webp",
+    "blocks": []
+  },
+  {
+    "id": "dXJNRPRCAkcAg4Z1jG6m",
+    "name": "Night Party",
+    "datePosted": 1718209175944,
+    "image": "assets/Articles/dXJNRPRCAkcAg4Z1jG6m/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Vino în fiecare vineri și sâmbătă la Relax pentru a te distra la petrecerile noastre organizate de un Dj talentat."
+      },
+      {
+        "type": "heading",
+        "text": "Acest eveniment este frumos."
+      },
+      {
+        "type": "paragraph",
+        "text": "Voi veni cu siguranță."
+      }
+    ]
+  },
+  {
+    "id": "wz49JZe79Cg06gRiIQ2t",
+    "name": "Pizza la Relax",
+    "datePosted": 1718209162400,
+    "image": "assets/Articles/wz49JZe79Cg06gRiIQ2t/cover.webp",
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Cea mai bună pizza din oraș!!!"
+      }
+    ]
+  },
+  {
+    "id": "yogBi4C4sCDLARLO3kc0",
+    "name": "supa",
+    "datePosted": 1719403264721,
+    "image": "assets/Articles/yogBi4C4sCDLARLO3kc0/cover.svg",
+    "blocks": []
+  }
+]

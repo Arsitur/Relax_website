@@ -1,3 +1,6 @@
+import { auth } from '../firebase/main.js';
+import { onAuthStateChanged } from 'firebase/auth';
+import { siteUrl, defaultAvatar } from '../site.js';
 class NavBar extends HTMLElement
 {
     constructor()
@@ -13,106 +16,16 @@ class NavBar extends HTMLElement
     {
         this.render();
 
-        // FIREBASE ACCOUNT
-        const navAcc = this.shadowRoot.querySelector('.account>.acc-img')
-        const navButtons = this.shadowRoot.querySelectorAll('.account>a')
-        const outlineBtn = this.shadowRoot.querySelector('.outline-buttn')
-        const transparentBtn = this.shadowRoot.querySelector('.transparent-bttn')
-
-        const moreMenuAcc = this.shadowRoot.querySelector(".more-menu>.content>.acc-img");
-        const moreMenuAccButtons = this.shadowRoot.querySelector(".more-menu>.content>.account");
-
-        firebase.auth().onAuthStateChanged((user) =>
-        {
-            if (user)
-            {
-                transparentBtn.style.display = "none"
-                outlineBtn.style.display = "none"
-
-                moreMenuAccButtons.style.display = 'none'
-                usersDB.where("ID", "==", user.uid).get().then((querySnapshot) =>
-                {
-                    querySnapshot.forEach((doc) =>
-                    {
-                        navAcc.querySelector('img').src = doc.data().photoURL;
-                        navAcc.style.display = 'initial';
-                        moreMenuAcc.style.display = 'initial';
-                        moreMenuAcc.querySelector('img').src = doc.data().photoURL;
-                        console.log('YES')
-                    });
-                })
-
-
-            } else
-            {
-                navButtons.forEach(button =>
-                {
-                    button.style.display = "initial"
-                    button.style.pointerEvents = "initial"
-                })
-                transparentBtn.style.display = "initial"
-                transparentBtn.style.pointerEvents = "initial"
-                outlineBtn.style.display = "initial"
-                outlineBtn.style.pointerEvents = "initial"
-
-                moreMenuAcc.style.display = 'none';
-                moreMenuAccButtons.style.display = 'flex'
-                navAcc.style.display = 'none'
-            }
+        const root = this.shadowRoot;
+        this.unsubscribeAuth = onAuthStateChanged(auth, user => {
+            root.querySelectorAll('.account>a').forEach(link => { link.style.display = user ? 'none' : 'initial'; });
+            root.querySelector('.more-menu .account').style.display = user ? 'none' : 'flex';
+            root.querySelectorAll('.acc-img').forEach(link => {
+                link.style.display = user ? 'initial' : 'none';
+                link.querySelector('img').src = defaultAvatar();
+                link.querySelector('img').alt = user?.displayName || 'Contul tău';
+            });
         });
-
-        if (firebase.auth().isSignInWithEmailLink(window.location.href))
-        {
-
-            var email = window.localStorage.getItem('emailForSignIn');
-            if (!email)
-            {
-                window.location.href = '/';
-            } else
-            {
-
-                firebase.auth().signInWithEmailLink(email, window.location.href)
-                    .then((result) =>
-                    {
-                        window.localStorage.removeItem('emailForSignIn');
-                        var user = result.user;
-                        let is_user = false;
-                        usersDB.where("email", "==", user.email).get().then((querySnapshot) =>
-                        {
-                            querySnapshot.forEach((obj) =>
-                            {
-                                is_user = true;
-                            })
-                        }).then(() =>
-                        {
-                            console.log(user)
-                            if (!is_user)
-                            {
-
-                                let date = new Date();
-                                usersDB.add({
-                                    name: user.email.split("@")[0],
-                                    ID: user.uid,
-                                    admin: false,
-                                    created: date.getTime(),
-                                    photoURL: startImage,
-                                    email: user.email
-                                }).then(() =>
-                                {
-                                    cartsDB.add({
-                                        ID: user.uid,
-                                        products: [],
-                                    })
-                                });
-                            }
-                        });
-                    })
-                    .catch((error) =>
-                    {
-                        console.log(error)
-                    });
-            }
-        }
 
         // MOBILE MORE NAV
 
@@ -155,6 +68,8 @@ class NavBar extends HTMLElement
 
         })
     }
+
+    disconnectedCallback() { this.unsubscribeAuth?.(); }
 
     render()
     {
@@ -546,28 +461,28 @@ nav.more>.more>svg {
     <nav class="nav-bar">
         <div class="content">
             <div class="logo">
-                <a href="${this.currentPage === 'home' ? './index.html' : '../index.html'}" aria-label="Intră pe pagina principala RELAX">RELAX</a>
+                <a href="${siteUrl('index.html')}" aria-label="Intră pe pagina principala RELAX">RELAX</a>
             </div>
             <ul class="links-list">
-                <li class="link ${this.currentPage === 'home' ? 'current' : ''}"><a href="${this.currentPage === 'home' ? './index.html' : '../index.html'}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
-                <li class="link ${this.currentPage === 'menu' ? 'current' : ''}"><a href="${this.currentPage === 'home' ? './pages/menu.html' : './menu.html'}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
-                <li class="link ${this.currentPage === 'articles' ? 'current' : ''}"><a href="${this.currentPage === 'home' ? './pages/articole.html' : './articole.html'}" aria-label="Intră pe pagina de articole">Articole</a>
+                <li class="link ${this.currentPage === 'home' ? 'current' : ''}"><a href="${siteUrl('index.html')}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
+                <li class="link ${this.currentPage === 'menu' ? 'current' : ''}"><a href="${siteUrl('pages/menu.html')}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
+                <li class="link ${this.currentPage === 'articles' ? 'current' : ''}"><a href="${siteUrl('pages/articole.html')}" aria-label="Intră pe pagina de articole">Articole</a>
                 </li>
-                <li class="link ${this.currentPage === 'contact' ? 'current' : ''}"><a href="${this.currentPage === 'home' ? './pages/contact.html' : './contact.html'}" aria-label="Intră pe pagina de contacte">Contacte</a>
+                <li class="link ${this.currentPage === 'contact' ? 'current' : ''}"><a href="${siteUrl('pages/contact.html')}" aria-label="Intră pe pagina de contacte">Contacte</a>
                 </li>
             </ul>
 
         </div>
         <div class="account">
-            <a href=".${this.currentPage != 'home' ? '' : '/pages'}/autentificare.html" class="transparent-bttn" aria-label="Autentifica-te"
+            <a href="${siteUrl('pages/autentificare.html')}" class="transparent-bttn" aria-label="Autentifica-te"
                     aria-label="Intră pe pagina de Autentificare">
                     Autentificare
                 </a>
                 
-            <a href=".${this.currentPage != 'home' ? '' : '/pages'}/inregistrare.html" aria-label="Intră pe pagina de Înregistrare" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
-            <div  class="acc-img" aria-label="Account" >
+            <a href="${siteUrl('pages/inregistrare.html')}" aria-label="Intră pe pagina de Înregistrare" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
+            <a class="acc-img" href="${siteUrl('pages/account.html')}" aria-label="Contul tău">
                     <img src="" alt="Imaginea ta de profil">
-                </div>
+                </a>
         </div>
         <button class="more">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -579,23 +494,23 @@ nav.more>.more>svg {
     <div class="more-menu overlay">
         <div class="content">
             <ul class="links-list">
-                <li class="link ${this.currentPage === 'home' ? 'current' : ''}"><a href="./index.html" aria-label="Intră pe pagina de acasă">Acasă</a></li>
-                <li class=" link ${this.currentPage === 'menu' ? 'current' : ''}"><a href="./pages/menu.html" aria-label="Intră pe pagina de meniu">Meniu</a></li>
-                <li class="link ${this.currentPage === 'articles' ? 'current' : ''}"><a href="./pages/articole.html" aria-label="Intră pe pagina de articole">Articole</a>
+                <li class="link ${this.currentPage === 'home' ? 'current' : ''}"><a href="${siteUrl('index.html')}" aria-label="Intră pe pagina de acasă">Acasă</a></li>
+                <li class=" link ${this.currentPage === 'menu' ? 'current' : ''}"><a href="${siteUrl('pages/menu.html')}" aria-label="Intră pe pagina de meniu">Meniu</a></li>
+                <li class="link ${this.currentPage === 'articles' ? 'current' : ''}"><a href="${siteUrl('pages/articole.html')}" aria-label="Intră pe pagina de articole">Articole</a>
                 </li>
-                <li class="link ${this.currentPage === 'contact' ? 'current' : ''}"><a href="./pages/contact.html" aria-label="Intră pe pagina de contacte">Contacte</a>
+                <li class="link ${this.currentPage === 'contact' ? 'current' : ''}"><a href="${siteUrl('pages/contact.html')}" aria-label="Intră pe pagina de contacte">Contacte</a>
                 </li>
             </ul>
             <div class="account">
-                <a href=".${this.currentPage != 'home' ? '' : '/pages'}/autentificare.html" class="transparent-bttn" aria-label="Autentifica-te"
+                <a href="${siteUrl('pages/autentificare.html')}" class="transparent-bttn" aria-label="Autentifica-te"
                         aria-label="Intră pe pagina de Autentificare">
                         Autentificare
                     </a>
-                <a href=".${this.currentPage != 'home' ? '' : '/pages'}/inregistrare.html" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
+                <a href="${siteUrl('pages/inregistrare.html')}" class="outline-buttn" aria-label="Înregistrează-te">Înregistrare</a>
             </div>
-            <div class="acc-img" >
+            <a class="acc-img" href="${siteUrl('pages/account.html')}" aria-label="Contul tău">
                 <img src="" alt="Imaginea ta de profil">
-            </div>
+            </a>
         </div>
 
     </div>

@@ -7,17 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/Bonus/icond.webp">
     <link rel="stylesheet" href="../index.css">
-    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
     <link rel="stylesheet" href="../styles/articol.css">
-    <script src="../scripts/firebase/main.js"></script>
     <script defer type="module" src="../scripts/firebase/articol.js"></script>
-    <script defer type="module" src="../scripts/articol.js"></script>
-    <script defer src="../scripts/components/ArticleComment.js"></script>
-    <script defer src="../scripts/components/NavBar.js"></script>
-    <script defer src="../scripts/components/EndSection.js"></script>
+    <script type="module" defer src="../scripts/components/ArticleComment.js"></script>
+    <script type="module" defer src="../scripts/components/NavBar.js"></script>
+    <script type="module" defer src="../scripts/components/EndSection.js"></script>
 
     <meta name="robots" content="noindex, nofollow">
 
@@ -28,17 +22,7 @@
     <nav-bar current-page="articles"></nav-bar>
     <div class="progress-bar"></div>
     <main>
-        <div class="admin-buttons">
-            <button class="big-text">T</button>
-            <button class="small-text">t</button>
-            <button class="save">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M11.25 10L12.5 8.75H27.5L28.75 10V32.1937L20 27.0085L11.25 32.1937V10ZM13.75 11.25V27.8063L20 24.1025L26.25 27.8063V11.25H13.75Z"
-                        fill="var(--day-dark01)" />
-                </svg>
-            </button>
-        </div>
+
         <section class="contents">
             <div class="initial">
 
@@ -109,7 +93,7 @@
                 </div>
                 <div class="wrap">
                     <div class="comments"> <span id="nr-of-comments">0</span> Comentarii</div>
-                    <div class="likes disabled">
+                    <button type="button" class="likes" aria-label="Apreciază articolul" aria-pressed="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                 d="M18 8.99992C15.3009 5.85439 10.7907 4.88228 7.40884 7.76264C4.02702 10.643 3.5509 15.4588 6.20667 18.8654C8.41476 21.6977 15.0972 27.6715 17.2873 29.605C17.5323 29.8213 17.6548 29.9294 17.7978 29.9719C17.9224 30.0089 18.0589 30.0089 18.1837 29.9719C18.3267 29.9294 18.4491 29.8213 18.6942 29.605C20.8843 27.6715 27.5667 21.6977 29.7748 18.8654C32.4306 15.4588 32.0126 10.6127 28.5726 7.76264C25.1327 4.91258 20.6991 5.85439 18 8.99992Z"
@@ -119,11 +103,12 @@
                                 d="M30 7H6V21H10V25H14V26H15V29H21V26H22V25H26V21H30V7Z" fill="var(--day-heart)" />
                         </svg>
                         <span id="likes-number-count">0</span>
-                    </div>
+                    </button>
                 </div>
-                <form id="add-comment" class="disabled">
+                <p id="interaction-status" role="status" aria-live="polite"></p>
+                <form id="add-comment">
                     <div class="textarea">
-                        <textarea id="text-area-comment" maxlength="500" name="" id="" cols="30" rows="10"
+                        <textarea id="text-area-comment" maxlength="500" name="comment" cols="30" rows="10"
                             placeholder="Scrie un comentariu"></textarea>
                         <div class="max">0/500</div>
                     </div>

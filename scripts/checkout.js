@@ -1,6 +1,7 @@
-let ordersString = localStorage.getItem('orders');
-let orders = JSON.parse(ordersString);
-
+import products from '../data/menu.json';
+import { readCart } from './cart.js';
+import { siteUrl, escapeHTML } from './site.js';
+const orders = readCart(products);
 const ordersDiv = document.querySelector(".all>.orders-div>.content>.wrap>.orders");
 const allOrdersSection = document.querySelector('.orders-div>.content');
 const ordersContent = document.querySelector('.all>.orders-div>.content>.wrap')
@@ -9,7 +10,7 @@ const loadingAnim = document.querySelector(".all>.orders-div>.content>.loading")
 const subTotal = document.querySelector("#subtotal");
 const continueButton = document.querySelector('#continue-button')
 
-productsDB.get().then((querySnapshot) =>
+Promise.resolve(products).then((querySnapshot) =>
 {
     let keysArray = []
 
@@ -27,16 +28,17 @@ productsDB.get().then((querySnapshot) =>
     {
         if (keysArray.includes(product.id))
         {
-            ordersDiv.innerHTML += `<checkout-order name="${product.data().name}" price="${product.data().price}" img="${product.data().photoURL}"
+            ordersDiv.innerHTML += `<checkout-order name="${escapeHTML(product.name)}" price="${product.price}" img="${siteUrl(product.photoURL)}"
                         quantity="${orders[product.id]}"></checkout-order>`;
-            totalPrice += product.data().price * orders[product.id];
+            totalPrice += product.price * orders[product.id];
         }
     })
     totalPriceDiv.innerText = `${totalPrice + 35}.00 MDL`;
     subTotal.innerText = `${totalPrice}.00 MDL`;
     ordersContent.style.display = 'flex';
     loadingAnim.style.display = 'none'
-    continueButton.classList.remove('disabled');
+    if (keysArray.length) continueButton.classList.remove('disabled');
+    else ordersDiv.textContent = 'Coșul este gol.';
 })
 
 const adressInput = document.querySelector("#adress-input");
@@ -48,7 +50,7 @@ const checkoutForm = document.querySelector(".all>.information")
 checkoutForm.addEventListener('submit', (e) =>
 {
     e.preventDefault();
-
+    window.alert('Acesta este un demo pentru portofoliu. Nu sunt procesate comenzi sau plăți.');
 })
 
 const infoButton = document.querySelector('.all>.information>.method>.inputs>.input>.info>.content>button');
